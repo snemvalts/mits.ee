@@ -22,7 +22,13 @@ def no_first_line(html: str) -> str:
 
 
 def fetch(url: str) -> str:
-    return urllib.request.urlopen(url).read().decode("UTF-8")
+    req = urllib.request.Request(
+        url,
+        data=None,
+        headers={"Accept-Language": "et"} # For Estonian language
+    )
+
+    return urllib.request.urlopen(req).read().decode("UTF-8")
 
 
 def parse_fb_date(date: str) -> datetime.datetime:
@@ -225,4 +231,7 @@ def fetch_past() -> None:
 
 
 if __name__ == "__main__":
-    fetch_upcoming()
+    # fetch_upcoming()
+
+    html = fetch(EVENTS_URL)
+    print(html)
