@@ -231,7 +231,6 @@ def fetch_past() -> None:
 
 
 if __name__ == "__main__":
-    # fetch_upcoming()
 
-    html = fetch(EVENTS_URL)
-    print(html)
+    fetch_upcoming()
+    fetch_past()
