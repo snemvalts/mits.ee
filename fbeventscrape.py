@@ -5,15 +5,21 @@ import pymongo
 import re
 import datetime
 
+LANG = "et_EE"
+
 URL = "https://mobile.facebook.com"
 EVENTS_URL = URL + "/MITS.ATI?v=events"
 PAST_EVENTS_URL = EVENTS_URL + "&is_past=1"
+LANG_URL = URL + "/a/language.php?l=" + LANG
 
 DB_NAME = "mits"
 COLLECTION = "events"
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client[DB_NAME][COLLECTION]
+
+cookieProcessor = urllib.request.HTTPCookieProcessor()
+opener = urllib.request.build_opener(cookieProcessor)
 
 
 # Remove the first line of a string
@@ -26,10 +32,11 @@ def fetch(url: str) -> str:
     # https://mobile.facebook.com/a/language.php?l=et_EE
 
     # For Estonian language
-    req = urllib.request.Request(url, data=None, headers={"Accept-Language": "et_EE,et,q=0.5"})
-    # req = urllib.request.Request(url, data=None, headers={"Accept-Language": "es_LA,es,q=0.5"})
+    # request = urllib.request.Request(url, data=None, headers={"Accept-Language": "et_EE,et,q=0.5"})
+    request = urllib.request.Request(url, data=None, headers={"Accept-Language": LANG})
 
-    return urllib.request.urlopen(req).read().decode("UTF-8")
+    # return urllib.request.urlopen(request).read().decode("UTF-8")
+    return opener.open(request).read().decode("UTF-8")
 
 
 def parse_fb_date(date: str) -> datetime.datetime:
@@ -157,6 +164,11 @@ def parse_event(event_url: str) -> dict:
 
 # Save event to database or update if already exists
 def save(event: dict) -> None:
+    """
+    with open("events.txt", "a") as f:
+        f.write(str(event) + "\n")
+    """
+
     if db.find_one({"event_id": event["event_id"]}):
         db.update_one(
             {"event_id": event["event_id"]},
@@ -233,7 +245,8 @@ def fetch_past() -> None:
 
 if __name__ == "__main__":
 
-    fetch_upcoming()
-    fetch_past()
+    # fetch_upcoming()
+    # fetch_past()
 
-    # print(fetch(EVENTS_URL))
+    fetch(LANG_URL)
+    print(fetch(EVENTS_URL))
