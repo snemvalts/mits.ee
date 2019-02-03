@@ -5,7 +5,8 @@ import pymongo
 import re
 import datetime
 
-LANG = "et_EE"
+# LANG = "et_EE"
+LANG = "de_DE"
 
 URL = "https://mobile.facebook.com"
 EVENTS_URL = URL + "/MITS.ATI?v=events"
@@ -42,11 +43,26 @@ def fetch(url: str) -> str:
 def parse_fb_date(date: str) -> datetime.datetime:
 
     # Esmaspäev, 11. veebruar 2019 18:00 – 21:00 UTC+02
-    regex1 = r".+, (\d+). (.+) (\d+) (?:kell )?(\d+):(\d+).* (?:UTC\+)(\d+)"
+    # regex1 = r".+, (\d+). (.+) (\d+) (?:kell )?(\d+):(\d+).* (?:UTC\+)(\d+)"
 
     # 30. Nov 2018 at 19:00 – 1. dets 2018 at 07:00 UTC+02
-    regex2 = r"(\d+). (.+) (\d+) at (\d+):(\d+) – .*UTC\+(\d+)"
+    # regex2 = r"(\d+). (.+) (\d+) at (\d+):(\d+) – .*UTC\+(\d+)"
 
+    # Montag, 11. Februar 2019 von 18:00 bis 21:00 UTC+02
+    # Donnerstag, 13. November 2014 um 20:00 UTC+02
+    regex1 = r".+, (\d+). (.+) (\d+) (?:von|um) (\d+):(\d+) .*UTC\+(\d+)"
+
+    # 30.11.2018 um 19:00 – 01.12.2018 um 07:00 UTC+02
+    regex2 = r"(\d\d).(\d\d).(\d\d\d\d) um (\d\d):(\d\d).+UTC\+(\d\d)"
+
+    # German months
+    months = [
+        "januar", "februar", "märz", "april", "mai", "juni",
+        "juli", "august", "september", "oktober", "november", "dezember"
+    ]
+
+    # Estonian months
+    """
     months = [
         "jaanuar", "veebruar", "märts", "aprill", "mai", "juuni",
         "juuli", "august", "september", "oktoober", "november", "detsember"
@@ -56,6 +72,7 @@ def parse_fb_date(date: str) -> datetime.datetime:
         "jaan", "veebr", "märts", "apr", "mai", "juuni",
         "juuli", "aug", "sept", "okt", "nov", "dets"
     ]
+    """
 
     if re.match(regex1, date):
         groups = re.match(regex1, date).groups()
@@ -63,7 +80,8 @@ def parse_fb_date(date: str) -> datetime.datetime:
 
     elif re.match(regex2, date):
         groups = re.match(regex2, date).groups()
-        month = short_months.index(groups[1].lower()) + 1
+        month = int(groups[1])
+        # month = short_months.index(groups[1].lower()) + 1
 
     else:
         print("Invalid date:", date)
@@ -245,8 +263,9 @@ def fetch_past() -> None:
 
 if __name__ == "__main__":
 
-    # fetch_upcoming()
-    # fetch_past()
-
     fetch(LANG_URL)
-    print(fetch(EVENTS_URL))
+
+    fetch_upcoming()
+    fetch_past()
+
+    # print(fetch(EVENTS_URL))

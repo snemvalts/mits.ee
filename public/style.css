@@ -161,8 +161,9 @@ section#events {
     padding: 1rem 0; }
     section#events .eventgrid .event {
       display: grid;
-      grid-template-columns: 100%;
+      grid-template-columns: 1fr;
       grid-row-gap: 1rem;
+      justify-content: space-between;
       padding-bottom: 1rem;
       background-color: white;
       border: 1px solid #DDDDDD; }
@@ -172,8 +173,9 @@ section#events {
         width: 100%; }
       section#events .eventgrid .event .date {
         color: #777777;
-        font-size: 0.8em;
-        font-style: italic; }
+        font-size: 0.9em;
+        font-style: italic;
+        margin-bottom: 1rem; }
     @media screen and (max-width: 1200px) {
       section#events .eventgrid {
         grid-template-columns: 1fr 1fr; } }

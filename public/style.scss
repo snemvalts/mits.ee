@@ -248,8 +248,9 @@ section#events {
 
         .event {
             display: grid;
-            grid-template-columns: 100%;
+            grid-template-columns: 1fr;
             grid-row-gap: 1rem;
+            justify-content: space-between;
             padding-bottom: 1rem;
             background-color: white;
 
@@ -265,8 +266,9 @@ section#events {
 
             .date {
                 color: #777777;
-                font-size: 0.8em;
+                font-size: 0.9em;
                 font-style: italic;
+                margin-bottom: 1rem;
             }
 
         }

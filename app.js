@@ -12,6 +12,8 @@ i18n.configure({
     cookie: "locale",
     directory: __dirname + '/locales'
 });
+const moment = require("moment");
+moment.locale("et_EE");
 
 const indexRouter = require("./routes/index");
 const blogRouter = require("./routes/blog");
@@ -33,6 +35,10 @@ const hbs = require("hbs");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 hbs.registerPartials(path.join(__dirname, "views", "partials"));
+hbs.registerHelper("moment", (datetime, format) => {
+    moment.locale("et_EE");
+    return moment(datetime).format(format);
+});
 
 app.use(logger("dev"));
 app.use(express.json());
