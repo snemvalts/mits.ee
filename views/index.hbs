@@ -1,0 +1,95 @@
+<header id="landing">
+    <div class="container">
+        <div class="content">
+            {{!--<p>{{__ "headline"}}</p>-->--}}
+            <video autoplay muted loop>
+                <source src="/media/landing_video_good.mp4" type="video/mp4">
+            </video>
+            {{> logosvg}}
+        </div>
+    </div>
+</header>
+<section id="description">
+    <div class="container">
+        <div class="content">
+            <p><strong>MAT-INF tudengiselts</strong> ehk <strong>MITS</strong> on Tartu Ülikooli matemaatika, matemaatilise statistika ja informaatika tudengeid ühendav erialaselts, mis tegutseb aktiivselt matemaatika-informaatika tudengite argipäeva elavdamise ja heaolu tagamisega.</p>
+            <p>Just meie seisame selle eest, et ülikool ja reaalteaduste õppimine oleks midagi enamat, kui ainult teadmiste omandamine.</p>
+            <div class="peoplegrid">
+                <div class="person">
+                    <img alt="Krister Looga" src="/media/members/Krister.jpg">
+                    <h3 class="name">Krister Looga</h3>
+                    <div class="role">Esimees</div>
+                </div>
+                <div class="person">
+                    <img alt="Anett Klaanberg" src="/media/members/Anett.jpg">
+                    <h3 class="name">Anett Klaanberg</h3>
+                    <div class="role">Aseesimees</div>
+                </div>
+                <div class="person">
+                    <img alt="Joosep Kaimre" src="/media/members/Joosep.jpg">
+                    <h3 class="name">Joosep Kaimre</h3>
+                    <div class="role">Finantsjuht</div>
+                </div>
+            </div>
+            <p class="more"><a class="btn ghost" href="/meist">Loe veel MITSi kohta</a></p>
+        </div>
+    </div>
+</section>
+<section id="events">
+    <div class="container">
+        <div class="content">
+            <h1>Tulevased üritused</h1>
+            <div class="eventgrid">
+                {{# each events}}
+                    <div class="event">
+                        <img class="thumbnail" src="{{this.image_url}}" alt="event cover">
+                        <h3 class="title">{{this.title}}</h3>
+                        <div class="date">{{this.fb_date}}</div>
+                        <div class="location">@ {{this.location}}</div>
+                        <div class="links"><a class="btn" href="/üritused/{{this.event_id}}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/{{this.event_id}}/">Facebook</a></div>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="more"><a href="/üritused">Vaata kõiki üritusi</a></div>
+        </div>
+    </div>
+</section>
+{{!--<section id="blog">
+    <div class="container">
+        <div class="content">
+            <h1>Blogi</h1>
+            <div class="bloggrid">
+                {{#each articles}}
+                    <article class="article">
+                        <h3 class="title">{{this.title}}</h3>
+                        <div class="author">{{this.author.username}}</div>
+                        <div class="date">{{this.date}}</div>
+                        <p class="text">{{this.content}}</p>
+                        <p><a href="/blogi/{{this._id}}">Loe edasi</a></p>
+                    </article>
+                {{else}}
+                    <h1>Postitusi pole veel!</h1>
+                {{/each}}
+            </div>
+            <a href="/blogi">Vaata veel postitusi</a>
+        </div>
+    </div>
+</section>--}}
+<section id="sponsors">
+    <div class="container">
+        <div class="content">
+            <h1>Meie toetajad</h1>
+            <div class="sponsorgrid">
+                <a id="ati" class="sponsor svg" href="https://cs.ut.ee/"></a>
+                <a id="nortal" class="sponsor svg" href="https://nortal.com/"></a>
+                <a id="lhv" class="sponsor svg" href="https://www.lhv.ee/"></a>
+                <a id="cybernetica" class="sponsor svg" href="https://cyber.ee/"></a>
+                <a id="helmes" class="sponsor svg" href="https://helmes.com/"></a>
+                <a id="playtech" class="sponsor svg" href="https://playtech.com/"></a>
+                <a id="futuruum" class="sponsor svg" href="https://www.futuruum.ee/"></a>
+                <a id="wisemedia" class="sponsor svg" href="http://wisemedia.ee/"></a>
+                <a id="mooncascade" class="sponsor svg" href="https://mooncascade.com/"></a>
+            </div>
+        </div>
+    </div>
+</section>

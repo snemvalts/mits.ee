@@ -1,0 +1,23 @@
+<header id="bloglanding">
+    <div class="container">
+        <div class="content">
+            <h1>Blogipostitused tulevad siia</h1>
+            <p>See on veel väga pooleli.</p>
+        </div>
+    </div>
+</header>
+<section id="articles">
+    <div class="container">
+        <div class="content">
+            {{#each articles}}
+                <article class="blogpost">
+                    <h1 class="title">{{this.title}}</h1>
+                    <div class="meta"><span class="author">{{this.author.username}}</span> <span class="date">{{this.date}}</span></div>
+                    <p class="text">{{this.content}}</p>
+                </article>
+            {{else}}
+                <h2>Veel pole midagi postitatud!!!</h2>
+            {{/each}}
+        </div>
+    </div>
+</section>

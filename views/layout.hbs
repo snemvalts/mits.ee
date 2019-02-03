@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="et">
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+
+        <meta name="description" content="MAT-INF tudengiselts ehk MITS on Tartu Ülikooli matemaatika, matemaatilise statistika ja informaatika tudengeid ühendav erialaselts, mis tegutseb aktiivselt matemaatika-informaatika tudengite argipäeva elavdamise ja heaolu tagamisega. Just meie seisame selle eest, et ülikool ja reaalteaduste õppimine oleks midagi enamat, kui ainult teadmiste omandamine." />
+        <meta name="keywords" content="MITS, MAT-INF tudengiselts, ATI, TÜ, Tartu Ülikool, mathematics, computer science, society, mits.ee" />
+        <meta name="author" content="MITS">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- https://realfavicongenerator.net/ -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#2d89ef">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/fonts.css">
+        <link rel="stylesheet" href="/animatelogo.css">
+
+        <!-- JS -->
+        <script type="application/javascript" src="/main.js"></script>
+    </head>
+    <body>
+        <nav id="navbar">
+            <div class="container">
+                <div id="left">
+                    <!--<span><strong>MITS</strong></span>-->
+                    <a href="/"><div id="navlogo" class="svg"></div></a>
+                    {{!--
+                    {{#if user}}
+                        <a>{{__ "greeting" user.username}}</a>
+                    {{/if}}
+                    --}}
+                </div>
+                <div id="right">
+                    <a href="/meist">Meist</a><a href="/blogi">Blogi</a><a href="/üritused">Üritused</a><!--<a href="/galerii">Galerii</a>-->{{#if user}}<a href="/admin">Admin</a><!--<a href="/logout">Logi välja</a>-->{{else}}<!--<a href="/login">Logi sisse</a>-->{{/if}}
+                </div>
+                <div id="button">
+                    <a id="menubutton"><div id="menubuttonicon" class="svg"></div></a>
+                </div>
+            </div>
+        </nav>
+        <main>
+            {{{body}}}
+        </main>
+        <footer>
+            <div class="container">
+                <div class="content">
+                    <div class="footergrid">
+                        <div class="column">
+                            <h2>Leht</h2>
+                            <span><a href="/">Avaleht</a></span>
+                            <span><a href="/üritused">Üritused</a></span>
+                            <span><a href="/blogi">Blogi</a></span>
+                            <span><a href="/galerii">Galerii</a></span>
+                            <span><a href="/tagasiside">Tagasiside</a></span>
+                            <span><a href="/login">Logi sisse</a></span>
+                        </div>
+                        <div class="column">
+                            <h2>Selts</h2>
+                            <span><a href="/meist">Meist</a></span>
+                            <span><a href="/liikmed">Liikmed</a></span>
+                            <span><a href="/vilistlased">Vilistlased</a></span>
+                            <span><a href="/liitumine">Liitumine</a></span>
+                            <span><a href="/mentorprogramm">Mentorprogramm</a></span>
+                            <span><a href="/huvigrupid">Huvigrupid</a></span>
+                            <span><a href="/bränd">Bränd</a></span>
+                        </div>
+                        <div class="column">
+                            <h2>Kontakt</h2>
+                            <span>Email: <a href="mailto:mits.juhatus@lists.ut.ee">mits.juhatus@lists.ut.ee</a></span>
+                            <span>Facebook: <a href="https://www.facebook.com/MITS.ATI">MAT-INF tudengiselts</a></span>
+                            <span>Instagram: <a href="https://www.instagram.com/kasmeilonüldseinstagram">@mitsmeedia</a></span>
+                            <span>Siia võiks veel midagi lisada...</span>
+                        </div>
+                        <div id="footerlogo" class="svg"></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

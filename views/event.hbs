@@ -1,0 +1,17 @@
+<section id="event">
+    <div class="container">
+        <div class="content">
+            <a href=".">Vaata kõiki üritusi</a>
+            {{#with event}}
+                <h1>{{title}}</h1>
+                <div class="thumbnail">
+                    <img src="{{image_url}}" alt="event cover">
+                </div>
+                <div class="date">{{fb_date}}</div>
+                <div class="location">@ {{location}}</div>
+                <p class="description">{{description}}</p>
+                <div class="links"><a class="btn fb" href="https://facebook.com/events/{{event_id}}/">Vaata tervet üritust Facebookis</a></div>
+            {{/with}}
+        </div>
+    </div>
+</section>

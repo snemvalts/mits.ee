@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        <!--<link rel="stylesheet" href="/adminpanel.css"/>-->
+    </head>
+    <body>
+        <nav>
+            <strong>Admin</strong>
+            <span>{{__ "greeting" user.username}}</span>
+            <a href="/">Main site</a>
+            <a href="/logout">Logout</a>
+            <a {{!--href="/admin/user"--}}>User</a>
+            <a {{!--href="/admin/data"--}}>Data</a>
+            <a {{!--href="/admin/logs"--}}>Logs</a>
+            <a {{!--href="/admin/structure"--}}>Structure</a>
+            <a href="/admin/blog">Blog</a>
+        </nav>
+        <hr>
+        {{{body}}}
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<h1>{{title}}</h1>
+<form method="post" action="">
+    <ul>
+        {{#each errors}}
+            <li>{{this.msg}}</li>
+        {{/each}}
+    </ul>
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" value="{{username}}">
+    <br>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password">
+    <br>
+    <label for="password2">Password again</label>
+    <input id="password2" type="password" name="password2">
+    <br>
+    <input type="submit" value="Register!">
+</form>

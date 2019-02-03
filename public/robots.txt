@@ -1,0 +1,3 @@
+# lol you are a human why are you reading this
+User-agent: *
+Disallow:
