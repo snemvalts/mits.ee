@@ -22,11 +22,12 @@ def no_first_line(html: str) -> str:
 
 
 def fetch(url: str) -> str:
-    req = urllib.request.Request(
-        url,
-        data=None,
-        headers={"Accept-Language": "et"} # For Estonian language
-    )
+
+    # https://mobile.facebook.com/a/language.php?l=et_EE
+
+    # For Estonian language
+    req = urllib.request.Request(url, data=None, headers={"Accept-Language": "et_EE,et,q=0.5"})
+    # req = urllib.request.Request(url, data=None, headers={"Accept-Language": "es_LA,es,q=0.5"})
 
     return urllib.request.urlopen(req).read().decode("UTF-8")
 
@@ -234,3 +235,5 @@ if __name__ == "__main__":
 
     fetch_upcoming()
     fetch_past()
+
+    # print(fetch(EVENTS_URL))
