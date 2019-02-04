@@ -30,16 +30,19 @@
         <nav id="navbar">
             <div class="container">
                 <div id="left">
-                    <!--<span><strong>MITS</strong></span>-->
                     <a href="/"><div id="navlogo" class="svg"></div></a>
-                    {{!--
-                    {{#if user}}
-                        <a>{{__ "greeting" user.username}}</a>
-                    {{/if}}
-                    --}}
                 </div>
                 <div id="right">
-                    <a href="/meist">Meist</a><a href="/blogi">Blogi</a><a href="/üritused">Üritused</a><!--<a href="/galerii">Galerii</a>-->{{#if user}}<a href="/admin">Admin</a><!--<a href="/logout">Logi välja</a>-->{{else}}<!--<a href="/login">Logi sisse</a>-->{{/if}}
+                    <a href="/meist">Meist</a>
+                    <a href="/blogi">Blogi</a>
+                    <a href="/üritused">Üritused</a>
+                    <!--<a href="/galerii">Galerii</a>-->
+                    {{#if user}}
+                        <a href="/admin">Admin</a>
+                        <!--<a href="/logout">Logi välja</a>-->
+                    {{else}}
+                        <!--<a href="/login">Logi sisse</a>-->
+                    {{/if}}
                 </div>
                 <div id="button">
                     <a id="menubutton"><div id="menubuttonicon" class="svg"></div></a>

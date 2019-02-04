@@ -247,10 +247,10 @@ section#events {
         padding: 1rem 0;
 
         .event {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-row-gap: 1rem;
+            display: flex;
+            flex-direction: column;
             justify-content: space-between;
+            grid-row-gap: 1rem;
             padding-bottom: 1rem;
             background-color: white;
 
@@ -269,6 +269,13 @@ section#events {
                 font-size: 0.9em;
                 font-style: italic;
                 margin-bottom: 1rem;
+            }
+
+            .links {
+                display: flex;
+                a {
+                    margin-right: 0.5rem;
+                }
             }
 
         }
@@ -325,7 +332,7 @@ section#sponsors {
     .sponsorgrid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 2rem;
+        grid-gap: 0.5rem 2rem;
 
         .sponsor {
             height: 7rem;
@@ -373,6 +380,12 @@ section#sponsors {
     }
     #mooncascade {
         background-image: url("/media/sponsors/Mooncascade.png");
+    }
+    #cgi {
+        background-image: url("/media/sponsors/CGI.svg");
+    }
+    #itakadeemia {
+        background-image: url("/media/sponsors/IT Akadeemia.png");
     }
 }
 

@@ -160,10 +160,10 @@ section#events {
     grid-gap: 1rem;
     padding: 1rem 0; }
     section#events .eventgrid .event {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-row-gap: 1rem;
+      display: flex;
+      flex-direction: column;
       justify-content: space-between;
+      grid-row-gap: 1rem;
       padding-bottom: 1rem;
       background-color: white;
       border: 1px solid #DDDDDD; }
@@ -176,6 +176,10 @@ section#events {
         font-size: 0.9em;
         font-style: italic;
         margin-bottom: 1rem; }
+      section#events .eventgrid .event .links {
+        display: flex; }
+        section#events .eventgrid .event .links a {
+          margin-right: 0.5rem; }
     @media screen and (max-width: 1200px) {
       section#events .eventgrid {
         grid-template-columns: 1fr 1fr; } }
@@ -214,7 +218,7 @@ section#sponsors h1 {
 section#sponsors .sponsorgrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 2rem; }
+  grid-gap: 0.5rem 2rem; }
   section#sponsors .sponsorgrid .sponsor {
     height: 7rem;
     transition: opacity 0.2s ease, transform 0.2s ease; }
@@ -254,6 +258,12 @@ section#sponsors #wisemedia {
 
 section#sponsors #mooncascade {
   background-image: url("/media/sponsors/Mooncascade.png"); }
+
+section#sponsors #cgi {
+  background-image: url("/media/sponsors/CGI.svg"); }
+
+section#sponsors #itakadeemia {
+  background-image: url("/media/sponsors/IT Akadeemia.png"); }
 
 section#aboutlanding {
   color: white;
