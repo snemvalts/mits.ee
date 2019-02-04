@@ -4,11 +4,13 @@
             <a href=".">Vaata kõiki üritusi</a>
             {{#with event}}
                 <h1>{{title}}</h1>
+                <div class="meta">
+                    <div class="date">{{moment date "LLLL"}}</div>
+                    {{#if location }}<div class="location">{{location}}</div>{{/if}}
+                </div>
                 <div class="thumbnail">
                     <img src="{{image_url}}" alt="event cover">
                 </div>
-                <div class="date">{{fb_date}}</div>
-                <div class="location">@ {{location}}</div>
                 <p class="description">{{description}}</p>
                 <div class="links"><a class="btn fb" href="https://facebook.com/events/{{event_id}}/">Vaata tervet üritust Facebookis</a></div>
             {{/with}}
