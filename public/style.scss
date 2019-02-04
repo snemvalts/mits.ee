@@ -236,7 +236,6 @@ section#description, section#juhatus {
 }
 
 section#events {
-    //background-color: white;
     background-color: $light;
 
     .eventgrid {
@@ -249,33 +248,38 @@ section#events {
         .event {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             grid-row-gap: 1rem;
             padding-bottom: 1rem;
             background-color: white;
 
             border: 1px solid #DDDDDD;
 
-            .title, .date, .location, .links {
-                margin: 0 1rem;
-            }
-
             .thumbnail {
                 width: 100%;
             }
 
-            .date {
-                color: #777777;
-                font-size: 0.9em;
-                font-style: italic;
-                margin-bottom: 1rem;
+            .meta {
+                margin: 0 1rem;
+
+                .title {
+                    margin: 0;
+                }
+                .date {
+                    color: #777777;
+                    font-size: 0.9em;
+                    font-style: italic;
+                }
+                .location {
+                    margin-top: 0.6rem;
+                }
             }
 
             .links {
                 display: flex;
-                a {
-                    margin-right: 0.5rem;
-                }
+                margin: auto 1rem 0;
+                justify-self: end;
+                grid-column-gap: 0.5rem;
             }
 
         }
@@ -291,10 +295,16 @@ section#events {
 }
 
 section#event {
+    h1 {
+        margin-bottom: 0;
+    }
     .date {
         color: #777777;
         font-size: 0.8em;
         font-style: italic;
+    }
+    .location {
+        margin: 0.5rem 0;
     }
     .description {
         white-space: pre-wrap;

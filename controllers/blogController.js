@@ -8,7 +8,7 @@ exports.blogGet = function (req, res, next) {
         .exec(function (err, articles) {
             if (err) return next(err);
             res.render("blog.hbs", {
-                title: "Blog",
+                title: "Blogi",
                 user: req.session.user,
                 articles: articles,
             });
