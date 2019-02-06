@@ -163,14 +163,13 @@ section#events {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      grid-row-gap: 1rem;
       padding-bottom: 1rem;
       background-color: white;
       border: 1px solid #DDDDDD; }
       section#events .eventgrid .event .thumbnail {
         width: 100%; }
       section#events .eventgrid .event .meta {
-        margin: 0 1rem; }
+        margin: 1rem; }
         section#events .eventgrid .event .meta .title {
           margin: 0; }
         section#events .eventgrid .event .meta .date {
@@ -182,8 +181,9 @@ section#events {
       section#events .eventgrid .event .links {
         display: flex;
         margin: auto 1rem 0;
-        justify-self: end;
-        grid-column-gap: 0.5rem; }
+        justify-self: end; }
+        section#events .eventgrid .event .links a {
+          margin-right: 0.5rem; }
     @media screen and (max-width: 1200px) {
       section#events .eventgrid {
         grid-template-columns: 1fr 1fr; } }

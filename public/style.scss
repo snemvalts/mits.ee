@@ -249,7 +249,7 @@ section#events {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            grid-row-gap: 1rem;
+            //grid-row-gap: 1rem; // thanks chrome
             padding-bottom: 1rem;
             background-color: white;
 
@@ -260,7 +260,7 @@ section#events {
             }
 
             .meta {
-                margin: 0 1rem;
+                margin: 1rem;
 
                 .title {
                     margin: 0;
@@ -279,7 +279,9 @@ section#events {
                 display: flex;
                 margin: auto 1rem 0;
                 justify-self: end;
-                grid-column-gap: 0.5rem;
+                a {
+                    margin-right: 0.5rem;
+                }
             }
 
         }
