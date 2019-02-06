@@ -243,7 +243,7 @@ section#sponsors .sponsorgrid {
       grid-template-columns: 1fr 1fr; } }
 
 section#sponsors #ati {
-  background-image: url("/media/sponsors/ATI.png"); }
+  background-image: url("/media/sponsors/ATI.svg"); }
 
 section#sponsors #nortal {
   background-image: url("/media/sponsors/Nortal.svg"); }
@@ -258,16 +258,16 @@ section#sponsors #cybernetica {
   background-image: url("/media/sponsors/Cybernetica.svg"); }
 
 section#sponsors #helmes {
-  background-image: url("/media/sponsors/Helmes.png"); }
+  background-image: url("/media/sponsors/Helmes.svg"); }
 
 section#sponsors #futuruum {
-  background-image: url("/media/sponsors/Futuruum.png"); }
+  background-image: url("/media/sponsors/Futuruum.svg"); }
 
 section#sponsors #wisemedia {
   background-image: url("/media/sponsors/Wisemedia.svg"); }
 
 section#sponsors #mooncascade {
-  background-image: url("/media/sponsors/Mooncascade.png"); }
+  background-image: url("/media/sponsors/Mooncascade.svg"); }
 
 section#sponsors #cgi {
   background-image: url("/media/sponsors/CGI.svg"); }
@@ -416,7 +416,7 @@ a:hover {
   .btn.fb {
     background-color: #3B5998;
     color: white;
-    border-color: #3B5998; }
+    border: none; }
     .btn.fb:hover {
       background-color: #013979; }
 

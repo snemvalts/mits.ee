@@ -373,7 +373,7 @@ section#sponsors {
     }
 
     #ati {
-        background-image: url("/media/sponsors/ATI.png");
+        background-image: url("/media/sponsors/ATI.svg");
     }
     #nortal {
         background-image: url("/media/sponsors/Nortal.svg");
@@ -388,16 +388,16 @@ section#sponsors {
         background-image: url("/media/sponsors/Cybernetica.svg");
     }
     #helmes {
-        background-image: url("/media/sponsors/Helmes.png");
+        background-image: url("/media/sponsors/Helmes.svg");
     }
     #futuruum {
-        background-image: url("/media/sponsors/Futuruum.png");
+        background-image: url("/media/sponsors/Futuruum.svg");
     }
     #wisemedia {
         background-image: url("/media/sponsors/Wisemedia.svg");
     }
     #mooncascade {
-        background-image: url("/media/sponsors/Mooncascade.png");
+        background-image: url("/media/sponsors/Mooncascade.svg");
     }
     #cgi {
         background-image: url("/media/sponsors/CGI.svg");
@@ -624,7 +624,7 @@ a:hover {
     &.fb {
         background-color: #3B5998;
         color: white;
-        border-color: #3B5998;
+        border: none;
         &:hover {
             background-color: darken($main, 10%);
         }
