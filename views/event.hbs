@@ -2,18 +2,20 @@
     <div class="container">
         <div class="content">
             <a href=".">Vaata kõiki üritusi</a>
-            {{#with event}}
-                <h1>{{title}}</h1>
-                <div class="meta">
-                    <time class="date" datetime="{{moment this.date null}}">{{moment date "LLLL"}}</time>
-                    {{#if location }}<div class="location">{{location}}</div>{{/if}}
-                </div>
-                <div class="thumbnail">
-                    <img src="{{image_url}}" alt="event cover">
-                </div>
-                <p class="description">{{description}}</p>
-                <div class="links"><a class="btn fb" href="https://facebook.com/events/{{event_id}}/">Vaata tervet üritust Facebookis</a></div>
-            {{/with}}
+            <div class="event">
+                {{#with event}}
+                    <div class="thumbnail">
+                        <img src="{{image_url}}" alt="event cover">
+                    </div>
+                    <h1 class="title">{{title}}</h1>
+                    <div class="meta">
+                        <div class="date"><span class="icon clock"></span><time datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time></div>
+                        {{#if this.location }}<div class="location"><span class="icon marker"></span>{{this.location}}</div>{{/if}}
+                    </div>
+                    <p class="description">{{description}}</p>
+                    <div class="links"><a class="btn fb" href="https://facebook.com/events/{{event_id}}/">Vaata tervet üritust Facebookis</a></div>
+                {{/with}}
+            </div>
         </div>
     </div>
 </section>

@@ -45,8 +45,8 @@
                         <img class="thumbnail" src="{{this.image_url}}" alt="event cover">
                         <div class="meta">
                             <h3 class="title">{{this.title}}</h3>
-                            <time class="date" datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time>
-                            {{#if this.location }}<div class="location">{{this.location}}</div>{{/if}}
+                            <div class="date"><span class="icon clock"></span><time datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time></div>
+                            {{#if this.location }}<div class="location"><span class="icon marker"></span>{{this.location}}</div>{{/if}}
                         </div>
                         <div class="links"><a class="btn" href="/üritused/{{this.event_id}}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/{{this.event_id}}/">Facebook</a></div>
                     </div>
