@@ -12,7 +12,10 @@
             {{#each articles}}
                 <article class="blogpost">
                     <h1 class="title">{{this.title}}</h1>
-                    <div class="meta"><span class="author">{{this.author.username}}</span> <date class="date" datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</date></div>
+                    <div class="meta">
+                        <div class="date"><span class="icon clock"></span><time datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time></div>
+                        <div class="author"><span class="icon user"></span>{{this.author.username}}</div>
+                    </div>
                     <p class="text">{{this.content}}</p>
                 </article>
             {{else}}

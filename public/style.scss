@@ -266,8 +266,11 @@ section#events {
                     font-size: 0.9em;
                     font-style: italic;
                 }
-                .location {
-                }
+            }
+
+            .description {
+                margin: 0 1rem 1rem;
+                white-space: pre-wrap;
             }
 
             .links {
@@ -509,11 +512,13 @@ section#articles {
         .meta {
             margin-bottom: 1.5rem;
         }
-
-        .date {
+        .date time {
             color: $mid;
             font-size: 0.8em;
             font-style: italic;
+        }
+        .text {
+            white-space: pre-wrap;
         }
     }
 }
@@ -650,5 +655,8 @@ a:hover {
     }
     &.marker {
         mask-image: url("/media/icons/marker.svg");
+    }
+    &.user {
+        mask-image: url("/media/icons/user.svg");
     }
 }

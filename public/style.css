@@ -173,6 +173,9 @@ section#events {
           color: #777777;
           font-size: 0.9em;
           font-style: italic; }
+      section#events .eventgrid .event .description {
+        margin: 0 1rem 1rem;
+        white-space: pre-wrap; }
       section#events .eventgrid .event .links {
         display: flex;
         margin: auto 1rem 0;
@@ -338,10 +341,12 @@ section#articles article {
     margin-bottom: 0.5rem; }
   section#articles article .meta {
     margin-bottom: 1.5rem; }
-  section#articles article .date {
+  section#articles article .date time {
     color: #777777;
     font-size: 0.8em;
     font-style: italic; }
+  section#articles article .text {
+    white-space: pre-wrap; }
 
 footer {
   background-color: #333333;
@@ -433,5 +438,7 @@ a:hover {
     mask-image: url("/media/icons/instagram.svg"); }
   .icon.marker {
     mask-image: url("/media/icons/marker.svg"); }
+  .icon.user {
+    mask-image: url("/media/icons/user.svg"); }
 
 /*# sourceMappingURL=style.css.map */
