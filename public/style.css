@@ -430,16 +430,28 @@ a:hover {
   mask-repeat: no-repeat;
   background-color: #777777; }
   .icon.email {
+    -webkit-mask-image: url("/media/icons/email.svg");
+    -ms-mask-image: url("/media/icons/email.svg");
     mask-image: url("/media/icons/email.svg"); }
   .icon.clock {
+    -webkit-mask-image: url("/media/icons/clock.svg");
+    -ms-mask-image: url("/media/icons/clock.svg");
     mask-image: url("/media/icons/clock.svg"); }
   .icon.facebook {
+    -webkit-mask-image: url("/media/icons/facebook.svg");
+    -ms-mask-image: url("/media/icons/facebook.svg");
     mask-image: url("/media/icons/facebook.svg"); }
   .icon.instagram {
+    -webkit-mask-image: url("/media/icons/instagram.svg");
+    -ms-mask-image: url("/media/icons/instagram.svg");
     mask-image: url("/media/icons/instagram.svg"); }
   .icon.marker {
+    -webkit-mask-image: url("/media/icons/marker.svg");
+    -ms-mask-image: url("/media/icons/marker.svg");
     mask-image: url("/media/icons/marker.svg"); }
   .icon.user {
+    -webkit-mask-image: url("/media/icons/user.svg");
+    -ms-mask-image: url("/media/icons/user.svg");
     mask-image: url("/media/icons/user.svg"); }
 
 /*# sourceMappingURL=style.css.map */

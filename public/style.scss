@@ -18,6 +18,16 @@ $break-big: 1200px;
     }
 }
 
+// https://css-tricks.com/snippets/sass/mixin-prefix-properties/
+@mixin prefix($property, $value, $prefixes: ()) {
+    @each $prefix in $prefixes {
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+}
+
 body {
     margin: 0;
     font-family: Open Sans, sans-serif;
@@ -643,21 +653,21 @@ a:hover {
     background-color: $mid;
 
     &.email {
-        mask-image: url("/media/icons/email.svg");
+        @include prefix(mask-image, url("/media/icons/email.svg"), webkit ms);
     }
     &.clock {
-        mask-image: url("/media/icons/clock.svg");
+        @include prefix(mask-image, url("/media/icons/clock.svg"), webkit ms);
     }
     &.facebook {
-        mask-image: url("/media/icons/facebook.svg");
+        @include prefix(mask-image, url("/media/icons/facebook.svg"), webkit ms);
     }
     &.instagram {
-        mask-image: url("/media/icons/instagram.svg");
+        @include prefix(mask-image, url("/media/icons/instagram.svg"), webkit ms);
     }
     &.marker {
-        mask-image: url("/media/icons/marker.svg");
+        @include prefix(mask-image, url("/media/icons/marker.svg"), webkit ms);
     }
     &.user {
-        mask-image: url("/media/icons/user.svg");
+        @include prefix(mask-image, url("/media/icons/user.svg"), webkit ms);
     }
 }
