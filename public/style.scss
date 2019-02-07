@@ -440,6 +440,7 @@ section#juhatus {
 }
 
 section#teams {
+    background-color: $light;
 
     .teamgrid {
         display: grid;
@@ -494,6 +495,29 @@ section#history {
             $main url("/media/spacex.jpg") no-repeat fixed center;
     background-size: cover;
 }
+
+
+section#members {
+}
+section#membersgrid {
+    background-color: #CCCCCC;
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+
+    img {
+        width: 100%;
+    }
+
+    @include responsive(big) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    @include responsive(small) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 
 header#bloglanding {
     color: white;

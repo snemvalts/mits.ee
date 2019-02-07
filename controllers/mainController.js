@@ -32,9 +32,20 @@ exports.indexGet = (req, res, next) => {
 
 /* GET about page */
 exports.aboutGet = (req, res, next) => {
+    let members = ['Age', 'Hain', 'Hans Henrik', 'Karen', 'Leemet', 'Birgit', 'Andri', 'Silver', 'Merit', 'Joonas', 'Krister', 'Liis', 'Brigitta', 'Magnus', 'Karl Marten', 'Karel', 'Anette Maria', 'Alfred', 'Jürgen', 'Ludvig', 'Ingrid', 'Anett', 'Katrin', 'Allan', 'Laura', 'Jaanus', 'Annela', 'Maret', 'Toode', 'Pilleriin', 'Magnar', 'Marten', 'Patrick', 'Carmen', 'Hanna-Marii', 'Annilo', 'Ralf', 'Kairit', 'Bogdan', 'Säde Mai', 'Ott Kaarel', 'Robert', 'Jaan', 'Erik Martin', 'Haug', 'Maria', 'Carola', 'Lauri', 'Oliver-Erik', 'Joosep', 'Rain', 'Peeter', 'Nõmm', 'Triin Mirjam', 'Hanna', 'Egert', 'Carolin'];
+
+    // Shuffle
+    for (let i = members.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [members[i], members[j]] = [members[j], members[i]];
+    }
+
+
+
     res.render("about", {
         title: "Meist",
-        user: req.session.user
+        user: req.session.user,
+        members: members
     });
 };
 

@@ -289,27 +289,29 @@ section#aboutlanding {
 section#juhatus {
   background-color: #EEEEEE; }
 
-section#teams .teamgrid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 6rem 10%;
-  margin-top: 6rem; }
-  section#teams .teamgrid .teamdescription h2 {
-    margin: 0 0 1rem; }
-  section#teams .teamgrid .person {
-    text-align: center;
-    font-size: 0.9em; }
-    section#teams .teamgrid .person h3 {
-      margin: 1rem 0 0; }
-    section#teams .teamgrid .person img {
-      width: 100%;
-      border-radius: 50%; }
-  @media screen and (max-width: 640px) {
-    section#teams .teamgrid {
-      grid-template-columns: 1fr;
-      grid-row-gap: 3rem; }
+section#teams {
+  background-color: #EEEEEE; }
+  section#teams .teamgrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 6rem 10%;
+    margin-top: 6rem; }
+    section#teams .teamgrid .teamdescription h2 {
+      margin: 0 0 1rem; }
+    section#teams .teamgrid .person {
+      text-align: center;
+      font-size: 0.9em; }
+      section#teams .teamgrid .person h3 {
+        margin: 1rem 0 0; }
       section#teams .teamgrid .person img {
-        width: 60%; } }
+        width: 100%;
+        border-radius: 50%; }
+    @media screen and (max-width: 640px) {
+      section#teams .teamgrid {
+        grid-template-columns: 1fr;
+        grid-row-gap: 3rem; }
+        section#teams .teamgrid .person img {
+          width: 60%; } }
 
 /*.person img {
     transition: transform 0.2s ease;
@@ -324,6 +326,19 @@ section#history {
   display: flex;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), #0251AB url("/media/spacex.jpg") no-repeat fixed center;
   background-size: cover; }
+
+section#membersgrid {
+  background-color: #CCCCCC;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); }
+  section#membersgrid img {
+    width: 100%; }
+  @media screen and (max-width: 1200px) {
+    section#membersgrid {
+      grid-template-columns: repeat(6, 1fr); } }
+  @media screen and (max-width: 640px) {
+    section#membersgrid {
+      grid-template-columns: repeat(4, 1fr); } }
 
 header#bloglanding {
   color: white;

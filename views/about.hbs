@@ -119,9 +119,21 @@
                     <h3 class="name">Pilleriin Jukk</h3>
                     <div class="role">Akadeemiliste ürituste tiimi juht</div>
                 </div>
-
-
             </div>
         </div>
     </div>
+</section>
+<section id="members">
+    <div class="container">
+        <div class="content">
+            <h1>Liikmed</h1>
+            <p>MITSi kuulub 65 vahvat ja toredat tegelast.</p>
+            <p>Liituda saab sügissemestri algul korraldatava kandideerimise kaudu.</p>
+        </div>
+    </div>
+</section>
+<section id="membersgrid">
+    {{#each members}}
+        <img alt="{{this}}" src="/media/members/{{this}}.jpg">
+    {{/each}}
 </section>
