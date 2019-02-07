@@ -444,7 +444,7 @@ section#teams {
 
     .teamgrid {
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 3fr 1fr;
         grid-gap: 6rem 10%;
         margin-top: 6rem;
 
@@ -498,6 +498,7 @@ section#history {
 
 
 section#members {
+    font-size: 1.3em;
 }
 section#membersgrid {
     background-color: #CCCCCC;

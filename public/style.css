@@ -293,7 +293,7 @@ section#teams {
   background-color: #EEEEEE; }
   section#teams .teamgrid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-gap: 6rem 10%;
     margin-top: 6rem; }
     section#teams .teamgrid .teamdescription h2 {
@@ -326,6 +326,9 @@ section#history {
   display: flex;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), #0251AB url("/media/spacex.jpg") no-repeat fixed center;
   background-size: cover; }
+
+section#members {
+  font-size: 1.3em; }
 
 section#membersgrid {
   background-color: #CCCCCC;
