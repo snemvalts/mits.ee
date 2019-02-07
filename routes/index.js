@@ -22,6 +22,12 @@ router.get("/%C3%BCritused", mainController.eventsGet);
 /* GET event page */
 router.get("/%C3%BCritused/:id", mainController.eventGet);
 
+/* GET liikmed page */
+router.get("/liikmed", mainController.membersGet);
+
+/* GET alumni page */
+router.get("/vilistlased", mainController.alumniGet);
+
 
 
 /* GET login form */
@@ -39,21 +45,15 @@ router.post("/register", loginController.registerPost);
 /* GET logout */
 router.get("/logout", loginController.logout);
 
-/* Session thing */
-// TODO: Remove
-router.get("/session", function (req, res, next) {
-    res.send(req.session);
-});
-
 /* Locale cookies */
 // https://gist.github.com/mashpie/5246334
-router.get("/en", (req, res) => {
+/*router.get("/en", (req, res) => {
     res.cookie("locale", "en", {maxAge: 900000, httpOnly: true});
     res.redirect("back");
 });
 router.get("/et", (req, res) => {
     res.cookie("locale", "et", {maxAge: 900000, httpOnly: true});
     res.redirect("back");
-});
+});*/
 
 module.exports = router;

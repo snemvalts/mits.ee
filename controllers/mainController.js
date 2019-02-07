@@ -40,10 +40,8 @@ exports.aboutGet = (req, res, next) => {
         [members[i], members[j]] = [members[j], members[i]];
     }
 
-
-
     res.render("about", {
-        title: "Meist",
+        title: "Meist - MITS",
         user: req.session.user,
         members: members
     });
@@ -66,7 +64,7 @@ exports.eventsGet = (req, res, next) => {
         if (err) return next(err);
 
         res.render("events", {
-            title: "Üritused",
+            title: "Üritused - MITS",
             user: req.session.user,
             new_events: results.new_events,
             old_events: results.old_events
@@ -83,9 +81,33 @@ exports.eventGet = (req, res, next) => {
             console.log(event);
 
             res.render("event", {
-                title: "Üritus",
+                title: event.title + " - MITS",
                 user: req.session.user,
                 event: event
             });
         });
+};
+
+/* GET liikmed page */
+exports.membersGet = (req, res, next) => {
+    res.render("members", {
+        title: "Liikmed - MITS",
+        user: req.session.user
+    });
+};
+
+/* GET liikmed page */
+exports.membersGet = (req, res, next) => {
+    res.render("members", {
+        title: "Liikmed - MITS",
+        user: req.session.user
+    });
+};
+
+/* GET alumni page */
+exports.alumniGet = (req, res, next) => {
+    res.render("alumni", {
+        title: "Vilistlased - MITS",
+        user: req.session.user
+    });
 };
