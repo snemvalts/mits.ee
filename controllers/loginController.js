@@ -9,8 +9,7 @@ exports.loginGet = (req, res, next) => {
         return res.redirect("/admin");
     }
     res.render("login.hbs", {
-        title: "Login",
-        layout: false,
+        title: "Login"
     });
 };
 

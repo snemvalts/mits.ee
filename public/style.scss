@@ -535,6 +535,40 @@ section#articles {
 }
 
 
+section#login {
+    background-color: $light;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        //align-self: center;
+
+        label {
+            display: none;
+        }
+        input {
+            margin: 0 0 0.5rem;
+            display: block;
+        }
+        input[type="text"], input[type="password"] {
+            font-size: 1.2em;
+            background-color: white;
+            border: 1px solid #DDDDDD;
+            padding: 0.8rem;
+        }
+        input[type="submit"] {
+            font-size: 1.2em;
+            border-radius: 0;
+        }
+
+        @include responsive(small) {
+            width: 100%;
+        }
+    }
+}
+
+
 footer {
     background-color: $dark;
     color: rgba(255, 255, 255, 0.5);
@@ -605,6 +639,9 @@ a:hover {
     background-position: center;
     background-repeat: no-repeat;
 }
+input {
+    font-family: "Open Sans", sans-serif;
+}
 
 .btn {
     display: inline-block;
@@ -614,6 +651,7 @@ a:hover {
     color: $dark;
     overflow: hidden;
     text-align: center;
+    cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
 
     &:hover {
@@ -631,13 +669,20 @@ a:hover {
             color: $dark;
         }
     }
-
     &.fb {
         background-color: #3B5998;
         color: white;
         border: none;
         &:hover {
             background-color: darken($main, 10%);
+        }
+    }
+    &.green {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        &:hover {
+            background-color: #388E3C;
         }
     }
 }

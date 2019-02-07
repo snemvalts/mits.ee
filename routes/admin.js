@@ -20,24 +20,24 @@ router.all("/*", (req, res, next) => {
 router.get("/", requiresLogin, adminController.indexGet);
 
 /* GET admin panel blog */
-router.get("/blog", requiresLogin, adminController.blogGet);
+router.get("/blogi", requiresLogin, adminController.blogGet);
 
 /* GET admin panel blog new */
-router.get("/blog/new", requiresLogin, adminController.blogArticleNewGet);
+router.get("/blogi/uus", requiresLogin, adminController.blogArticleNewGet);
 
 /* POST admin panel blog new */
-router.post("/blog/new", requiresLogin, adminController.blogArticleNewPost);
+router.post("/blogi/uus", requiresLogin, adminController.blogArticleNewPost);
 
 /* GET admin panel blog article edit */
-router.get("/blog/:id", requiresLogin, adminController.blogArticleEditGet);
+router.get("/blogi/:id", requiresLogin, adminController.blogArticleEditGet);
 
 /* POST admin panel blog article edit */
-router.post("/blog/:id", requiresLogin, adminController.blogArticleEditPost);
+router.post("/blogi/:id", requiresLogin, adminController.blogArticleEditPost);
 
 /* GET admin panel blog article delete */
-router.get("/blog/:id/delete", requiresLogin, adminController.blogArticleDeleteGet);
+router.get("/blogi/:id/kustuta", requiresLogin, adminController.blogArticleDeleteGet);
 
 /* POST admin panel blog article delete */
-router.post("/blog/:id/delete", requiresLogin, adminController.blogArticleDeletePost);
+router.post("/blogi/:id/kustuta", requiresLogin, adminController.blogArticleDeletePost);
 
 module.exports = router;
