@@ -266,6 +266,6 @@ if __name__ == "__main__":
     fetch(LANG_URL)
 
     fetch_upcoming()
-    fetch_past()
+    # fetch_past()
 
     # print(fetch(EVENTS_URL))
