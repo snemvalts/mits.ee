@@ -1,0 +1,14 @@
+<a href="/admin/tiimid">Tagasi</a>
+<h1>{{team.name}}</h1>
+<form method="post" action="">
+    <label for="name">Nimi</label>
+    <input id="name" name="name" placeholder="Pilvelõhkujate ehitamise töögrupp" value="{{team.name}}" required>
+    <label for="short">Lühend</label>
+    <input id="short" name="short" placeholder="pilv" value="{{team.short}}" required>
+    <label for="active">Aktiivne?</label>
+    <input id="active" type="checkbox" name="active"{{#if team.active}} checked{{/if}}>
+    <label for="description">Kirjeldus</label>
+    <textarea id="description" name="description" placeholder="Ehitame maja" value="{{team.description}}"></textarea>
+    <input type="submit" value="Muuda">
+</form>
+<a href="/admin/tiimid/{{team._id}}/kustuta">Kustuta {{team.name}}</a>

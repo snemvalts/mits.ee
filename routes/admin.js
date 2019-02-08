@@ -53,4 +53,48 @@ router.get("/semestrid/:id/kustuta", requiresLogin, adminController.semesterDele
 /* POST admin panel semester delete */
 router.post("/semestrid/:id/kustuta", requiresLogin, adminController.semesterDeletePost);
 
+
+
+/* GET admin panel members */
+router.get("/liikmed", requiresLogin, adminController.membersGet);
+
+/* POST admin panel members */
+router.post("/liikmed", requiresLogin, adminController.membersPost);
+
+/* GET admin panel member delete */
+router.get("/liikmed/:id/kustuta", requiresLogin, adminController.memberDeleteGet);
+
+/* POST admin panel member delete */
+router.post("/liikmed/:id/kustuta", requiresLogin, adminController.memberDeletePost);
+
+/* GET admin panel member edit */
+router.get("/liikmed/:id", requiresLogin, adminController.memberEditGet);
+
+/* POST admin panel member edit */
+router.post("/liikmed/:id", requiresLogin, adminController.memberEditPost);
+
+
+
+
+/* GET admin panel teams */
+router.get("/tiimid", requiresLogin, adminController.teamsGet);
+
+/* POST admin panel teams */
+router.post("/tiimid", requiresLogin, adminController.teamsPost);
+
+/* GET admin panel member delete */
+router.get("/tiimid/:id/kustuta", requiresLogin, adminController.teamDeleteGet);
+
+/* POST admin panel member delete */
+router.post("/tiimid/:id/kustuta", requiresLogin, adminController.teamDeletePost);
+
+/* GET admin panel team edit */
+router.get("/tiimid/:id", requiresLogin, adminController.teamEditGet);
+
+/* POST admin panel team edit */
+router.post("/tiimid/:id", requiresLogin, adminController.teamEditPost);
+
+
+
+
 module.exports = router;

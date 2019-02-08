@@ -8,7 +8,7 @@ body {
     color: $dark;
 
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(auto, 12rem) auto;
 }
 
 nav {
@@ -29,6 +29,29 @@ nav {
     }
 }
 
+form {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+
+    input, textarea {
+        box-sizing: border-box;
+        font-family: Open Sans, sans-serif;
+        font-size: 1em;
+        padding: 0.3rem;
+
+    }
+    textarea {
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    input[type="submit"] {
+        grid-column: 1 / -1;
+    }
+}
+
 main {
     padding: 1rem;
 }
@@ -39,7 +62,4 @@ a {
 }
 a:hover {
     text-decoration: underline;
-}
-h1 {
-    margin-top: 0;
 }

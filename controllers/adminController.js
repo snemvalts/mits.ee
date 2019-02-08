@@ -1,6 +1,10 @@
 const User = require("../models/user");
 const Article = require("../models/article");
 const Semester = require("../models/semester");
+const Team = require("../models/team");
+const Member = require("../models/member");
+
+const async = require("async");
 
 const {body, validationResult} = require("express-validator/check");
 const {sanitizeBody} = require("express-validator/filter");
@@ -16,7 +20,7 @@ exports.indexGet = (req, res, next) => {
 exports.blogGet = (req, res, next) => {
     Article.find({})
         .populate("author")
-        .exec(function (err, articles) {
+        .exec((err, articles) => {
             if (err) return next(err);
 
             res.render("admin/blog.hbs", {
@@ -73,7 +77,7 @@ exports.blogArticleNewPost = (req, res, next) => {
         author: req.session.user
     });
 
-    article.save(function (err) {
+    article.save((err) => {
         if (err) return next(err);
         res.redirect("/admin/blog/" + article._id);
     });
@@ -93,6 +97,7 @@ exports.blogArticleDeletePost = (req, res, next) => {
         return res.redirect("..");
     });
 };
+
 
 
 
@@ -117,7 +122,7 @@ exports.semestersPost = (req, res, next) => {
         season: req.body.season
     });
 
-    semester.save(function (err) {
+    semester.save((err) => {
         if (err) return next(err);
         res.redirect("/admin/semestrid");
     });
@@ -139,5 +144,181 @@ exports.semesterDeletePost = (req, res, next) => {
     Semester.findOneAndDelete({_id: req.params.id}).exec((err) => {
         if (err) return next(err);
         return res.redirect("..");
+    });
+};
+
+
+
+
+/* GET admin panel members */
+exports.membersGet = (req, res, next) => {
+    async.parallel({
+        members: callback => {
+            Member.find({alumnus: false})
+                .sort({lastName: 1})
+                .exec(callback)
+        },
+        alumni: callback => {
+            Member.find({alumnus: true})
+                .sort({lastName: 1})
+                .exec(callback)
+        }
+    }, (err, results) => {
+        if (err) return err;
+        res.render("admin/members.hbs", {
+            title: "Liikmed - Admin paneel - MITS",
+            members: results.members,
+            alumni: results.alumni
+        });
+    });
+};
+
+/* POST admin panel new member */
+exports.membersPost = (req, res, next) => {
+    const member = new Member({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        alumnus: !!req.body.alumnus,
+        photo: req.body.photo
+    });
+
+    member.save((err) => {
+        if (err) return next(err);
+        return res.redirect("/admin/liikmed");
+    });
+};
+
+/* GET admin panel member delete */
+exports.memberDeleteGet = (req, res, next) => {
+    Member.findOne({_id: req.params.id}).exec((err, member) => {
+        if (err) return next(err);
+        res.render("admin/memberDelete.hbs", {
+            title: "Liikme kustutamine - Admin paneel - MITS",
+            member: member
+        });
+    });
+};
+
+/* POST admin panel member delete */
+exports.memberDeletePost = (req, res, next) => {
+    Member.findOneAndDelete({_id: req.params.id}).exec((err) => {
+        if (err) return next(err);
+        return res.redirect("..");
+    });
+};
+
+/* GET admin panel member edit */
+exports.memberEditGet = (req, res, next) => {
+    Member.findOne({_id: req.params.id}).exec((err, member) => {
+        if (err) return next(err);
+        res.render("admin/memberEdit.hbs", {
+            title: "Liikme muutmine - Admin paneel - MITS",
+            member: member
+        });
+    });
+};
+
+/* POST admin panel member edit */
+exports.memberEditPost = (req, res, next) => {
+    Member.findOne({_id: req.params.id}).exec((err, member) => {
+        if (err) return next(err);
+
+        member.firstName = req.body.firstName;
+        member.lastName = req.body.lastName;
+        member.alumnus = !!req.body.alumnus;
+        member.photo = req.body.photo;
+
+        member.save((err) => {
+            if (err) return next(err);
+            return res.redirect("/admin/liikmed");
+        });
+    });
+};
+
+
+
+
+
+/* GET admin panel teams */
+exports.teamsGet = (req, res, next) => {
+    async.parallel({
+        teams: callback => {
+            Team.find({active: true})
+                .exec(callback)
+        },
+        inactive: callback => {
+            Team.find({active: false})
+                .exec(callback)
+        }
+    }, (err, results) => {
+        if (err) return err;
+        res.render("admin/teams.hbs", {
+            title: "Töögrupid - Admin paneel - MITS",
+            teams: results.teams,
+            inactive: results.inactive
+        });
+    });
+
+};
+
+/* POST admin panel new team */
+exports.teamsPost = (req, res, next) => {
+    const team = new Team({
+        name: req.body.name,
+        short: req.body.short,
+        active: !!req.body.active,
+        description: req.body.description
+    });
+
+    team.save((err) => {
+        if (err) return next(err);
+        return res.redirect("/admin/tiimid");
+    });
+};
+
+/* GET admin panel team delete */
+exports.teamDeleteGet = (req, res, next) => {
+    Team.findOne({_id: req.params.id}).exec((err, team) => {
+        if (err) return next(err);
+        res.render("admin/teamDelete.hbs", {
+            title: "Tiimi kustutamine - Admin paneel - MITS",
+            team: team
+        });
+    });
+};
+
+/* POST admin panel team delete */
+exports.teamDeletePost = (req, res, next) => {
+    Team.findOneAndDelete({_id: req.params.id}).exec((err) => {
+        if (err) return next(err);
+        return res.redirect("..");
+    });
+};
+
+/* GET admin panel team edit */
+exports.teamEditGet = (req, res, next) => {
+    Team.findOne({_id: req.params.id}).exec((err, team) => {
+        if (err) return next(err);
+        res.render("admin/teamEdit.hbs", {
+            title: "Töögrupi muutmine - Admin paneel - MITS",
+            team: team
+        });
+    });
+};
+
+/* POST admin panel team edit */
+exports.teamEditPost = (req, res, next) => {
+    Team.findOne({_id: req.params.id}).exec((err, team) => {
+        if (err) return next(err);
+
+        team.name = req.body.name;
+        team.short = req.body.short;
+        team.active = !!req.body.active;
+        team.description = req.body.description;
+
+        team.save((err) => {
+            if (err) return next(err);
+            return res.redirect("/admin/tiimid");
+        });
     });
 };

@@ -21,6 +21,7 @@ const adminRouter = require("./routes/admin");
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo")(session);
 const mongoDB = "mongodb://127.0.0.1:27017/mits";
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
@@ -54,7 +55,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(session({
     secret: "mits mitte?",
     resave: true,
-    saveUninitialized: false
+    saveUninitialized: true,
+    cookie: {maxAge: 8 * 60 * 60 * 1000}, // 8 hours
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 app.use(i18n.init);
 

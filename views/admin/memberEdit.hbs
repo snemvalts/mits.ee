@@ -1,0 +1,14 @@
+<a href="/admin/liikmed">Tagasi</a>
+<h1>Liige {{member.firstName}} {{member.lastName}}</h1>
+<form method="post" action="">
+    <label for="firstName">Eesnimi</label>
+    <input id="firstName" name="firstName" placeholder="Taivo" value="{{member.firstName}}" required>
+    <label for="lastName">Perenimi</label>
+    <input id="lastName" name="lastName" placeholder="Pungas" value="{{member.lastName}}" required>
+    <label for="alumnus">Vilistlane?</label>
+    <input id="alumnus" type="checkbox" name="alumnus"{{#if member.alumnus}} checked{{/if}}>
+    <label for="photo">Pildi fail</label>
+    <input id="photo" name="photo" placeholder="/media/liikmed/Taivo.jpg" value="{{member.photo}}">
+    <input type="submit" value="Muuda">
+</form>
+<a href="/admin/liikmed/{{member._id}}/kustuta">Kustuta {{member.firstName}}</a>
