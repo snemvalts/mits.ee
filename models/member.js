@@ -6,8 +6,13 @@ const MemberSchema = new Schema({
     lastName: {type: String, required: true},
     alumnus: {type: Boolean, required: true},
     photo: {type: String},
-    memberships: [{type: Schema.Types.ObjectId, ref: "Membership"}],
     notes: [{type: Schema.Types.ObjectId, ref: "MemberNote"}]
+});
+
+MemberSchema.virtual("memberships", {
+    ref: "Membership",
+    localField: "_id",
+    foreignField: "member"
 });
 
 module.exports = mongoose.model("Member", MemberSchema);
