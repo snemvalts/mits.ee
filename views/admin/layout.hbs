@@ -2,21 +2,19 @@
 <html lang="en">
     <head>
         <title>{{title}}</title>
-        <!--<link rel="stylesheet" href="/adminpanel.css"/>-->
+        <link rel="stylesheet" href="/adminpanel.css"/>
     </head>
     <body>
         <nav>
-            <strong>Admin</strong>
+            <a href="/admin">Admin</a>
             <span>{{__ "greeting" user.username}}</span>
-            <a href="/">Main site</a>
-            <a href="/logout">Logout</a>
-            <a{{!-- href="/admin/user"--}}>Kasutaja</a>
-            <a{{!-- href="/admin/data"--}}>Andmed</a>
-            <a{{!-- href="/admin/logs"--}}>Logid</a>
-            <a{{!-- href="/admin/structure"--}}>Struktuur</a>
             <a href="/admin/blogi">Blogi</a>
+            <a href="/admin/semestrid">Semestrid</a>
+            <a href="/">MITSi avaleht</a>
+            <a href="/logout">Logout</a>
         </nav>
-        <hr>
-        {{{body}}}
+        <main>
+            {{{body}}}
+        </main>
     </body>
 </html>

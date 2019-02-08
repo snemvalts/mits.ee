@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Article = require("../models/article");
+const Semester = require("../models/semester");
 
 const {body, validationResult} = require("express-validator/check");
 const {sanitizeBody} = require("express-validator/filter");
@@ -7,7 +8,7 @@ const {sanitizeBody} = require("express-validator/filter");
 /* GET admin panel */
 exports.indexGet = (req, res, next) => {
     res.render("admin/index.hbs", {
-        title: "Admin Panel",
+        title: "Admin paneel - MITS",
     });
 };
 
@@ -19,7 +20,7 @@ exports.blogGet = (req, res, next) => {
             if (err) return next(err);
 
             res.render("admin/blog.hbs", {
-                title: "Admin Panel Blog",
+                title: "Blogi - Admin paneel - MITS",
                 articles: articles
             });
         });
@@ -32,7 +33,7 @@ exports.blogArticleEditGet = (req, res, next) => {
         .exec((err, article) => {
             if (err) return next(err);
             res.render("admin/blogArticleEdit.hbs", {
-                title: "Admin Panel Blog | " + article.title,
+                title: article.title + " - Admin paneel - MITS",
                 article: article
             });
         });
@@ -58,7 +59,7 @@ exports.blogArticleEditPost = (req, res, next) => {
 /* GET admin panel blog article new */
 exports.blogArticleNewGet = (req, res, next) => {
     res.render("admin/blogArticleNew.hbs", {
-        title: "Admin Panel New Blog Post",
+        title: "Uus blogipostitus - Admin paneel - MITS",
     });
 };
 
@@ -81,13 +82,61 @@ exports.blogArticleNewPost = (req, res, next) => {
 /* GET admin panel blog article delete */
 exports.blogArticleDeleteGet = (req, res, next) => {
     res.render("admin/blogArticleDelete.hbs", {
-        title: "Admin Panel Blog Post Delete",
+        title: "Blogiposti kustutamine - Admin paneel - MITS",
     });
 };
 
 /* POST admin panel blog article delete */
 exports.blogArticleDeletePost = (req, res, next) => {
     Article.findOneAndDelete({_id: req.params.id}).exec((err) => {
+        if (err) return next(err);
+        return res.redirect("..");
+    });
+};
+
+
+
+/* GET admin panel semesters */
+exports.semestersGet = (req, res, next) => {
+    Semester.find({})
+        .sort({year: -1, season: -1})
+        .exec((err, semesters) => {
+            if (err) return next(err);
+
+            res.render("admin/semesters.hbs", {
+                title: "Semestrid - Admin paneel - MITS",
+                semesters: semesters
+            });
+        });
+};
+
+/* POST admin panel new semester */
+exports.semestersPost = (req, res, next) => {
+    const semester = new Semester({
+        year: req.body.year,
+        season: req.body.season
+    });
+
+    semester.save(function (err) {
+        if (err) return next(err);
+        res.redirect("/admin/semestrid");
+    });
+};
+
+/* GET admin panel semester delete */
+exports.semesterDeleteGet = (req, res, next) => {
+    Semester.findOne({_id: req.params.id}).exec((err, semester) => {
+        if (err) return next(err);
+        res.render("admin/semesterDelete.hbs", {
+            title: "Semestri kustutamine - Admin paneel - MITS",
+            semester: semester
+        });
+    });
+};
+
+/* POST admin panel semester delete */
+exports.semesterDeletePost = (req, res, next) => {
+    Semester.findOneAndDelete({_id: req.params.id}).exec((err) => {
         if (err) return next(err);
         return res.redirect("..");
     });

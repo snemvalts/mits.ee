@@ -374,7 +374,8 @@ section#login {
   section#login form {
     display: flex;
     flex-direction: column;
-    width: 50%; }
+    width: 50%;
+    align-self: center; }
     section#login form label {
       display: none; }
     section#login form input {

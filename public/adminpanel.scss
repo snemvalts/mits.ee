@@ -1,0 +1,45 @@
+$dark: #333333;
+$main: #0251AB;
+$main-dark: #024386;
+
+body {
+    margin: 0;
+    font-family: Open Sans, sans-serif;
+    color: $dark;
+
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+nav {
+    background-color: $main;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    a, span {
+        color: white;
+        padding: 1rem;
+
+        &:hover {
+            background-color: $main-dark;
+            text-decoration: none;
+        }
+    }
+}
+
+main {
+    padding: 1rem;
+}
+
+a {
+    color: #3498DB;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+h1 {
+    margin-top: 0;
+}

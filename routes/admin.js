@@ -40,4 +40,17 @@ router.get("/blogi/:id/kustuta", requiresLogin, adminController.blogArticleDelet
 /* POST admin panel blog article delete */
 router.post("/blogi/:id/kustuta", requiresLogin, adminController.blogArticleDeletePost);
 
+
+/* GET admin panel semesters */
+router.get("/semestrid", requiresLogin, adminController.semestersGet);
+
+/* POST admin panel new semester */
+router.post("/semestrid", requiresLogin, adminController.semestersPost);
+
+/* GET admin panel semester delete */
+router.get("/semestrid/:id/kustuta", requiresLogin, adminController.semesterDeleteGet);
+
+/* POST admin panel semester delete */
+router.post("/semestrid/:id/kustuta", requiresLogin, adminController.semesterDeletePost);
+
 module.exports = router;
