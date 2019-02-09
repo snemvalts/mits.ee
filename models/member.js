@@ -5,6 +5,8 @@ const MemberSchema = new Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     alumnus: {type: Boolean, required: true},
+    email: {type: String},
+    phone: {type: String},
     photo: {type: String},
     notes: [{type: Schema.Types.ObjectId, ref: "MemberNote"}]
 });

@@ -31,6 +31,8 @@ router.all("/*", (req, res, next) => {
 /* GET admin panel index */
 router.get("/", requiresLogin, adminController.indexGet);
 
+
+
 /* GET admin panel blog */
 router.get("/blogi", requiresLogin, adminController.blogGet);
 
@@ -53,11 +55,15 @@ router.get("/blogi/:id/kustuta", requiresLogin, adminController.blogArticleDelet
 router.post("/blogi/:id/kustuta", requiresLogin, adminController.blogArticleDeletePost);
 
 
+
 /* GET admin panel semesters */
 router.get("/semestrid", requiresLogin, adminController.semestersGet);
 
 /* POST admin panel new semester */
 router.post("/semestrid", requiresLogin, adminController.semestersPost);
+
+/* POST admin panel multiple semesters */
+router.post("/semestrid/mitu", requiresLogin, adminController.semestersMultiplePost);
 
 /* GET admin panel semester delete */
 router.get("/semestrid/:id/kustuta", requiresLogin, adminController.semesterDeleteGet);
@@ -72,6 +78,9 @@ router.get("/liikmed", requiresLogin, adminController.membersGet);
 
 /* POST admin panel members */
 router.post("/liikmed", requiresLogin, adminController.membersPost);
+
+/* POST admin panel multiple members */
+router.post("/liikmed/mitu", requiresLogin, adminController.membersMultiplePost);
 
 /* GET admin panel member delete */
 router.get("/liikmed/:id/kustuta", requiresLogin, adminController.memberDeleteGet);
@@ -95,6 +104,9 @@ router.get("/tiimid", requiresLogin, adminController.teamsGet);
 
 /* POST admin panel teams */
 router.post("/tiimid", requiresLogin, adminController.teamsPost);
+
+/* POST admin panel multiple teams */
+router.post("/tiimid/mitu", requiresLogin, adminController.teamsMultiplePost);
 
 /* GET admin panel team delete */
 router.get("/tiimid/:id/kustuta", requiresLogin, adminController.teamDeleteGet);

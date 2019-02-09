@@ -1,27 +1,55 @@
 <h1>Töögrupid</h1>
-<h3>Lisa töögrupp</h3>
-<form method="post" action="">
-    <label for="name">Nimi</label>
-    <input id="name" name="name" placeholder="Pilvelõhkujate ehitamise töögrupp" required>
-    <label for="short">Lühend</label>
-    <input id="short" name="short" placeholder="pilv" required>
-    <label for="order">Järjekord</label>
-    <input id="order" type="number" name="order" value="1" required>
-    <label for="active">Aktiivne?</label>
-    <input id="active" type="checkbox" name="active">
-    <label for="description">Kirjeldus</label>
-    <textarea id="description" name="description" placeholder="Ehitame maja"></textarea>
-    <input type="submit" value="Lisa">
-</form>
-<h3>Töögrupid</h3>
-<ul>
-    {{#each teams}}
-        <li>{{this.order}}. <a href="/admin/tiimid/{{this._id}}">{{this.name}}</a> - <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
-    {{/each}}
-</ul>
-<h3>Mitteaktiivsed</h3>
-<ul>
-    {{#each inactive}}
-        <li>{{this.order}}. <a href="/admin/tiimid/{{this._id}}">{{this.name}}</a> - <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
-    {{/each}}
-</ul>
+<div class="collapsible">
+    <h3>Lisa töögrupp</h3>
+    <form method="post" action="">
+        <label for="name">Nimi</label>
+        <input id="name" name="name" placeholder="Pilvelõhkujate ehitamise töögrupp" required>
+        <label for="short">Lühend</label>
+        <input id="short" name="short" placeholder="pilv" required>
+        <label for="order">Järjekord</label>
+        <input id="order" type="number" name="order" value="1" required>
+        <label for="active">Aktiivne?</label>
+        <input id="active" type="checkbox" name="active">
+        <label for="description">Kirjeldus</label>
+        <textarea id="description" name="description" placeholder="Ehitame maja"></textarea>
+        <input type="submit" value="Lisa">
+    </form>
+</div>
+<div class="collapsible collapsed">
+    <h3>Lisa mitu (csv)</h3>
+    <p>Näide:</p>
+    <code>name,short,description,order,active
+Esimees,esimees,,1,true
+Aseesimees,aseesimees,,2,true
+Finantsjuht,finantsjuht,,3,true
+Meediavaldkond,meedia,,4,true
+Mentorprogrammi töögrupp,mentor,,5,true
+Spordiürituste töögrupp,sport,,6,true
+Sotsiaalürituste töögrupp,sots,,7,true
+Siseürituste töögrupp,sise,,8,true
+Seltskonnaürituste töögrupp,selts,,9,true
+Akadeemiliste ürituste töögrupp,akadeem,,10,true
+Teaduse populariseerimise töögrupp,teadus,,69,false
+Sise- ja seltskonnaürituste töögrupp,sise-selts,,420,false</code>
+    <form method="post" action="/admin/tiimid/mitu">
+        <label for="data">Andmed</label>
+        <textarea id="data" name="data" placeholder="name,short,description,order,active"></textarea>
+        <input type="submit" value="Lisa">
+    </form>
+</div>
+<div class="collapsible">
+    <h3>Töögrupid</h3>
+    <ul>
+        {{#each teams}}
+            <li>{{this.order}}. <a href="/admin/tiimid/{{this._id}}">{{this.name}}</a> - <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
+        {{/each}}
+    </ul>
+</div>
+<div class="collapsible">
+    <h3>Mitteaktiivsed</h3>
+    <ul>
+        {{#each inactive}}
+            <li>{{this.order}}. <a href="/admin/tiimid/{{this._id}}">{{this.name}}</a> - <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
+        {{/each}}
+    </ul>
+</div>

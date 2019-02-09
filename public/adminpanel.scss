@@ -37,7 +37,7 @@ form {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-gap: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 
     input, textarea {
         box-sizing: border-box;
@@ -69,5 +69,40 @@ a {
     &:hover {
         text-decoration: underline;
 
+    }
+}
+
+code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: block;
+    border: 1px solid #DDDDDD;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    font-size: 1rem;
+    //max-height: 5rem;
+    overflow-y: auto;
+}
+
+.collapsible {
+    margin: 2rem 0;
+
+    & > *:first-child {
+        cursor: pointer;
+        &::before {
+            content: "[-]";
+            margin-right: 0.5rem;
+            font-weight: 400;
+            font-family: monospace;
+        }
+    }
+
+    &.collapsed {
+        & > *:first-child::before {
+            content: "[+]"
+        }
+        & > *:not(:first-child) {
+            display: none;
+        }
     }
 }

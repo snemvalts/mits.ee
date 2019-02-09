@@ -9,6 +9,10 @@
     <input id="lastName" name="lastName" placeholder="Pungas" value="{{member.lastName}}" required>
     <label for="alumnus">Vilistlane?</label>
     <input id="alumnus" type="checkbox" name="alumnus"{{#if member.alumnus}} checked{{/if}}>
+    <label for="email">Email</label>
+    <input id="email" name="email" placeholder="spam@mits.ee" value="{{member.email}}">
+    <label for="phone">Telefon</label>
+    <input id="phone" name="phone" placeholder="55555555" value="{{member.phone}}">
     <label for="photo">Pildi failinimi</label>
     <input id="photo" name="photo" placeholder="Taivo.jpg" value="{{member.photo}}">
     <input type="submit" value="Muuda">

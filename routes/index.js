@@ -37,10 +37,10 @@ router.get("/login", loginController.loginGet);
 router.post("/login", loginController.loginPost);
 
 /* GET register form */
-router.get("/register", loginController.registerGet);
+//router.get("/register", loginController.registerGet);
 
 /* POST register form */
-router.post("/register", loginController.registerPost);
+//router.post("/register", loginController.registerPost);
 
 /* GET logout */
 router.get("/logout", loginController.logout);

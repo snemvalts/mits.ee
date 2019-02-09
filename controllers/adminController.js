@@ -9,6 +9,8 @@ const Member = require(modelPath + "member");
 const Membership = require(modelPath + "membership");
 
 const async = require("async");
+const csv = require("fast-csv");
+const mongoose = require("mongoose");
 
 //const {body, validationResult} = require("express-validator/check");
 //const {sanitizeBody} = require("express-validator/filter");
@@ -132,6 +134,22 @@ exports.semestersPost = (req, res, next) => {
     });
 };
 
+exports.semestersMultiplePost = (req, res, next) => {
+    let semesters = [];
+    csv.fromString(req.body.data.toString(), {
+        headers: true,
+        ignoreEmpty: true
+    }).on("data", data => {
+        data["_id"] = new mongoose.Types.ObjectId();
+        semesters.push(data);
+    }).on("end", () => {
+        Semester.create(semesters, (err) => {
+            if (err) return next(err);
+            res.redirect("/admin/semestrid");
+        });
+    });
+};
+
 /* GET admin panel semester delete */
 exports.semesterDeleteGet = (req, res, next) => {
     async.parallel({
@@ -207,6 +225,24 @@ exports.membersPost = (req, res, next) => {
     member.save((err) => {
         if (err) return next(err);
         return res.redirect("/admin/liikmed");
+    });
+};
+
+/* POST admin panel multiple members add */
+exports.membersMultiplePost = (req, res, next) => {
+    let members = [];
+    csv.fromString(req.body.data.toString(), {
+        headers: true,
+        ignoreEmpty: true
+    }).on("data", data => {
+        data["_id"] = new mongoose.Types.ObjectId();
+        members.push(data);
+    }).on("end", () => {
+        Member.create(members, (err) => {
+            if (err) return next(err);
+
+            res.redirect("/admin/liikmed");
+        });
     });
 };
 
@@ -310,6 +346,8 @@ exports.memberEditPost = (req, res, next) => {
         member.firstName = req.body.firstName;
         member.lastName = req.body.lastName;
         member.alumnus = !!req.body.alumnus;
+        member.email = req.body.email;
+        member.phone = req.body.phone;
         member.photo = req.body.photo;
 
         member.save((err) => {
@@ -374,6 +412,24 @@ exports.teamsPost = (req, res, next) => {
     team.save((err) => {
         if (err) return next(err);
         return res.redirect("/admin/tiimid");
+    });
+};
+
+/* POST admin panel multiple teams add */
+exports.teamsMultiplePost = (req, res, next) => {
+    let teams = [];
+    csv.fromString(req.body.data.toString(), {
+        headers: true,
+        ignoreEmpty: true
+    }).on("data", data => {
+        data["_id"] = new mongoose.Types.ObjectId();
+        teams.push(data);
+    }).on("end", () => {
+        Team.create(teams, (err) => {
+            if (err) return next(err);
+
+            res.redirect("/admin/tiimid");
+        });
     });
 };
 

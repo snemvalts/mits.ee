@@ -1,22 +1,48 @@
 <h1>Semestrid</h1>
-<h3>Lisa semester</h3>
-<form method="post" action="">
-    <label for="year">Aasta</label>
-    <input id="year" type="number" name="year" value="2019" required>
-    <label for="season">Pool</label>
-    <select id="season" name="season" required>
-        <option value="k">Kevad</option>
-        <option value="s">Sügis</option>
-    </select>
-    <input type="submit" value="Lisa">
-</form>
-<h3>Semestrid</h3>
-<p>Viimane semester on see, mida näidatakse liikmete nimekirjas!</p>
-<ul>
-    {{#each semesters}}
-        <li>{{this.full}} <a href="/admin/semestrid/{{this._id}}/kustuta">Kustuta</a></li>
-    {{/each}}
-</ul>
+<div class="collapsible">
+    <h3>Lisa semester</h3>
+    <form method="post" action="">
+        <label for="year">Aasta</label>
+        <input id="year" type="number" name="year" value="2019" required>
+        <label for="season">Pool</label>
+        <select id="season" name="season" required>
+            <option value="k">Kevad</option>
+            <option value="s">Sügis</option>
+        </select>
+        <input type="submit" value="Lisa">
+    </form>
+</div>
+<div class="collapsible collapsed">
+    <h3>Lisa mitu (csv)</h3>
+    <p>Näide:</p>
+    <code>year,season
+2014,k
+2014,s
+2015,k
+2015,s
+2016,k
+2016,s
+2017,k
+2017,s
+2018,k
+2018,s
+2019,k</code>
+    <form method="post" action="/admin/semestrid/mitu">
+        <label for="data">Andmed</label>
+        <textarea id="data" name="data" placeholder="year,season"></textarea>
+        <input type="submit" value="Lisa">
+    </form>
+</div>
+<div class="collapsible">
+    <h3>Semestrid</h3>
+    <p>Viimane semester on see, mida näidatakse liikmete nimekirjas!</p>
+    <ul>
+        {{#each semesters}}
+            <li>{{this.full}} <a href="/admin/semestrid/{{this._id}}/kustuta">Kustuta</a></li>
+        {{/each}}
+    </ul>
+</div>
+
 
 <script>
     document.getElementById("year").value = new Date().getFullYear();
