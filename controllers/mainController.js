@@ -1,5 +1,7 @@
-const Article = require("../models/article");
-const Event = require("../models/event");
+const modelPath = "../models/";
+const Article = require(modelPath + "article");
+const Event = require(modelPath + "event");
+const Member = require(modelPath + "member");
 
 const async = require("async");
 
@@ -45,6 +47,27 @@ exports.aboutGet = (req, res, next) => {
         user: req.session.user,
         members: members
     });
+    /*async.parallel({
+        members: callback => {
+            Member.find({photo: {$ne: ""}, alumnus: false})
+                .exec(callback)
+        }
+    }, (err, results) => {
+        if (err) return next(err);
+
+        // Shuffle members
+        let members = results.members;
+        for (let i = members.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [members[i], members[j]] = [members[j], members[i]];
+        }
+
+        res.render("about", {
+            title: "Meist - MITS",
+            user: req.session.user,
+            members: members
+        });
+    });*/
 };
 
 /* GET events page */

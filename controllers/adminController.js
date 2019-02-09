@@ -1,17 +1,20 @@
-const User = require("../models/user");
-const Article = require("../models/article");
-const Semester = require("../models/semester");
-const Team = require("../models/team");
-const Member = require("../models/member");
-const Membership = require("../models/membership");
+// Fix IntelliJ mongoose functions with this
+// https://youtrack.jetbrains.com/issue/WEB-17099#focus=streamItem-27-1441265-0-0
+const modelPath = "../models/";
+//const User = require(modelPath + "user");
+const Article = require(modelPath + "article");
+const Semester = require(modelPath + "semester");
+const Team = require(modelPath + "team");
+const Member = require(modelPath + "member");
+const Membership = require(modelPath + "membership");
 
 const async = require("async");
 
-const {body, validationResult} = require("express-validator/check");
-const {sanitizeBody} = require("express-validator/filter");
+//const {body, validationResult} = require("express-validator/check");
+//const {sanitizeBody} = require("express-validator/filter");
 
 /* GET admin panel */
-exports.indexGet = (req, res, next) => {
+exports.indexGet = (req, res) => {
     res.render("admin/index.hbs", {
         title: "Admin paneel - MITS",
     });
@@ -62,7 +65,7 @@ exports.blogArticleEditPost = (req, res, next) => {
 };
 
 /* GET admin panel blog article new */
-exports.blogArticleNewGet = (req, res, next) => {
+exports.blogArticleNewGet = (req, res) => {
     res.render("admin/blogArticleNew.hbs", {
         title: "Uus blogipostitus - Admin paneel - MITS",
     });
@@ -85,7 +88,7 @@ exports.blogArticleNewPost = (req, res, next) => {
 };
 
 /* GET admin panel blog article delete */
-exports.blogArticleDeleteGet = (req, res, next) => {
+exports.blogArticleDeleteGet = (req, res) => {
     res.render("admin/blogArticleDelete.hbs", {
         title: "Blogiposti kustutamine - Admin paneel - MITS",
     });
@@ -116,7 +119,7 @@ exports.semestersGet = (req, res, next) => {
         });
 };
 
-/* POST admin panel new semester */
+/* POST admin panel semester add */
 exports.semestersPost = (req, res, next) => {
     const semester = new Semester({
         year: req.body.year,
@@ -184,7 +187,7 @@ exports.membersGet = (req, res, next) => {
                 .exec(callback)
         }
     }, (err, results) => {
-        if (err) return err;
+        if (err) return next(err);
         res.render("admin/members.hbs", {
             title: "Liikmed - Admin paneel - MITS",
             members: results.members,
@@ -193,13 +196,12 @@ exports.membersGet = (req, res, next) => {
     });
 };
 
-/* POST admin panel new member */
+/* POST admin panel member add */
 exports.membersPost = (req, res, next) => {
     const member = new Member({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         alumnus: !!req.body.alumnus,
-        photo: req.body.photo
     });
 
     member.save((err) => {
@@ -312,9 +314,23 @@ exports.memberEditPost = (req, res, next) => {
 
         member.save((err) => {
             if (err) return next(err);
-            return res.redirect("/admin/liikmed");
+            return res.redirect("/admin/liikmed/" + req.params.id);
         });
     });
+};
+
+/* POST admin panel member photo upload */
+exports.memberPhotoUploadPost = (req, res, next) => {
+    Member.findOne({_id: req.params.id})
+        .exec((err, member) => {
+            if (err) return next(err);
+            member.photo = req.file.filename;
+            member.save((err) => {
+                if (err) return next(err);
+                return res.redirect("/admin/liikmed/" + req.params.id);
+            });
+
+        });
 };
 
 
@@ -322,7 +338,7 @@ exports.memberEditPost = (req, res, next) => {
 
 
 /* GET admin panel teams */
-exports.teamsGet = (req, res, next) => {
+exports.teamsGet = (req, res) => {
     async.parallel({
         teams: callback => {
             Team.find({active: true})
@@ -345,7 +361,7 @@ exports.teamsGet = (req, res, next) => {
 
 };
 
-/* POST admin panel new team */
+/* POST admin panel team add */
 exports.teamsPost = (req, res, next) => {
     const team = new Team({
         name: req.body.name,
@@ -538,7 +554,7 @@ exports.membershipsGet = (req, res, next) => {
     });
 };
 
-/* POST admin panel new membership */
+/* POST admin panel membership add */
 exports.membershipsPost = (req, res, next) => {
     const membership = new Membership({
         semester: req.body.semester,

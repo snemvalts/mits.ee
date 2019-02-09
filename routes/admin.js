@@ -1,6 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: "public/media/liikmed/",
+    filename: (req, file, callback) => {
+        callback(null, req.params.id + ".jpg");
+    },
+    limits: {
+        fieldSize: "10KB"
+    }
+});
+const upload = multer({storage: storage});
+
 const adminController = require("../controllers/adminController");
 
 const requiresLogin = (req, res, next) => {
@@ -73,6 +85,8 @@ router.get("/liikmed/:id", requiresLogin, adminController.memberEditGet);
 /* POST admin panel member edit */
 router.post("/liikmed/:id", requiresLogin, adminController.memberEditPost);
 
+/* POST admin panel member photo upload */
+router.post("/liikmed/:id/pilt", requiresLogin, upload.single("photo"), adminController.memberPhotoUploadPost);
 
 
 
@@ -82,10 +96,10 @@ router.get("/tiimid", requiresLogin, adminController.teamsGet);
 /* POST admin panel teams */
 router.post("/tiimid", requiresLogin, adminController.teamsPost);
 
-/* GET admin panel member delete */
+/* GET admin panel team delete */
 router.get("/tiimid/:id/kustuta", requiresLogin, adminController.teamDeleteGet);
 
-/* POST admin panel member delete */
+/* POST admin panel team delete */
 router.post("/tiimid/:id/kustuta", requiresLogin, adminController.teamDeletePost);
 
 /* GET admin panel team edit */

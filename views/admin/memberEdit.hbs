@@ -1,5 +1,6 @@
 <a href="/admin/liikmed">Tagasi</a>
 <h1>{{member.firstName}} {{member.lastName}}</h1>
+<img src="/media/liikmed/{{member.photo}}" width="200">
 <h3>Muutmine</h3>
 <form method="post" action="">
     <label for="firstName">Eesnimi</label>
@@ -8,11 +9,17 @@
     <input id="lastName" name="lastName" placeholder="Pungas" value="{{member.lastName}}" required>
     <label for="alumnus">Vilistlane?</label>
     <input id="alumnus" type="checkbox" name="alumnus"{{#if member.alumnus}} checked{{/if}}>
-    <label for="photo">Pildi fail</label>
-    <input id="photo" name="photo" placeholder="/media/liikmed/Taivo.jpg" value="{{member.photo}}">
+    <label for="photo">Pildi failinimi</label>
+    <input id="photo" name="photo" placeholder="Taivo.jpg" value="{{member.photo}}">
     <input type="submit" value="Muuda">
 </form>
 <a href="/admin/liikmed/{{member._id}}/kustuta">Kustuta {{member.fullName}}</a>
+<h3>Pildi üleslaadimine</h3>
+<form method="post" action="/admin/liikmed/{{member._id}}/pilt" enctype="multipart/form-data">
+    <label for="photo">Pildi fail</label>
+    <input id="photo" type="file" name="photo" accept="image/jpeg" required>
+    <input type="submit" value="Laadi!">
+</form>
 <h3>Kuulumised</h3>
 <ul>
     {{#each memberships}}
