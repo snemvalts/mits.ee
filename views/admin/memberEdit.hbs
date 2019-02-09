@@ -1,5 +1,6 @@
 <a href="/admin/liikmed">Tagasi</a>
 <h1>Liige {{member.firstName}} {{member.lastName}}</h1>
+<h3>Muutmine</h3>
 <form method="post" action="">
     <label for="firstName">Eesnimi</label>
     <input id="firstName" name="firstName" placeholder="Taivo" value="{{member.firstName}}" required>
@@ -12,3 +13,30 @@
     <input type="submit" value="Muuda">
 </form>
 <a href="/admin/liikmed/{{member._id}}/kustuta">Kustuta {{member.firstName}}</a>
+<h3>Kuulumised</h3>
+<ul>
+    {{#each memberships}}
+        <li>{{this.semester.short}} - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
+    {{/each}}
+</ul>
+<h3>Lisa kuulumine</h3>
+<form method="post" action="/admin/kuulumised">
+    <label for="semester">Semester</label>
+    <select id="semester" name="semester" required>
+        <option hidden disabled selected value>-- vali semester --</option>
+        {{#each semesters}}
+            <option value="{{this._id}}">{{this.full}}</option>
+        {{/each}}
+    </select>
+    <input type="hidden" name="member" value="{{member._id}}">
+    <label for="team">Töögrupp</label>
+    <select id="team" name="team" required>
+        <option hidden disabled selected value>-- vali töögrupp --</option>
+        {{#each teams}}
+            <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+    <label for="leader">Juht</label>
+    <input id="leader" type="checkbox" name="leader">
+    <input type="submit" value="Lisa">
+</form>

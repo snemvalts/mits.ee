@@ -202,7 +202,7 @@ exports.memberDeleteGet = (req, res, next) => {
 
 /* POST admin panel member delete */
 exports.memberDeletePost = (req, res, next) => {
-    Member.findOneAndDelete({_id: req.params.id}).exec((err) => {
+    Member.findOneAndDelete().exec((err) => {
         if (err) return next(err);
         return res.redirect("..");
     });
@@ -210,11 +210,32 @@ exports.memberDeletePost = (req, res, next) => {
 
 /* GET admin panel member edit */
 exports.memberEditGet = (req, res, next) => {
-    Member.findOne({_id: req.params.id}).exec((err, member) => {
+    async.parallel({
+        member: callback => {
+            Member.findOne({_id: req.params.id}).exec(callback)
+        },
+        memberships: callback => {
+            Membership.find({member: req.params.id})
+                .populate("semester")
+                .populate("team")
+                .exec(callback)
+        },
+        semesters: callback => {
+            Semester.find({})
+                .sort({year: -1, season: -1})
+                .exec(callback)
+        },
+        teams: callback => {
+            Team.find({}).exec(callback)
+        }
+    }, (err, results) => {
         if (err) return next(err);
         res.render("admin/memberEdit.hbs", {
             title: "Liikme muutmine - Admin paneel - MITS",
-            member: member
+            member: results.member,
+            memberships: results.memberships,
+            semesters: results.semesters,
+            teams: results.teams
         });
     });
 };
@@ -323,6 +344,7 @@ exports.teamEditPost = (req, res, next) => {
         });
     });
 };
+
 
 
 

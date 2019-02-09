@@ -78,8 +78,6 @@ exports.eventGet = (req, res, next) => {
         .exec((err, event) => {
             if (err) return next(err);
 
-            console.log(event);
-
             res.render("event", {
                 title: event.title + " - MITS",
                 user: req.session.user,
