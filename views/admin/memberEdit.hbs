@@ -16,7 +16,7 @@
 <h3>Kuulumised</h3>
 <ul>
     {{#each memberships}}
-        <li>{{this.semester.short}} - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
+        <li>{{this.semester.short}} - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} - <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>
 <h3>Lisa kuulumine</h3>

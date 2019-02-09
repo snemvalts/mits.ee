@@ -232,6 +232,7 @@ exports.memberEditGet = (req, res, next) => {
         }
     }, (err, results) => {
         if (err) return next(err);
+        if (!results.member) return res.redirect("/admin/liikmed");
 
         // Mongoose sorting by populated values is chaos, so I'm doing it here
         // See https://github.com/mrm8488/ama/issues/5
@@ -264,6 +265,7 @@ exports.memberEditGet = (req, res, next) => {
 exports.memberEditPost = (req, res, next) => {
     Member.findOne({_id: req.params.id}).exec((err, member) => {
         if (err) return next(err);
+        if (!member) return res.redirect("/admin/liikmed");
 
         member.firstName = req.body.firstName;
         member.lastName = req.body.lastName;
@@ -325,6 +327,8 @@ exports.teamsPost = (req, res, next) => {
 exports.teamDeleteGet = (req, res, next) => {
     Team.findOne({_id: req.params.id}).exec((err, team) => {
         if (err) return next(err);
+        if (!team) return res.redirect("/admin/tiimid");
+
         res.render("admin/teamDelete.hbs", {
             title: "Tiimi kustutamine - Admin paneel - MITS",
             team: team
@@ -336,6 +340,7 @@ exports.teamDeleteGet = (req, res, next) => {
 exports.teamDeletePost = (req, res, next) => {
     Team.findOneAndDelete({_id: req.params.id}).exec((err) => {
         if (err) return next(err);
+
         return res.redirect("..");
     });
 };
@@ -364,6 +369,7 @@ exports.teamEditGet = (req, res, next) => {
         }
     }, (err, results) => {
         if (err) return next(err);
+        if (!results.team) return res.redirect("/admin/tiimid");
 
         // Mongoose sorting by populated values is chaos, so I'm doing it here
         // See https://github.com/mrm8488/ama/issues/5
@@ -399,6 +405,7 @@ exports.teamEditGet = (req, res, next) => {
 exports.teamEditPost = (req, res, next) => {
     Team.findOne({_id: req.params.id}).exec((err, team) => {
         if (err) return next(err);
+        if (!team) return res.redirect("/admin/tiimid");
 
         team.name = req.body.name;
         team.short = req.body.short;
@@ -503,6 +510,8 @@ exports.membershipDeleteGet = (req, res, next) => {
         .populate("team")
         .exec((err, membership) => {
             if (err) return next(err);
+            if (!membership) return res.redirect("/admin/kuulumised");
+
             res.render("admin/membershipDelete.hbs", {
                 title: "Kuulumise kustutamine - Admin paneel - MITS",
                 membership: membership
@@ -514,6 +523,7 @@ exports.membershipDeleteGet = (req, res, next) => {
 exports.membershipDeletePost = (req, res, next) => {
     Membership.findOneAndDelete({_id: req.params.id}).exec((err) => {
         if (err) return next(err);
+
         return res.redirect("..");
     });
 };

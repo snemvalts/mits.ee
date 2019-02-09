@@ -31,6 +31,6 @@
 </code>
 <ul>
     {{#each memberships}}
-        <li>{{this.semester.short}} - <a href="/admin/liikmed/{{this.member._id}}">{{this.member.fullName}}</a> - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
+        <li>{{this.semester.short}} - <a href="/admin/liikmed/{{this.member._id}}">{{this.member.fullName}}</a> - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} - <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>
