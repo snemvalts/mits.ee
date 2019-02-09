@@ -156,12 +156,12 @@ exports.membersGet = (req, res, next) => {
     async.parallel({
         members: callback => {
             Member.find({alumnus: false})
-                .sort({lastName: 1})
+                .sort({firstName: 1, lastName: 1})
                 .exec(callback)
         },
         alumni: callback => {
             Member.find({alumnus: true})
-                .sort({lastName: 1})
+                .sort({firstName: 1, lastName: 1})
                 .exec(callback)
         }
     }, (err, results) => {
@@ -230,6 +230,20 @@ exports.memberEditGet = (req, res, next) => {
         }
     }, (err, results) => {
         if (err) return next(err);
+
+        results.memberships.sort((a, b) => {
+            // Semesters descending
+            if (a.semester.short > b.semester.short) return -1;
+            if (a.semester.short < b.semester.short) return 1;
+            // Team order ascending
+            if (a.team.order > b.team.order) return 1;
+            if (a.team.order < b.team.order) return -1;
+            // Leader first (descending: 1 is leader, 0 is not)
+            if (a.leader > b.leader) return -1;
+            if (a.leader < b.leader) return 1;
+            return 0;
+        });
+
         res.render("admin/memberEdit.hbs", {
             title: "Liikme muutmine - Admin paneel - MITS",
             member: results.member,
@@ -266,10 +280,12 @@ exports.teamsGet = (req, res, next) => {
     async.parallel({
         teams: callback => {
             Team.find({active: true})
+                .sort({order: 1})
                 .exec(callback)
         },
         inactive: callback => {
             Team.find({active: false})
+                .sort({order: 1})
                 .exec(callback)
         }
     }, (err, results) => {
@@ -288,6 +304,7 @@ exports.teamsPost = (req, res, next) => {
     const team = new Team({
         name: req.body.name,
         short: req.body.short,
+        order: req.body.order,
         active: !!req.body.active,
         description: req.body.description
     });
@@ -319,11 +336,48 @@ exports.teamDeletePost = (req, res, next) => {
 
 /* GET admin panel team edit */
 exports.teamEditGet = (req, res, next) => {
-    Team.findOne({_id: req.params.id}).exec((err, team) => {
+    async.parallel({
+        team: callback => {
+            Team.findOne({_id: req.params.id}).exec(callback)
+        },
+        memberships: callback => {
+            Membership.find({team: req.params.id})
+                .populate("semester")
+                .populate("member")
+                .exec(callback)
+        },
+        semesters: callback => {
+            Semester.find({})
+                .sort({year: -1, season: -1})
+                .exec(callback)
+        },
+        members: callback => {
+            Member.find({})
+                .sort({firstName: 1, lastName: 1})
+                .exec(callback)
+        }
+    }, (err, results) => {
         if (err) return next(err);
+
+        results.memberships.sort((a, b) => {
+            // Semesters descending
+            if (a.semester.short > b.semester.short) return -1;
+            if (a.semester.short < b.semester.short) return 1;
+            // Leader first (descending: 1 is leader, 0 is not)
+            if (a.leader > b.leader) return -1;
+            if (a.leader < b.leader) return 1;
+            // Full name ascending
+            if (a.member.fullName > b.member.fullName) return 1;
+            if (a.member.fullName < b.member.fullName) return -1;
+            return 0;
+        });
+
         res.render("admin/teamEdit.hbs", {
             title: "Töögrupi muutmine - Admin paneel - MITS",
-            team: team
+            team: results.team,
+            memberships: results.memberships,
+            semesters: results.semesters,
+            members: results.members
         });
     });
 };
@@ -335,6 +389,7 @@ exports.teamEditPost = (req, res, next) => {
 
         team.name = req.body.name;
         team.short = req.body.short;
+        team.order = req.body.order;
         team.active = !!req.body.active;
         team.description = req.body.description;
 
@@ -358,7 +413,7 @@ exports.membershipsGet = (req, res, next) => {
         },
         members: callback => {
             Member.find()
-                .sort({firstName: 1})
+                .sort({firstName: 1, lastName: 1})
                 .exec(callback)
         },
         teams: callback => {
@@ -373,6 +428,25 @@ exports.membershipsGet = (req, res, next) => {
         }
     }, (err, results) => {
         if (err) return next(err);
+
+        // Mongoose sorting by populated values is chaos, so I'm doing it here
+        // See https://github.com/mrm8488/ama/issues/5
+        results.memberships.sort((a, b) => {
+            // Semesters descending
+            if (a.semester.short > b.semester.short) return -1;
+            if (a.semester.short < b.semester.short) return 1;
+            // Team order ascending
+            if (a.team.order > b.team.order) return 1;
+            if (a.team.order < b.team.order) return -1;
+            // Leader first (descending: 1 is leader, 0 is not)
+            if (a.leader > b.leader) return -1;
+            if (a.leader < b.leader) return 1;
+            // Full name ascending
+            if (a.member.fullName > b.member.fullName) return 1;
+            if (a.member.fullName < b.member.fullName) return -1;
+            return 0;
+        });
+
 
         res.render("admin/memberships.hbs", {
             title: "Kuulumised - Admin paneel - MITS",
@@ -395,6 +469,9 @@ exports.membershipsPost = (req, res, next) => {
 
     membership.save((err) => {
         if (err) return next(err);
+        if (req.body.redirect) {
+            return res.redirect(req.body.redirect);
+        }
         return res.redirect("/admin/kuulumised");
     });
 };

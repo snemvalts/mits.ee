@@ -1,5 +1,5 @@
 <a href="/admin/liikmed">Tagasi</a>
-<h1>Liige {{member.firstName}} {{member.lastName}}</h1>
+<h1>{{member.firstName}} {{member.lastName}}</h1>
 <h3>Muutmine</h3>
 <form method="post" action="">
     <label for="firstName">Eesnimi</label>
@@ -12,7 +12,7 @@
     <input id="photo" name="photo" placeholder="/media/liikmed/Taivo.jpg" value="{{member.photo}}">
     <input type="submit" value="Muuda">
 </form>
-<a href="/admin/liikmed/{{member._id}}/kustuta">Kustuta {{member.firstName}}</a>
+<a href="/admin/liikmed/{{member._id}}/kustuta">Kustuta {{member.fullName}}</a>
 <h3>Kuulumised</h3>
 <ul>
     {{#each memberships}}
@@ -21,6 +21,9 @@
 </ul>
 <h3>Lisa kuulumine</h3>
 <form method="post" action="/admin/kuulumised">
+    <input type="hidden" name="member" value="{{member._id}}">
+    <input type="hidden" name="redirect" value="/admin/liikmed/{{member._id}}">
+
     <label for="semester">Semester</label>
     <select id="semester" name="semester" required>
         <option hidden disabled selected value>-- vali semester --</option>
@@ -28,7 +31,6 @@
             <option value="{{this._id}}">{{this.full}}</option>
         {{/each}}
     </select>
-    <input type="hidden" name="member" value="{{member._id}}">
     <label for="team">Töögrupp</label>
     <select id="team" name="team" required>
         <option hidden disabled selected value>-- vali töögrupp --</option>

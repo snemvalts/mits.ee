@@ -5,6 +5,8 @@
     <input id="name" name="name" placeholder="Pilvelõhkujate ehitamise töögrupp" required>
     <label for="short">Lühend</label>
     <input id="short" name="short" placeholder="pilv" required>
+    <label for="order">Järjekord</label>
+    <input id="order" type="number" name="order" value="1" required>
     <label for="active">Aktiivne?</label>
     <input id="active" type="checkbox" name="active">
     <label for="description">Kirjeldus</label>
@@ -14,12 +16,12 @@
 <h3>Töögrupid</h3>
 <ul>
     {{#each teams}}
-        <li>{{this.name}} <a href="/admin/tiimid/{{this._id}}">Muuda</a> <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
+        <li>{{this.order}}. {{this.name}} <a href="/admin/tiimid/{{this._id}}">Muuda</a> <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>
 <h3>Mitteaktiivsed</h3>
 <ul>
     {{#each inactive}}
-        <li>{{this.name}} <a href="/admin/tiimid/{{this._id}}">Muuda</a> <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
+        <li>{{this.order}}. {{this.name}} <a href="/admin/tiimid/{{this._id}}">Muuda</a> <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>

@@ -5,6 +5,7 @@ const TeamSchema = new Schema({
     name: {type: String, required: true},
     short: {type: String, required: true},
     description: {type: String},
+    order: {type: Number, required: true, default: 1},
     active: {type: Boolean, required: true}
 });
 
