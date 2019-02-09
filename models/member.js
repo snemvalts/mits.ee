@@ -15,10 +15,10 @@ MemberSchema.virtual("fullName").get(function () {
 });
 
 // Virtual for array of memberships
-MemberSchema.virtual("memberships", {
+/*MemberSchema.virtual("memberships", {
     ref: "Membership",
     localField: "_id",
     foreignField: "member"
-});
+});*/
 
 module.exports = mongoose.model("Member", MemberSchema);

@@ -14,12 +14,12 @@
 <h3>Aktiivsed liikmed</h3>
 <ul>
     {{#each members}}
-        <li>{{this.firstName}} {{this.lastName}} <a href="/admin/liikmed/{{this._id}}">Muuda</a> <a href="/admin/liikmed/{{this._id}}/kustuta">Kustuta</a></li>
+        <li><a href="/admin/liikmed/{{this._id}}">{{this.fullName}}</a> - <a href="/admin/liikmed/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>
 <h3>Vilistlased</h3>
 <ul>
     {{#each alumni}}
-        <li>{{this.firstName}} {{this.lastName}} <a href="/admin/liikmed/{{this._id}}">Muuda</a> <a href="/admin/liikmed/{{this._id}}/kustuta">Kustuta</a></li>
+        <li><a href="/admin/liikmed/{{this._id}}">{{this.fullName}}</a> - <a href="/admin/liikmed/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>

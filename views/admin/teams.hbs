@@ -16,12 +16,12 @@
 <h3>Töögrupid</h3>
 <ul>
     {{#each teams}}
-        <li>{{this.order}}. {{this.name}} <a href="/admin/tiimid/{{this._id}}">Muuda</a> <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
+        <li>{{this.order}}. <a href="/admin/tiimid/{{this._id}}">{{this.name}}</a> - <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>
 <h3>Mitteaktiivsed</h3>
 <ul>
     {{#each inactive}}
-        <li>{{this.order}}. {{this.name}} <a href="/admin/tiimid/{{this._id}}">Muuda</a> <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
+        <li>{{this.order}}. <a href="/admin/tiimid/{{this._id}}">{{this.name}}</a> - <a href="/admin/tiimid/{{this._id}}/kustuta">Kustuta</a></li>
     {{/each}}
 </ul>

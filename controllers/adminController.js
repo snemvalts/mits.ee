@@ -226,23 +226,29 @@ exports.memberEditGet = (req, res, next) => {
                 .exec(callback)
         },
         teams: callback => {
-            Team.find({}).exec(callback)
+            Team.find({})
+                .sort({order: 1})
+                .exec(callback)
         }
     }, (err, results) => {
         if (err) return next(err);
 
-        results.memberships.sort((a, b) => {
-            // Semesters descending
-            if (a.semester.short > b.semester.short) return -1;
-            if (a.semester.short < b.semester.short) return 1;
-            // Team order ascending
-            if (a.team.order > b.team.order) return 1;
-            if (a.team.order < b.team.order) return -1;
-            // Leader first (descending: 1 is leader, 0 is not)
-            if (a.leader > b.leader) return -1;
-            if (a.leader < b.leader) return 1;
-            return 0;
-        });
+        // Mongoose sorting by populated values is chaos, so I'm doing it here
+        // See https://github.com/mrm8488/ama/issues/5
+        try {
+            results.memberships.sort((a, b) => {
+                // Semesters descending
+                if (a.semester.short > b.semester.short) return -1;
+                if (a.semester.short < b.semester.short) return 1;
+                // Team order ascending
+                if (a.team.order > b.team.order) return 1;
+                if (a.team.order < b.team.order) return -1;
+                // Leader first (descending: 1 is leader, 0 is not)
+                if (a.leader > b.leader) return -1;
+                if (a.leader < b.leader) return 1;
+                return 0;
+            });
+        } catch (e) {}
 
         res.render("admin/memberEdit.hbs", {
             title: "Liikme muutmine - Admin paneel - MITS",
@@ -359,18 +365,25 @@ exports.teamEditGet = (req, res, next) => {
     }, (err, results) => {
         if (err) return next(err);
 
-        results.memberships.sort((a, b) => {
-            // Semesters descending
-            if (a.semester.short > b.semester.short) return -1;
-            if (a.semester.short < b.semester.short) return 1;
-            // Leader first (descending: 1 is leader, 0 is not)
-            if (a.leader > b.leader) return -1;
-            if (a.leader < b.leader) return 1;
-            // Full name ascending
-            if (a.member.fullName > b.member.fullName) return 1;
-            if (a.member.fullName < b.member.fullName) return -1;
-            return 0;
-        });
+        // Mongoose sorting by populated values is chaos, so I'm doing it here
+        // See https://github.com/mrm8488/ama/issues/5
+        try {
+            results.memberships.sort((a, b) => {
+                // Semesters descending
+                if (a.semester.short > b.semester.short) return -1;
+                if (a.semester.short < b.semester.short) return 1;
+                // Leader first (descending: 1 is leader, 0 is not)
+                if (a.leader > b.leader) return -1;
+                if (a.leader < b.leader) return 1;
+                // First name ascending
+                if (a.member.firstName > b.member.firstName) return 1;
+                if (a.member.firstName < b.member.firstName) return -1;
+                // Last name ascending
+                if (a.member.lastName > b.member.lastName) return 1;
+                if (a.member.lastName < b.member.lastName) return -1;
+                return 0;
+            });
+        } catch (e) {}
 
         res.render("admin/teamEdit.hbs", {
             title: "Töögrupi muutmine - Admin paneel - MITS",
@@ -417,7 +430,9 @@ exports.membershipsGet = (req, res, next) => {
                 .exec(callback)
         },
         teams: callback => {
-            Team.find().exec(callback)
+            Team.find()
+                .sort({order: 1})
+                .exec(callback)
         },
         memberships: callback => {
             Membership.find()
@@ -431,22 +446,26 @@ exports.membershipsGet = (req, res, next) => {
 
         // Mongoose sorting by populated values is chaos, so I'm doing it here
         // See https://github.com/mrm8488/ama/issues/5
-        results.memberships.sort((a, b) => {
-            // Semesters descending
-            if (a.semester.short > b.semester.short) return -1;
-            if (a.semester.short < b.semester.short) return 1;
-            // Team order ascending
-            if (a.team.order > b.team.order) return 1;
-            if (a.team.order < b.team.order) return -1;
-            // Leader first (descending: 1 is leader, 0 is not)
-            if (a.leader > b.leader) return -1;
-            if (a.leader < b.leader) return 1;
-            // Full name ascending
-            if (a.member.fullName > b.member.fullName) return 1;
-            if (a.member.fullName < b.member.fullName) return -1;
-            return 0;
-        });
-
+        try {
+            results.memberships.sort((a, b) => {
+                // Semesters descending
+                if (a.semester.short > b.semester.short) return -1;
+                if (a.semester.short < b.semester.short) return 1;
+                // Team order ascending
+                if (a.team.order > b.team.order) return 1;
+                if (a.team.order < b.team.order) return -1;
+                // Leader first (descending: 1 is leader, 0 is not)
+                if (a.leader > b.leader) return -1;
+                if (a.leader < b.leader) return 1;
+                // First name ascending
+                if (a.member.firstName > b.member.firstName) return 1;
+                if (a.member.firstName < b.member.firstName) return -1;
+                // Last name ascending
+                if (a.member.lastName > b.member.lastName) return 1;
+                if (a.member.lastName < b.member.lastName) return -1;
+                return 0;
+            });
+        } catch (e) {}
 
         res.render("admin/memberships.hbs", {
             title: "Kuulumised - Admin paneel - MITS",
