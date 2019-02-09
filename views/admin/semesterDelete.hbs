@@ -1,5 +1,15 @@
-<h1>Kustuta semester {{semester.year}}{{semester.season}}?</h1>
-<form method="post" action="">
-    <input type="submit" value="Jep">
-    <a href="..">Ei</a>
-</form>
+<h1>Kustuta semester {{semester.short}}?</h1>
+{{#if memberships}}
+    <h3>Kustuta need kuulumised enne semestri kustutamist:</h3>
+    <ul>
+        {{#each memberships}}
+            <li><a href="/admin/liikmed/{{this.member._id}}">{{this.member.fullName}}</a> - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} - <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
+        {{/each}}
+    </ul>
+    <a href="..">Tagasi</a>
+{{else}}
+    <form method="post" action="">
+        <input type="submit" value="Jep">
+        <a href="..">Ei</a>
+    </form>
+{{/if}}

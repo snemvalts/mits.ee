@@ -131,20 +131,39 @@ exports.semestersPost = (req, res, next) => {
 
 /* GET admin panel semester delete */
 exports.semesterDeleteGet = (req, res, next) => {
-    Semester.findOne({_id: req.params.id}).exec((err, semester) => {
+    async.parallel({
+        semester: callback => {
+            Semester.findOne({_id: req.params.id}).exec(callback)
+        },
+        memberships: callback => {
+            Membership.find({semester: req.params.id})
+                .populate("team")
+                .populate("member")
+                .exec(callback)
+        }
+    }, (err, results) => {
         if (err) return next(err);
+        if (!results.semester) return res.redirect("/admin/semestrid");
+
         res.render("admin/semesterDelete.hbs", {
             title: "Semestri kustutamine - Admin paneel - MITS",
-            semester: semester
+            semester: results.semester,
+            memberships: results.memberships
         });
     });
 };
 
 /* POST admin panel semester delete */
 exports.semesterDeletePost = (req, res, next) => {
-    Semester.findOneAndDelete({_id: req.params.id}).exec((err) => {
+    Membership.findOne({semester: req.params.id}).exec((err, membership) => {
         if (err) return next(err);
-        return res.redirect("..");
+        if (membership) {
+            return res.redirect("/admin/semestrid/" + req.params.id + "/kustuta");
+        }
+        Semester.findOneAndDelete({_id: req.params.id}).exec((err) => {
+            if (err) return next(err);
+            return res.redirect("..");
+        });
     });
 };
 
@@ -191,20 +210,39 @@ exports.membersPost = (req, res, next) => {
 
 /* GET admin panel member delete */
 exports.memberDeleteGet = (req, res, next) => {
-    Member.findOne({_id: req.params.id}).exec((err, member) => {
+    async.parallel({
+        member: callback => {
+            Member.findOne({_id: req.params.id}).exec(callback);
+        },
+        memberships: callback => {
+            Membership.find({member: req.params.id})
+                .populate("semester")
+                .populate("team")
+                .exec(callback)
+        }
+    }, (err, results) => {
         if (err) return next(err);
+        if (!results.member) return res.redirect("/admin/liikmed");
+
         res.render("admin/memberDelete.hbs", {
             title: "Liikme kustutamine - Admin paneel - MITS",
-            member: member
+            member: results.member,
+            memberships: results.memberships
         });
     });
 };
 
 /* POST admin panel member delete */
 exports.memberDeletePost = (req, res, next) => {
-    Member.findOneAndDelete().exec((err) => {
+    Membership.findOne({member: req.params.id}).exec((err, membership) => {
         if (err) return next(err);
-        return res.redirect("..");
+        if (membership) {
+            return res.redirect("/admin/liikmed/" + req.params.id + "/kustuta");
+        }
+        Member.findOneAndDelete({_id: req.params.id}).exec((err) => {
+            if (err) return next(err);
+            return res.redirect("..");
+        });
     });
 };
 
@@ -325,23 +363,39 @@ exports.teamsPost = (req, res, next) => {
 
 /* GET admin panel team delete */
 exports.teamDeleteGet = (req, res, next) => {
-    Team.findOne({_id: req.params.id}).exec((err, team) => {
+    async.parallel({
+        team: callback => {
+            Team.findOne({_id: req.params.id}).exec(callback)
+        },
+        memberships: callback => {
+            Membership.find({team: req.params.id})
+                .populate("semester")
+                .populate("member")
+                .exec(callback)
+        }
+    }, (err, results) => {
         if (err) return next(err);
-        if (!team) return res.redirect("/admin/tiimid");
+        if (!results.team) return res.redirect("/admin/tiimid");
 
         res.render("admin/teamDelete.hbs", {
             title: "Tiimi kustutamine - Admin paneel - MITS",
-            team: team
+            team: results.team,
+            memberships: results.memberships
         });
     });
 };
 
 /* POST admin panel team delete */
 exports.teamDeletePost = (req, res, next) => {
-    Team.findOneAndDelete({_id: req.params.id}).exec((err) => {
+    Membership.findOne({team: req.params.id}).exec((err, membership) => {
         if (err) return next(err);
-
-        return res.redirect("..");
+        if (membership) {
+            return res.redirect("/admin/tiimid/" + req.params.id + "/kustuta");
+        }
+        Team.findOneAndDelete({_id: req.params.id}).exec((err) => {
+            if (err) return next(err);
+            return res.redirect("..");
+        });
     });
 };
 
