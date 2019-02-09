@@ -96,5 +96,18 @@ router.post("/tiimid/:id", requiresLogin, adminController.teamEditPost);
 
 
 
+/* GET admin panel memberships */
+router.get("/kuulumised", requiresLogin, adminController.membershipsGet);
+
+/* POST admin panel memberships */
+router.post("/kuulumised", requiresLogin, adminController.membershipsPost);
+
+/* GET admin panel memberships delete */
+router.get("/kuulumised/:id/kustuta", requiresLogin, adminController.membershipDeleteGet);
+
+/* POST admin panel memberships delete */
+router.post("/kuulumised/:id/kustuta", requiresLogin, adminController.membershipDeletePost);
+
+
 
 module.exports = router;

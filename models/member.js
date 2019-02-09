@@ -9,6 +9,12 @@ const MemberSchema = new Schema({
     notes: [{type: Schema.Types.ObjectId, ref: "MemberNote"}]
 });
 
+// Virtual for full name
+MemberSchema.virtual("fullName").get(function () {
+    return this.firstName + " " + this.lastName;
+});
+
+// Virtual for array of memberships
 MemberSchema.virtual("memberships", {
     ref: "Membership",
     localField: "_id",

@@ -1,0 +1,34 @@
+<h1>Kuulumised</h1>
+<h3>Lisa kuulumine</h3>
+<form method="post" action="">
+    <label for="semester">Semester</label>
+    <select id="semester" name="semester" required>
+        <option hidden disabled selected value>-- vali semester --</option>
+        {{#each semesters}}
+            <option value="{{this._id}}">{{this.full}}</option>
+        {{/each}}
+    </select>
+    <label for="member">Liige</label>
+    <select id="member" name="member" required>
+        <option hidden disabled selected value>-- vali liige --</option>
+        {{#each members}}
+            <option value="{{this._id}}">{{this.fullName}}</option>
+        {{/each}}
+    </select>
+    <label for="team">Töögrupp</label>
+    <select id="team" name="team" required>
+        <option hidden disabled selected value>-- vali töögrupp --</option>
+        {{#each teams}}
+            <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+    <label for="leader">Juht</label>
+    <input id="leader" type="checkbox" name="leader">
+    <input type="submit" value="Lisa">
+</form>
+<h3>Nimekiri</h3>
+<ul>
+    {{#each memberships}}
+        <li>{{this.semester.short}} - {{this.member.fullName}} - {{this.team.short}}{{#if this.leader}} juht{{/if}} <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
+    {{/each}}
+</ul>

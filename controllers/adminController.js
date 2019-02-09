@@ -3,6 +3,7 @@ const Article = require("../models/article");
 const Semester = require("../models/semester");
 const Team = require("../models/team");
 const Member = require("../models/member");
+const Membership = require("../models/membership");
 
 const async = require("async");
 
@@ -320,5 +321,81 @@ exports.teamEditPost = (req, res, next) => {
             if (err) return next(err);
             return res.redirect("/admin/tiimid");
         });
+    });
+};
+
+
+
+/* GET admin panel memberships */
+exports.membershipsGet = (req, res, next) => {
+    async.parallel({
+        semesters: callback => {
+            Semester.find()
+                .sort({year: -1, season: -1})
+                .exec(callback)
+        },
+        members: callback => {
+            Member.find()
+                .sort({firstName: 1})
+                .exec(callback)
+        },
+        teams: callback => {
+            Team.find().exec(callback)
+        },
+        memberships: callback => {
+            Membership.find()
+                .populate("semester")
+                .populate("member")
+                .populate("team")
+                .exec(callback)
+        }
+    }, (err, results) => {
+        if (err) return next(err);
+
+        res.render("admin/memberships.hbs", {
+            title: "Kuulumised - Admin paneel - MITS",
+            members: results.members,
+            semesters: results.semesters,
+            teams: results.teams,
+            memberships: results.memberships
+        });
+    });
+};
+
+/* POST admin panel new membership */
+exports.membershipsPost = (req, res, next) => {
+    const membership = new Membership({
+        semester: req.body.semester,
+        member: req.body.member,
+        team: req.body.team,
+        leader: !!req.body.leader
+    });
+
+    membership.save((err) => {
+        if (err) return next(err);
+        return res.redirect("/admin/kuulumised");
+    });
+};
+
+/* GET admin panel membership delete */
+exports.membershipDeleteGet = (req, res, next) => {
+    Membership.findOne({_id: req.params.id})
+        .populate("semester")
+        .populate("member")
+        .populate("team")
+        .exec((err, membership) => {
+            if (err) return next(err);
+            res.render("admin/membershipDelete.hbs", {
+                title: "Kuulumise kustutamine - Admin paneel - MITS",
+                membership: membership
+            });
+        });
+};
+
+/* POST admin panel membership delete */
+exports.membershipDeletePost = (req, res, next) => {
+    Membership.findOneAndDelete({_id: req.params.id}).exec((err) => {
+        if (err) return next(err);
+        return res.redirect("..");
     });
 };
