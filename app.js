@@ -1,4 +1,5 @@
-const createError = require("http-errors");
+require("dotenv").config()
+//const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -24,7 +25,7 @@ const adminRouter = require("./routes/admin");
 // Set up mongoose connection
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
-const mongoDB = "mongodb://127.0.0.1:27017/mits";
+const mongoDB = process.env.DB_HOST;
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
