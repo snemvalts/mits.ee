@@ -14,6 +14,8 @@ i18n.configure({
 });
 const moment = require("moment");
 moment.locale("et_EE");
+const compression = require("compression");
+const helmet = require("helmet");
 
 const indexRouter = require("./routes/index");
 const blogRouter = require("./routes/blog");
@@ -41,6 +43,9 @@ hbs.registerHelper("moment", (datetime, format) => {
     return moment(datetime).format(format);
 });
 
+app.use(compression());
+app.use(helmet());
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -53,7 +58,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({
-    secret: "mits mitte?",
+    secret: require("crypto").randomBytes(64).toString("hex"),
     resave: true,
     saveUninitialized: true,
     cookie: {maxAge: 8 * 60 * 60 * 1000}, // 8 hours
@@ -66,16 +71,25 @@ app.use("/", indexRouter);
 app.use("/blogi", blogRouter);
 app.use("/admin", adminRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    next(createError(404));
+// 404 route
+app.get("*", (req, res) => {
+    res.status(404);
+    res.render("404.hbs", {
+        title: "Lehekülge ei leitud! - MITS"
+    });
 });
+
+// catch 404 and forward to error handler
+/*app.use(function (req, res, next) {
+    next(createError(404));
+});*/
 
 // error handler
 app.use(function (err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
+    res.locals.layout = "layout.hbs";
 
     // render the error page
     res.status(err.status || 500);

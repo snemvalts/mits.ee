@@ -430,7 +430,7 @@ section#aboutlanding {
     display: flex;
 
     background:
-            linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5)),
+            linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.3)),
             $main url("/media/grillpidu.jpg") no-repeat fixed center;
     background-size: cover;
 
@@ -525,6 +525,8 @@ section#membersgrid {
 
 
 section#memberlist, section#alumnilist {
+    padding: 6rem 0 2rem;
+
     span::after {
         content: ", ";
     }
@@ -536,7 +538,7 @@ section#memberlist, section#alumnilist {
 
 header#bloglanding {
     color: white;
-    padding: 10rem 0 6rem;
+    padding: 14rem 0 10rem;
     font-size: 1.3em;
     //height: 100vh;
     display: flex;
@@ -605,6 +607,18 @@ section#login {
             width: 100%;
         }
     }
+}
+
+
+section#error {
+    color: white;
+    padding: 14rem 0 10rem;
+    font-size: 1.3em;
+    display: flex;
+    background:
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)),
+            $main url("/media/error.jpg") no-repeat fixed center;
+    background-size: cover;
 }
 
 

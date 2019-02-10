@@ -283,7 +283,7 @@ section#aboutlanding {
   padding: 14rem 0 10rem;
   font-size: 1.3em;
   display: flex;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), #0251AB url("/media/grillpidu.jpg") no-repeat fixed center;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), #0251AB url("/media/grillpidu.jpg") no-repeat fixed center;
   background-size: cover; }
   section#aboutlanding strong {
     font-weight: 700; }
@@ -345,15 +345,16 @@ section#membersgrid {
     section#membersgrid {
       grid-template-columns: repeat(3, 1fr); } }
 
-section#memberlist span::after, section#alumnilist span::after {
-  content: ", "; }
-
-section#memberlist span:last-of-type::after, section#alumnilist span:last-of-type::after {
-  content: ""; }
+section#memberlist, section#alumnilist {
+  padding: 6rem 0 2rem; }
+  section#memberlist span::after, section#alumnilist span::after {
+    content: ", "; }
+  section#memberlist span:last-of-type::after, section#alumnilist span:last-of-type::after {
+    content: ""; }
 
 header#bloglanding {
   color: white;
-  padding: 10rem 0 6rem;
+  padding: 14rem 0 10rem;
   font-size: 1.3em;
   display: flex;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), #0251AB url("/media/teras.jpg") no-repeat fixed center;
@@ -398,6 +399,14 @@ section#login {
     @media screen and (max-width: 640px) {
       section#login form {
         width: 100%; } }
+
+section#error {
+  color: white;
+  padding: 14rem 0 10rem;
+  font-size: 1.3em;
+  display: flex;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), #0251AB url("/media/error.jpg") no-repeat fixed center;
+  background-size: cover; }
 
 footer {
   background-color: #333333;
