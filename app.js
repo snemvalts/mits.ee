@@ -57,7 +57,7 @@ app.use(sassMiddleware({
     indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, "public", {dotfiles: "allow"})));
+app.use(express.static(path.join(__dirname, "public"), {dotfiles: "allow"}));
 app.use(session({
     secret: require("crypto").randomBytes(64).toString("hex"),
     resave: true,
