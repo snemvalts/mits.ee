@@ -1,19 +1,11 @@
-<section id="alumni">
+<section id="alumnilist">
     <div class="container">
         <div class="content">
             <h1>Vilistlased</h1>
             <ul>
-                <li><strong>Rimante Valancauskaite</strong> - 2018k ????, <strong>2018s finantsjuht</strong></li>
-                <li><strong>Karl Martin Teras</strong> - <strong>2018k akadeemiline</strong>, <strong>2018s akadeemiline</strong></li>
-                <li><strong>Uku Kangur</strong> - <strong>2018k esimees</strong>, <strong>2018s teadus</strong></li>
-                <li><strong>Alo Aasmäe</strong> - <strong>2018k mentor</strong>, <strong>2018s mentor</strong></li>
-                <li><strong>Gregor Nõges</strong> - 2018k ????, 2018s selts</li>
-                <li><strong>Annika Altoja</strong> - 2018k sport, 2018s sport</li>
-                <li><strong>Kelli Kukk</strong> - 2018k sport, 2018s sport</li>
-                <li><strong>Karl Toomas Vana</strong> - 2018k sise-selts</li>
-                <li><strong>Dan Bondarenko</strong> - 2018k akadeemiline</li>
-                <li><strong>Martin Piir</strong> - 2018k meedia, 2019k meedia, <strong>MVP disainer</strong></li>
-                <h1>WIP teen andmebaasiga...</h1>
+                {{#alumni}}
+                    <li><strong>{{fullName}}</strong> - {{#memberships}}{{#if leader}}<span><strong>{{semester.short}} {{team.short}}</strong></span>{{else}}<span>{{semester.short}} {{team.short}}</span>{{/if}}{{/memberships}}</li>
+                {{/alumni}}
             </ul>
         </div>
     </div>

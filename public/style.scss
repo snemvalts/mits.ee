@@ -524,6 +524,16 @@ section#membersgrid {
 }
 
 
+section#memberlist, section#alumnilist {
+    span::after {
+        content: ", ";
+    }
+    span:last-of-type::after {
+        content: "";
+    }
+}
+
+
 header#bloglanding {
     color: white;
     padding: 10rem 0 6rem;

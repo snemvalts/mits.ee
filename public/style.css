@@ -345,6 +345,12 @@ section#membersgrid {
     section#membersgrid {
       grid-template-columns: repeat(3, 1fr); } }
 
+section#memberlist span::after, section#alumnilist span::after {
+  content: ", "; }
+
+section#memberlist span:last-of-type::after, section#alumnilist span:last-of-type::after {
+  content: ""; }
+
 header#bloglanding {
   color: white;
   padding: 10rem 0 6rem;

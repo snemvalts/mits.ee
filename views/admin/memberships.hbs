@@ -1,36 +1,50 @@
 <h1>Kuulumised</h1>
-<h3>Lisa kuulumine</h3>
-<form method="post" action="">
-    <label for="semester">Semester</label>
-    <select id="semester" name="semester" required>
-        <option hidden disabled selected value>-- vali semester --</option>
-        {{#each semesters}}
-            <option value="{{this._id}}">{{this.full}}</option>
+<div class="collapsible">
+    <h3>Lisa kuulumine</h3>
+    <form method="post" action="">
+        <label for="semester">Semester</label>
+        <select id="semester" name="semester" required>
+            <option hidden disabled selected value>-- vali semester --</option>
+            {{#each semesters}}
+                <option value="{{this._id}}">{{this.full}}</option>
+            {{/each}}
+        </select>
+        <label for="member">Liige</label>
+        <select id="member" name="member" required>
+            <option hidden disabled selected value>-- vali liige --</option>
+            {{#each members}}
+                <option value="{{this._id}}">{{this.fullName}}</option>
+            {{/each}}
+        </select>
+        <label for="team">Töögrupp</label>
+        <select id="team" name="team" required>
+            <option hidden disabled selected value>-- vali töögrupp --</option>
+            {{#each teams}}
+                <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+        <label for="leader">Juht</label>
+        <input id="leader" type="checkbox" name="leader">
+        <input type="submit" value="Lisa">
+    </form>
+</div>
+<div class="collapsible collapsed">
+    <h3>Lisa mitu (csv)</h3>
+    <p>Näide:</p>
+    <code>year,season,firstName,lastName,short,leader
+2014,k,Taivo,Pungas,esimees,true</code>
+    <form method="post" action="/admin/kuulumised/mitu">
+        <label for="data">Andmed</label>
+        <textarea id="data" name="data" placeholder="year,season,firstName,lastName,short,leader">year,season,firstName,lastName,short,leader
+</textarea>
+        <input type="submit" value="Lisa">
+    </form>
+</div>
+<div class="collapsible">
+    <h3>Nimekiri</h3>
+    <ul>
+        {{#each memberships}}
+            <li>{{this.semester.short}} - <a href="/admin/liikmed/{{this.member._id}}">{{this.member.fullName}}</a> - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} - <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
         {{/each}}
-    </select>
-    <label for="member">Liige</label>
-    <select id="member" name="member" required>
-        <option hidden disabled selected value>-- vali liige --</option>
-        {{#each members}}
-            <option value="{{this._id}}">{{this.fullName}}</option>
-        {{/each}}
-    </select>
-    <label for="team">Töögrupp</label>
-    <select id="team" name="team" required>
-        <option hidden disabled selected value>-- vali töögrupp --</option>
-        {{#each teams}}
-            <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
-    <label for="leader">Juht</label>
-    <input id="leader" type="checkbox" name="leader">
-    <input type="submit" value="Lisa">
-</form>
-<h3>Nimekiri</h3>
-<code>
-</code>
-<ul>
-    {{#each memberships}}
-        <li>{{this.semester.short}} - <a href="/admin/liikmed/{{this.member._id}}">{{this.member.fullName}}</a> - {{#if this.leader}}<strong>{{this.team.short}}</strong>{{else}}{{this.team.short}}{{/if}} - <a href="/admin/kuulumised/{{this._id}}/kustuta">Kustuta</a></li>
-    {{/each}}
-</ul>
+    </ul>
+</div>

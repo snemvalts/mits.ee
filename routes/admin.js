@@ -128,6 +128,9 @@ router.get("/kuulumised", requiresLogin, adminController.membershipsGet);
 /* POST admin panel memberships */
 router.post("/kuulumised", requiresLogin, adminController.membershipsPost);
 
+/* POST admin panel multiple memberships */
+router.post("/kuulumised/mitu", requiresLogin, adminController.membershipsMultiplePost);
+
 /* GET admin panel memberships delete */
 router.get("/kuulumised/:id/kustuta", requiresLogin, adminController.membershipDeleteGet);
 

@@ -134,6 +134,7 @@ exports.semestersPost = (req, res, next) => {
     });
 };
 
+/* POST admin panel multiple semesters add */
 exports.semestersMultiplePost = (req, res, next) => {
     let semesters = [];
     csv.fromString(req.body.data.toString(), {
@@ -222,9 +223,9 @@ exports.membersPost = (req, res, next) => {
         alumnus: !!req.body.alumnus,
     });
 
-    member.save((err) => {
+    member.save((err, newMember) => {
         if (err) return next(err);
-        return res.redirect("/admin/liikmed");
+        return res.redirect("/admin/liikmed/" + newMember._id);
     });
 };
 
@@ -624,6 +625,45 @@ exports.membershipsPost = (req, res, next) => {
         if (req.body.redirect) {
             return res.redirect(req.body.redirect);
         }
+        return res.redirect("/admin/kuulumised");
+    });
+};
+
+/* POST admin panel multiple memberships add */
+/* not very asynchronous of me */
+exports.membershipsMultiplePost = (req, res, next) => {
+    csv.fromString(req.body.data.toString(), {
+        headers: true,
+        ignoreEmpty: true
+    }).on("data", data => {
+        async.parallel({
+            semester: callback => {
+                Semester.findOne({year: data.year, season: data.season})
+                    .exec(callback)
+            },
+            member: callback => {
+                Member.findOne({firstName: data.firstName, lastName: data.lastName})
+                    .exec(callback)
+            },
+            team: callback => {
+                Team.findOne({short: data.short})
+                    .exec(callback)
+            }
+        }, (err, results) => {
+            if (err) return next(err);
+
+            const membership = new Membership({
+                semester: results.semester._id,
+                member: results.member._id,
+                team: results.team._id,
+                leader: data.leader,
+            });
+
+            membership.save(err => {
+                if (err) return next(err);
+            });
+        });
+    }).on("end", () => {
         return res.redirect("/admin/kuulumised");
     });
 };
