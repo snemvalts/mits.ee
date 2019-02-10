@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('mits.ee:server');
 var http = require('http');
+var https = require('https');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +16,18 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+/**
+ * Get HTTPS certificate stuff
+ */
+
+if (process.env.HTTPS_PORT) {
+  var cert = {
+    key: fs.readFileSync(process.env.KEY, 'utf-8'),
+    cert: fs.readFileSync(process.env.CERT, 'utf-8'),
+    ca: fs.readFileSync(process.env.CA, 'utf-8'),
+  }
+}
 
 /**
  * Create HTTP server.
@@ -28,6 +42,17 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+/**
+ * Same for HTTPS
+ */
+
+if (process.env.HTTPS_PORT) {
+  var HTTPSserver = https.createServer(cert, app);
+  HTTPSserver.listen(process.env.HTTPS_PORT);
+  HTTPSserver.on('error', onError);
+  HTTPSserver.on('listening', onListening);
+}
 
 /**
  * Normalize a port into a number, string, or false.
