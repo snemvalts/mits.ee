@@ -19,6 +19,9 @@ router.get("/meist", mainController.aboutGet);
 /* GET events page */
 router.get("/%C3%BCritused", mainController.eventsGet);
 
+/* GET event query page */
+router.get("/%C3%BCritused/get/:skip", mainController.eventsQueryGet);
+
 /* GET event page */
 router.get("/%C3%BCritused/:id", mainController.eventGet);
 

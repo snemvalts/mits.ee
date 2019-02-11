@@ -70,6 +70,7 @@ exports.eventsGet = (req, res, next) => {
         },
         old_events: callback => {
             Event.find({"date": {"$lte": new Date()}})
+                .limit(9)
                 .sort({"date": -1})
                 .exec(callback);
         }
@@ -83,6 +84,24 @@ exports.eventsGet = (req, res, next) => {
             old_events: results.old_events
         });
     });
+};
+
+/* GET events query page */
+exports.eventsQueryGet = (req, res, next) => {
+    Event.find({})
+        .skip(Number(req.params.skip))
+        .limit(10)
+        .sort({date: -1})
+        .exec((err, events) => {
+            if (err) return next(err);
+
+            const out = {
+                more: events.length > 9,
+                events: events.slice(0,9)
+            };
+
+            return res.json(out);
+        });
 };
 
 /* GET event page */

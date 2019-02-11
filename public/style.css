@@ -191,6 +191,12 @@ section#events {
     @media screen and (max-width: 640px) {
       section#events .eventgrid {
         grid-template-columns: 1fr; } }
+  section#events .flexcenter {
+    display: flex;
+    justify-content: center; }
+    section#events .flexcenter button {
+      margin: 1rem;
+      font-size: 1.1em; }
 
 section#event {
   background-color: #EEEEEE; }
@@ -450,6 +456,9 @@ a {
 
 a:hover {
   text-decoration: underline; }
+
+.hidden {
+  display: none !important; }
 
 .svg {
   background-size: contain;

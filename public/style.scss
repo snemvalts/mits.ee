@@ -307,6 +307,16 @@ section#events {
             grid-template-columns: 1fr;
         }
     }
+
+    .flexcenter {
+        display: flex;
+        justify-content: center;
+        button {
+            margin: 1rem;
+            font-size: 1.1em;
+        }
+    }
+
 }
 
 section#event {
@@ -689,7 +699,9 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
+.hidden {
+    display: none!important;
+}
 .svg {
     background-size: contain;
     background-position: center;
