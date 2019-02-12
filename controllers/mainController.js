@@ -109,6 +109,12 @@ exports.eventGet = (req, res, next) => {
     Event.findOne({"event_id": req.params.id})
         .exec((err, event) => {
             if (err) return next(err);
+            if (!event) {
+                res.status(404);
+                return res.render("404.hbs", {
+                    title: "Lehekülge ei leitud! - MITS"
+                });
+            }
 
             res.render("event", {
                 title: event.title + " - MITS",
