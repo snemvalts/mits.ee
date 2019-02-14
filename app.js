@@ -18,6 +18,7 @@ moment.locale("et_EE");
 const compression = require("compression");
 const helmet = require("helmet");
 const sitemap = require("express-sitemap")({
+    url: "https://mits.ee",
     sitemap: path.join(__dirname, "public", "sitemap.xml"),
     robots: path.join(__dirname, "public", "robots.txt"),
     map: {
@@ -30,28 +31,25 @@ const sitemap = require("express-sitemap")({
         "/login": ["get", "post"],
     },
     route: {
-        "/": {
+        "ALL": {
             lastmod: "2019-02-14",
+        },
+        "/": {
             changefreq: "weekly"
         },
         "/meist": {
-            lastmod: "2019-02-14",
             changefreq: "monthly"
         },
         "/blogi": {
-            lastmod: "2019-02-14",
             changefreq: "monthly"
         },
         "/üritused": {
-            lastmod: "2019-02-14",
             changefreq: "weekly"
         },
         "/liikmed": {
-            lastmod: "2019-02-14",
             changefreq: "yearly"
         },
         "/vilistlased": {
-            lastmod: "2019-02-14",
             changefreq: "yearly"
         },
         "/login": {
