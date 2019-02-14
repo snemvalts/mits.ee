@@ -17,6 +17,48 @@ const moment = require("moment");
 moment.locale("et_EE");
 const compression = require("compression");
 const helmet = require("helmet");
+const sitemap = require("express-sitemap")({
+    sitemap: path.join(__dirname, "public", "sitemap.xml"),
+    robots: path.join(__dirname, "public", "robots.txt"),
+    map: {
+        "/": ["get"],
+        "/meist": ["get"],
+        "/blogi": ["get"],
+        "/üritused": ["get"],
+        "/liikmed": ["get"],
+        "/vilistlased": ["get"],
+        "/login": ["get", "post"],
+    },
+    route: {
+        "/": {
+            lastmod: "2019-02-14",
+            changefreq: "weekly"
+        },
+        "/meist": {
+            lastmod: "2019-02-14",
+            changefreq: "monthly"
+        },
+        "/blogi": {
+            lastmod: "2019-02-14",
+            changefreq: "monthly"
+        },
+        "/üritused": {
+            lastmod: "2019-02-14",
+            changefreq: "weekly"
+        },
+        "/liikmed": {
+            lastmod: "2019-02-14",
+            changefreq: "yearly"
+        },
+        "/vilistlased": {
+            lastmod: "2019-02-14",
+            changefreq: "yearly"
+        },
+        "/login": {
+            disallow: true
+        }
+    }
+});
 
 const indexRouter = require("./routes/index");
 const blogRouter = require("./routes/blog");
@@ -72,6 +114,25 @@ app.use("/", indexRouter);
 app.use("/blogi", blogRouter);
 app.use("/admin", adminRouter);
 
+/* Sitemap  */
+/*sitemap({
+    sitemap: path.join(__dirname, "public", "sitemap.xml"),
+    robots: path.join(__dirname, "public", "robots.txt"),
+    route: {
+        "/": {
+            lastmod: "2019-02-14",
+            changefreq: "always"
+        },
+        "/meist": {
+            lastmod: "2019-02-14",
+            changefreq: "always"
+        }
+    }
+}).toFile();*/
+
+//sitemap.generate4(app, ["/"]);
+sitemap.toFile();
+
 // 404 route
 app.get("*", (req, res) => {
     res.status(404);
@@ -90,12 +151,10 @@ app.use(function (err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
-    res.locals.layout = "layout.hbs";
 
     // render the error page
     res.status(err.status || 500);
     res.render("error");
 });
-
 
 module.exports = app;
