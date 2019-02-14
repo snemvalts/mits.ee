@@ -33,24 +33,7 @@ const sitemap = require("express-sitemap")({
     route: {
         "ALL": {
             lastmod: "2019-02-14",
-        },
-        "/": {
-            changefreq: "weekly"
-        },
-        "/meist": {
             changefreq: "monthly"
-        },
-        "/blogi": {
-            changefreq: "monthly"
-        },
-        "/üritused": {
-            changefreq: "weekly"
-        },
-        "/liikmed": {
-            changefreq: "yearly"
-        },
-        "/vilistlased": {
-            changefreq: "yearly"
         },
         "/login": {
             disallow: true
