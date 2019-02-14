@@ -18,7 +18,7 @@ moment.locale("et_EE");
 const compression = require("compression");
 const helmet = require("helmet");
 const sitemap = require("express-sitemap")({
-    url: "https://mits.ee",
+    url: "mits.ee",
     sitemap: path.join(__dirname, "public", "sitemap.xml"),
     robots: path.join(__dirname, "public", "robots.txt"),
     map: {
