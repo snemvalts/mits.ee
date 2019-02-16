@@ -4,7 +4,8 @@ $grad1: #a22be1;
 $grad2: #2a86ff;
 $dark: #333333;
 $light: #EEEEEE;
-$mid: #777777;
+$mid: #666666;
+$linkcolor: #3076b4;
 
 $break-small: 640px;
 $break-big: 1200px;
@@ -693,7 +694,7 @@ footer {
 
 /* GENERAL */
 a {
-    color: #3498DB;
+    color: $linkcolor;
     text-decoration: none;
 }
 a:hover {

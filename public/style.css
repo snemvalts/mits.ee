@@ -173,7 +173,7 @@ section#events {
         section#events .eventgrid .event .meta .title {
           margin: 0; }
         section#events .eventgrid .event .meta .date, section#events .eventgrid .event .meta .location {
-          color: #777777;
+          color: #666666;
           font-size: 0.9em;
           font-style: italic; }
       section#events .eventgrid .event .description {
@@ -208,7 +208,7 @@ section#event {
   section#event .title {
     margin: 0; }
   section#event .date, section#event .location {
-    color: #777777;
+    color: #666666;
     font-size: 0.8em;
     font-style: italic; }
   section#event .description {
@@ -379,7 +379,7 @@ section#articles article {
   section#articles article .meta {
     margin-bottom: 1.5rem; }
   section#articles article .date time {
-    color: #777777;
+    color: #666666;
     font-size: 0.8em;
     font-style: italic; }
   section#articles article .text {
@@ -451,7 +451,7 @@ footer {
 
 /* GENERAL */
 a {
-  color: #3498DB;
+  color: #3076b4;
   text-decoration: none; }
 
 a:hover {
@@ -509,7 +509,7 @@ input {
   margin-right: 0.3em;
   margin-bottom: -0.1em;
   mask-repeat: no-repeat;
-  background-color: #777777; }
+  background-color: #666666; }
   .icon.email {
     -webkit-mask-image: url("/media/icons/email.svg");
     -ms-mask-image: url("/media/icons/email.svg");
