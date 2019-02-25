@@ -11,9 +11,9 @@
                     <div class="meta">
                         <div class="date"><span class="icon clock"></span><time datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time></div>
                         {{#if this.location }}<div class="location"><span class="icon marker"></span>{{this.location}}</div>{{/if}}
-                    </div>
+                    </div>t
                     <p class="description">{{description}}</p>
-                    <div class="links"><a class="btn fb" href="https://facebook.com/events/{{event_id}}/" target="_blank">Vaata tervet üritust Facebookis</a></div>
+                    <div class="links"><a class="btn fb" href="https://facebook.com/events/{{event_id}}/" target="_blank" rel="noopener">Vaata tervet üritust Facebookis</a></div>
                 {{/with}}
             </div>
         </div>

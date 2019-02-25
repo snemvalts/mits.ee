@@ -11,7 +11,7 @@
                             <div class="date"><span class="icon clock"></span><time datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time></div>
                             {{#if this.location }}<div class="location"><span class="icon marker"></span>{{this.location}}</div>{{/if}}
                         </div>
-                        <div class="links"><a class="btn" href="/üritused/{{this.event_id}}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/{{this.event_id}}/" target="_blank">Facebook</a></div>
+                        <div class="links"><a class="btn" href="/üritused/{{this.event_id}}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/{{this.event_id}}/" target="_blank" rel="noopener">Facebook</a></div>
                     </div>
                 {{/each}}
             </div>
@@ -25,7 +25,7 @@
                             <div class="date"><span class="icon clock"></span><time datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time></div>
                             {{#if this.location }}<div class="location"><span class="icon marker"></span>{{this.location}}</div>{{/if}}
                         </div>
-                        <div class="links"><a class="btn" href="/üritused/{{this.event_id}}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/{{this.event_id}}/" target="_blank">Facebook</a></div>
+                        <div class="links"><a class="btn" href="/üritused/{{this.event_id}}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/{{this.event_id}}/" target="_blank" rel="noopener">Facebook</a></div>
                     </div>
                 {{/each}}
             </div>
@@ -58,7 +58,7 @@
                             <div class="date"><span class="icon clock"></span><time>${event.prettyDate}</time></div>
                             ${location}
                         </div>
-                        <div class="links"><a class="btn" href="/üritused/${event.event_id}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/${event.event_id}/" target="_blank">Facebook</a></div>
+                        <div class="links"><a class="btn" href="/üritused/${event.event_id}">Lisainfo</a> <a class="btn fb" href="https://facebook.com/events/${event.event_id}/" target="_blank" rel="noopener">Facebook</a></div>
                     </div>`;
                     oldEvents.insertAdjacentHTML("beforeend", newEvent);
                 }
