@@ -661,12 +661,16 @@ footer {
             flex-direction: column;
             margin: 2rem;
 
+            .linkwrapper {
+                padding: 0.3rem 0;
+            }
             h2 {
                 margin: 0 0 0.5rem;
             }
 
             a {
                 color: white;
+                padding: 0.3rem 0;
             }
         }
 

@@ -285,7 +285,7 @@ section#sponsors #cgi {
   background-image: url("/media/sponsors/CGI.svg"); }
 
 section#sponsors #itakadeemia {
-  background-image: url("/media/sponsors/IT Akadeemia.png"); }
+  background-image: url("/media/sponsors/IT Akadeemia.svg"); }
 
 section#aboutlanding {
   color: white;
@@ -433,10 +433,13 @@ footer {
       display: flex;
       flex-direction: column;
       margin: 2rem; }
+      footer .footergrid .column .linkwrapper {
+        padding: 0.3rem 0; }
       footer .footergrid .column h2 {
         margin: 0 0 0.5rem; }
       footer .footergrid .column a {
-        color: white; }
+        color: white;
+        padding: 0.3rem 0; }
     footer .footergrid .wholerow {
       grid-column: 1 / -1; }
     @media screen and (max-width: 640px) {
