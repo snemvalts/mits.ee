@@ -434,12 +434,12 @@ footer {
       flex-direction: column;
       margin: 2rem; }
       footer .footergrid .column .linkwrapper {
-        padding: 0.3rem 0; }
+        padding: 0.5rem 0; }
       footer .footergrid .column h2 {
         margin: 0 0 0.5rem; }
       footer .footergrid .column a {
         color: white;
-        padding: 0.3rem 0; }
+        padding: 0.5rem 0; }
     footer .footergrid .wholerow {
       grid-column: 1 / -1; }
     @media screen and (max-width: 640px) {
