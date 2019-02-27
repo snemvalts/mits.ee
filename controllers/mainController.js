@@ -27,7 +27,7 @@ exports.indexGet = (req, res, next) => {
         if (err) return next(err);
 
         res.render("index", {
-            title: "MITS",
+            title: "MAT-INF tudengiselts",
             user: req.session.user,
             articles: results.articles,
             events: results.events
