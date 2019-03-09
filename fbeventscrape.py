@@ -83,7 +83,7 @@ def parse_fb_date(date: str) -> datetime.datetime:
 
     elif re.match(regex2, date):
         groups = re.match(regex2, date).groups()
-        month = int(groups[1])
+        #month = int(groups[1])
         #month = short_months.index(groups[1].lower()) + 1
         month = months.index(groups[1].lower()) + 1
 
