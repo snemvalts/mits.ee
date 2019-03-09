@@ -56,7 +56,7 @@ def parse_fb_date(date: str) -> datetime.datetime:
     #regex2 = r"(\d\d).(\d\d).(\d\d\d\d) um (\d\d):(\d\d).+UTC\+(\d\d)"
 
     # 15. März um 18:00 – 16. März um 08:00 UTC+02
-    regex2 = r"(\d+)\. (.+) um (\d+):(\d+) –.*UTC\+(\d+)"
+    regex2 = r"(\d+)\. (.+) ()um (\d+):(\d+) –.*UTC\+(\d+)"
 
     # German months
     months = [
@@ -80,18 +80,19 @@ def parse_fb_date(date: str) -> datetime.datetime:
     if re.match(regex1, date):
         groups = re.match(regex1, date).groups()
         month = months.index(groups[1].lower()) + 1
+        year = int(groups[2])
 
     elif re.match(regex2, date):
         groups = re.match(regex2, date).groups()
         #month = int(groups[1])
         #month = short_months.index(groups[1].lower()) + 1
         month = months.index(groups[1].lower()) + 1
+        year = datetime.datetime.now().year;
 
     else:
         print("Invalid date:", date)
         return None
 
-    year = int(groups[2])
     day = int(groups[0])
     hour = int(groups[3])
     minute = int(groups[4])
