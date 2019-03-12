@@ -32,11 +32,8 @@ const sitemap = require("express-sitemap")({
     },
     route: {
         "ALL": {
-            lastmod: "2019-02-14",
+            lastmod: "2019-03-11",
             changefreq: "monthly"
-        },
-        "/login": {
-            disallow: true
         }
     }
 });
@@ -96,22 +93,6 @@ app.use("/blogi", blogRouter);
 app.use("/admin", adminRouter);
 
 /* Sitemap  */
-/*sitemap({
-    sitemap: path.join(__dirname, "public", "sitemap.xml"),
-    robots: path.join(__dirname, "public", "robots.txt"),
-    route: {
-        "/": {
-            lastmod: "2019-02-14",
-            changefreq: "always"
-        },
-        "/meist": {
-            lastmod: "2019-02-14",
-            changefreq: "always"
-        }
-    }
-}).toFile();*/
-
-//sitemap.generate4(app, ["/"]);
 sitemap.toFile();
 
 // 404 route
