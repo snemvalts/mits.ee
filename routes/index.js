@@ -59,4 +59,10 @@ router.get("/et", (req, res) => {
     res.redirect("back");
 });*/
 
+
+/* Redirects */
+router.get("/robocode2019", (req, res) => {
+    res.redirect("https://docs.google.com/forms/d/e/1FAIpQLSfBqRZUZ2ZV6HM6Ln5fF4AiBQK1yKoNGCoI52s_LPLYRR9nxw/viewform");
+});
+
 module.exports = router;
