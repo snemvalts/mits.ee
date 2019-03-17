@@ -41,6 +41,9 @@ exports.aboutGet = (req, res, next) => {
         members: callback => {
             Member.find({photo: {$ne: ""}, alumnus: false})
                 .exec(callback)
+        },
+        activemembers: callback => {
+            Member.find({alumnus: false}).exec(callback)
         }
     }, (err, results) => {
         if (err) return next(err);
@@ -55,7 +58,8 @@ exports.aboutGet = (req, res, next) => {
         res.render("about", {
             title: "Meist - MITS",
             user: req.session.user,
-            members: members
+            members: members,
+            amount: results.activemembers.length
         });
     });
 };
