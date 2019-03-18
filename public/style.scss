@@ -445,12 +445,17 @@ section#aboutlanding {
     font-weight: 300;
 
     background:
-            linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.3)),
+            linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5)),
             $main url("/media/grillpidu.jpg") no-repeat fixed center;
     background-size: cover;
 
     strong {
         font-weight: 700;
+    }
+
+    h1, p {
+        text-shadow: 0.1rem 0.1rem 0.1rem black,
+                     0.2rem 0.2rem 0.2rem black;
     }
 }
 
@@ -514,6 +519,11 @@ section#history {
             linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)),
             $main url("/media/spacex.jpg") no-repeat fixed center;
     background-size: cover;
+
+    h1, p {
+        text-shadow: 0.1rem 0.1rem 0.1rem black,
+        0.2rem 0.2rem 0.2rem black;
+    }
 }
 
 
