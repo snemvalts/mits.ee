@@ -391,6 +391,78 @@ section#articles article {
   section#articles article .text {
     white-space: pre-wrap; }
 
+header#mentorlanding {
+  color: white;
+  padding: 10rem 0 6rem;
+  font-size: 1.5em;
+  text-align: center;
+  display: flex;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), #0251AB url("/media/mentors.jpg") no-repeat fixed center;
+  background-size: cover; }
+  header#mentorlanding .buttons {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+    header#mentorlanding .buttons .btn {
+      margin: 0.5rem; }
+    @media screen and (max-width: 640px) {
+      header#mentorlanding .buttons {
+        flex-direction: column; } }
+
+section#mentor2 {
+  background-color: #333333;
+  color: white;
+  font-size: 1.1rem; }
+
+section#mentor3 {
+  font-size: 1.1rem; }
+  section#mentor3 h1 {
+    margin-bottom: 3rem; }
+  section#mentor3 summary {
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 2rem;
+    background-color: #EEEEEE;
+    border-radius: 1rem;
+    font-weight: 700;
+    color: white; }
+    section#mentor3 summary.green {
+      color: #4CAF50; }
+    section#mentor3 summary.blue {
+      color: #2196F3; }
+  section#mentor3 details {
+    margin-bottom: 1rem; }
+    section#mentor3 details article {
+      padding: 1rem 2rem; }
+    section#mentor3 details[open] {
+      border: 1px solid #EEEEEE; }
+      section#mentor3 details[open] summary {
+        border-radius: 0; }
+
+section#mentor4 {
+  background-color: #EEEEEE; }
+  section#mentor4 .peoplegrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3rem 10%;
+    padding: 3rem 0 0; }
+    section#mentor4 .peoplegrid .person {
+      text-align: center; }
+      section#mentor4 .peoplegrid .person h3 {
+        margin: 1rem 0 0; }
+      section#mentor4 .peoplegrid .person img {
+        width: 100%;
+        border-radius: 50%; }
+      section#mentor4 .peoplegrid .person .email {
+        word-break: break-word; }
+    @media screen and (max-width: 640px) {
+      section#mentor4 .peoplegrid {
+        grid-template-columns: 1fr;
+        padding: 3rem 0 0; }
+        section#mentor4 .peoplegrid .person img {
+          width: 60%; } }
+
 section#login {
   background-color: #EEEEEE; }
   section#login form {
@@ -543,5 +615,8 @@ input {
     -webkit-mask-image: url("/media/icons/user.svg");
     -ms-mask-image: url("/media/icons/user.svg");
     mask-image: url("/media/icons/user.svg"); }
+
+.topmargin {
+  margin-top: 4em; }
 
 /*# sourceMappingURL=style.css.map */

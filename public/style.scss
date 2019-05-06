@@ -602,6 +602,111 @@ section#articles {
 }
 
 
+header#mentorlanding {
+    color: white;
+    padding: 10rem 0 6rem;
+    font-size: 1.5em;
+    text-align: center;
+    display: flex;
+
+    background:
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+            $main url("/media/mentors.jpg") no-repeat fixed center;
+    background-size: cover;
+
+    .buttons {
+        margin: 3rem 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        .btn {
+            margin: 0.5rem;
+        }
+
+        @include responsive(small) {
+            flex-direction: column;
+        }
+    }
+}
+
+section#mentor2 {
+    background-color: $dark;
+    color: white;
+    font-size: 1.1rem;
+}
+
+section#mentor3 {
+    h1 {
+        margin-bottom: 3rem;
+    }
+
+    font-size: 1.1rem;
+
+    summary {
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 2rem;
+        background-color: $light;
+        border-radius: 1rem;
+        font-weight: 700;
+        color: white;
+
+        &.green {
+            color: #4CAF50;
+        }
+        &.blue {
+            color: #2196F3;
+        }
+    }
+
+    details {
+        margin-bottom: 1rem;
+        article {
+            padding: 1rem 2rem;
+        }
+        &[open] {
+            summary {
+                border-radius: 0;
+            }
+            border: 1px solid $light;
+        }
+    }
+}
+
+section#mentor4 {
+    background-color: $light;
+
+    .peoplegrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 3rem 10%;
+        padding: 3rem 0 0;
+
+        .person {
+            text-align: center;
+
+            h3 {
+                margin: 1rem 0 0;
+            }
+            img {
+                width: 100%;
+                border-radius: 50%;
+            }
+            .email {
+                word-break: break-word;
+            }
+        }
+
+        @include responsive(small) {
+            grid-template-columns: 1fr;
+            padding: 3rem 0 0;
+            .person img {
+                width: 60%;
+            }
+        }
+    }
+}
+
 section#login {
     background-color: $light;
 
@@ -800,4 +905,7 @@ input {
     &.user {
         @include prefix(mask-image, url("/media/icons/user.svg"), webkit ms);
     }
+}
+.topmargin {
+    margin-top: 4em;
 }

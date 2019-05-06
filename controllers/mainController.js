@@ -261,3 +261,11 @@ exports.alumniGet = (req, res, next) => {
         });
     });
 };
+
+/* GET mentor page */
+exports.mentorGet = (req, res, next) => {
+    res.render("mentor", {
+        title: "Mentorprogramm - MITS",
+        user: req.session.user
+    });
+};
