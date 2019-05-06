@@ -28,11 +28,12 @@ const sitemap = require("express-sitemap")({
         "/üritused": ["get"],
         "/liikmed": ["get"],
         "/vilistlased": ["get"],
+        "/mentor": ["get"],
         "/login": ["get", "post"],
     },
     route: {
         "ALL": {
-            lastmod: "2019-03-11",
+            lastmod: "2019-05-06",
             changefreq: "monthly"
         }
     }
