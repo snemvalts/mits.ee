@@ -6,7 +6,7 @@ window.onload = () => {
     /* Menu toggle with button */
     menuButton.onclick = () => {
         if (right.style.height === "0px" || !right.style.height) {
-            right.style.height = "50vh";
+            right.style.height = "25vh";
         } else {
             right.style.height = "0px";
         }
