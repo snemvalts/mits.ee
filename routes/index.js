@@ -66,5 +66,11 @@ router.get("/et", (req, res) => {
 router.get("/robocode2019", (req, res) => {
     res.redirect("https://docs.google.com/forms/d/e/1FAIpQLSfBqRZUZ2ZV6HM6Ln5fF4AiBQK1yKoNGCoI52s_LPLYRR9nxw/viewform");
 });
+router.get("/kandideerimine", (req, res) => {
+    res.redirect("https://forms.gle/LP4o3fDTpzcW17EU8");
+});
+router.get("/liitumine", (req, res) => {
+    res.redirect("https://forms.gle/LP4o3fDTpzcW17EU8");
+});
 
 module.exports = router;

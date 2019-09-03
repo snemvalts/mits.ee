@@ -2,6 +2,8 @@ $main: #0251AB;
 $main-dark: #024386;
 $grad1: #a22be1;
 $grad2: #2a86ff;
+$grad3: #e0e55f;
+$grad4: #fc2da1;
 $dark: #333333;
 $light: #EEEEEE;
 $mid: #666666;
@@ -174,6 +176,35 @@ header#landing {
             justify-content: center;
         }
     }
+
+    .halfgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 6rem 6rem;
+        align-items: center;
+
+        @include responsive(small) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    #joininfo {
+        z-index: 3;
+
+        .btn {
+            font-size: 2em;
+            font-weight: bold;
+
+            @include responsive(small) {
+                display: block;
+            }
+        }
+        h2 {
+            font-weight: 300;
+            margin: 2rem 0 3rem;
+        }
+    }
+
 
     #animatedlogo {
         width: 100%;
@@ -847,7 +878,7 @@ input {
     overflow: hidden;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 
     &:hover {
         text-decoration: none;
@@ -878,6 +909,14 @@ input {
         border: none;
         &:hover {
             background-color: #388E3C;
+        }
+    }
+    &.gradient {
+        background: linear-gradient(to bottom right, $grad3 0%, $grad4 100%);
+        color: white;
+        border: none;
+        &:hover {
+            background: linear-gradient(to bottom right, darken($grad3, 5%) 0%, darken($grad4, 5%) 100%);
         }
     }
 }
