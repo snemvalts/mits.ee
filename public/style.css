@@ -605,6 +605,12 @@ input {
     border: none; }
     .btn.green:hover {
       background-color: #388E3C; }
+  .btn.blue {
+    background-color: #2196F3;
+    color: white;
+    border: none; }
+    .btn.blue:hover {
+      background-color: #1976D2; }
   .btn.gradient {
     background: linear-gradient(to bottom right, #e0e55f 0%, #fc2da1 100%);
     color: white;

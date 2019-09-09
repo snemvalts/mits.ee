@@ -911,6 +911,14 @@ input {
             background-color: #388E3C;
         }
     }
+    &.blue {
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        &:hover {
+            background-color: #1976D2;
+        }
+    }
     &.gradient {
         background: linear-gradient(to bottom right, $grad3 0%, $grad4 100%);
         color: white;
