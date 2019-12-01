@@ -1,0 +1,6 @@
+node_modules/
+.idea/
+*.css
+*.css.map
+*.iml
+*.log
