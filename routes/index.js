@@ -72,5 +72,8 @@ router.get("/kandideerimine", (req, res) => {
 router.get("/liitumine", (req, res) => {
     res.redirect("https://forms.gle/LP4o3fDTpzcW17EU8");
 });
+router.get("/m%C3%A4lum%C3%A4ng", (req, res) => {
+    res.redirect("https://forms.gle/XFJbcThf4NMpRa1p6");
+});
 
 module.exports = router;
