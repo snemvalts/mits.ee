@@ -1,0 +1,24 @@
+version: '3'
+services:
+  nginx:
+    build: './nginx'
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '${CERTBOT_DATA_PATH}/certs/:/srv/certbot/certs'
+      - '${CERTBOT_DATA_PATH}/www:/srv/certbot/www'
+    environment:
+      - 'DELEGATE_IP=${DELEGATE_IP}'
+      - 'DELEGATE_PORT=${DELEGATE_PORT}'
+      - 'DOMAIN=${DOMAIN}'
+  certbot:
+    build: './certbot'
+    depends_on:
+      - 'nginx'
+    volumes:
+      - '${CERTBOT_DATA_PATH}/certs:/etc/letsencrypt/live'
+      - '${CERTBOT_DATA_PATH}/www:/srv/certbot/www'
+    environment:
+      - 'DOMAIN=${DOMAIN}'
+      - 'EMAIL=${EMAIL}'
