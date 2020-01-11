@@ -8,4 +8,6 @@ RUN chmod +x /*.sh
 EXPOSE 80
 EXPOSE 443
 
+STOPSIGNAL SIGQUIT
+
 ENTRYPOINT ["/entrypoint.sh"]

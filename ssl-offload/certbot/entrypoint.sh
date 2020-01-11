@@ -9,6 +9,7 @@ do
   certbot certonly --webroot -w /srv/certbot/www \
     --email ${EMAIL} \
     -d ${DOMAIN} \
+    --cert-name ${DOMAIN} \
     --rsa-key-size 4096 \
     --agree-tos
   sleep 12h & wait $!
