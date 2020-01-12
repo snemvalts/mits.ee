@@ -17,8 +17,9 @@ services:
     depends_on:
       - 'nginx'
     volumes:
-      - '${CERTBOT_DATA_PATH}/certs:/etc/letsencrypt/live'
+      - '${CERTBOT_DATA_PATH}/certs:/etc/letsencrypt/'
       - '${CERTBOT_DATA_PATH}/www:/srv/certbot/www'
     environment:
       - 'DOMAIN=${DOMAIN}'
       - 'EMAIL=${EMAIL}'
+      - 'USE_STAGING=${CERTBOT_TEST}'

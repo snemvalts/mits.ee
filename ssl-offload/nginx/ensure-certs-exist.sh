@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CERT_DIR="/srv/certbot/certs/${DOMAIN}"
+CERT_DIR="/srv/certbot/certs/live/${DOMAIN}"
 
 if [ -d $CERT_DIR ]; then
   echo "Certificates already exist"
