@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -x
+export CERT_DIR="/etc/letsencrypt/live/${DOMAIN}"
+
 function boolean() {
   case $1 in
   TRUE) echo true ;;
@@ -17,16 +20,23 @@ function boolean() {
   esac
 }
 
+certs_present () {
+  echo "Checking for certs"
+  test -f "${CERT_DIR}/fullchain.pem" && test -f "${CERT_DIR}/privkey.pem"
+  return $?
+}
+
 trap exit TERM
+
 while true; do
   echo "Waiting for nginx to be ready"
   /wait-for.sh nginx:80 --timeout=0
-  SHOULD_USE_STAGING=$(boolean "$USE_STAGING")
-  if [ ${SHOULD_USE_STAGING} ]; then
+  SHOULD_USE_STAGING=$(boolean "${USE_STAGING}")
+  if ${SHOULD_USE_STAGING}; then
     STAGING_PARAM="--staging"
   fi
   echo "Running certbot"
-  if [ $(/check_certs_present.sh) ]; then
+  if certs_present; then
     echo "Renewing certs"
     certbot renew ${STAGING_PARAM}
   else
