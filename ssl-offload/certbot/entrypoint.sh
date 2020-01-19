@@ -26,7 +26,7 @@ while true; do
     STAGING_PARAM="--staging"
   fi
   echo "Running certbot"
-  if [ $(./check_certs_present.sh) ]; then
+  if [ $(/check_certs_present.sh) ]; then
     echo "Renewing certs"
     certbot renew ${STAGING_PARAM}
   else

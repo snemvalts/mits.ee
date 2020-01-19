@@ -3,7 +3,7 @@
 export CERT_DIR="/srv/certbot/certs/live/${DOMAIN}"
 export CHALLENGE_DIR="/srv/certbot/www"
 
-if [ $(./check_certs_present.sh) ]; then
+if [ $(/check_certs_present.sh) ]; then
   echo "Certificates found, running in full mode"
   SERVER_CONFIG_NAME="with-offloading"
 else
@@ -11,7 +11,7 @@ else
   SERVER_CONFIG_NAME="acme-challenge-only"
   echo "Will restart once certs are present"
   $(
-    while [ ! $(./check_certs_present.sh)]; do
+    while [ ! $(/check_certs_present.sh)]; do
       sleep 10s &
       wait $!
     done
