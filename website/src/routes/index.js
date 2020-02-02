@@ -25,12 +25,6 @@ router.get("/%C3%BCritused/get/:skip", mainController.eventsQueryGet);
 /* GET event page */
 router.get("/%C3%BCritused/:id", mainController.eventGet);
 
-/* GET liikmed page */
-router.get("/liikmed", mainController.membersGet);
-
-/* GET alumni page */
-router.get("/vilistlased", mainController.alumniGet);
-
 /* GET mentor page */
 router.get("/mentor", mainController.mentorGet);
 

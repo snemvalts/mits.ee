@@ -26,8 +26,6 @@ const sitemap = require("express-sitemap")({
         "/meist": ["get"],
         "/blogi": ["get"],
         "/üritused": ["get"],
-        "/liikmed": ["get"],
-        "/vilistlased": ["get"],
         "/mentor": ["get"],
         "/login": ["get", "post"],
     },

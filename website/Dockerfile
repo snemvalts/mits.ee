@@ -6,7 +6,6 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY bin/ bin/
-COPY public/ public/
 COPY src/ src/
 
 ENV PORT 8080
