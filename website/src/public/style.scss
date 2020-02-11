@@ -248,14 +248,16 @@ section#description {
 
 section#description, section#juhatus {
     .peoplegrid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 3rem 10%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         padding: 3rem 0 0;
-
+        margin: 0 -1.5rem;
         .person {
+            box-sizing: border-box;
+            padding: 1.5rem;
             text-align: center;
-
+            width: 33%;
             h3 {
                 margin: 1rem 0 0;
             }
@@ -266,10 +268,11 @@ section#description, section#juhatus {
         }
 
         @include responsive(small) {
-            grid-template-columns: 1fr;
-            padding: 3rem 0 0;
-            .person img {
-                width: 60%;
+            .person {
+                width: 100%;
+                img {
+                    width: 60%;
+                }
             }
         }
     }
