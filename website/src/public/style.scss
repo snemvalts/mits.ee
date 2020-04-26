@@ -246,7 +246,7 @@ section#description {
     }
 }
 
-section#description, section#juhatus {
+section#description, section#juhatus, section#mentor4 {
     .peoplegrid {
         display: flex;
         flex-wrap: wrap;
@@ -441,32 +441,14 @@ section#sponsors {
     #nortal {
         background-image: url("/media/sponsors/Nortal.svg");
     }
-    #lhv {
-        background-image: url("/media/sponsors/LHV.svg");
-    }
-    #playtech {
-        background-image: url("/media/sponsors/Playtech.svg");
-    }
-    #cybernetica {
-        background-image: url("/media/sponsors/Cybernetica.svg");
-    }
-    #helmes {
-        background-image: url("/media/sponsors/Helmes.svg");
-    }
-    #futuruum {
-        background-image: url("/media/sponsors/Futuruum.svg");
-    }
-    #wisemedia {
-        background-image: url("/media/sponsors/Wisemedia.svg");
-    }
-    #mooncascade {
-        background-image: url("/media/sponsors/Mooncascade.svg");
-    }
-    #cgi {
-        background-image: url("/media/sponsors/CGI.svg");
-    }
     #itakadeemia {
         background-image: url("/media/sponsors/IT Akadeemia.svg");
+    }
+    #veriff {
+        background-image: url("/media/sponsors/veriff.svg");
+    }
+    #pipedrive {
+        background-image: url("/media/sponsors/pipedrive.svg");
     }
 }
 
@@ -714,36 +696,6 @@ section#mentor3 {
 
 section#mentor4 {
     background-color: $light;
-
-    .peoplegrid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 3rem 10%;
-        padding: 3rem 0 0;
-
-        .person {
-            text-align: center;
-
-            h3 {
-                margin: 1rem 0 0;
-            }
-            img {
-                width: 100%;
-                border-radius: 50%;
-            }
-            .email {
-                word-break: break-word;
-            }
-        }
-
-        @include responsive(small) {
-            grid-template-columns: 1fr;
-            padding: 3rem 0 0;
-            .person img {
-                width: 60%;
-            }
-        }
-    }
 }
 
 section#login {

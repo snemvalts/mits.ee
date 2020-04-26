@@ -55,48 +55,6 @@
         </div>
     </div>
 </section>
-<section id="events">
-    <div class="container">
-        <div class="content">
-            <h1>Tulevased üritused</h1>
-            <div class="eventgrid">
-                {{# each events}}
-                    <div class="event">
-                        <img class="thumbnail" src="{{this.image_url}}" alt="event cover">
-                        <div class="meta">
-                            <h3 class="title">{{this.title}}</h3>
-                            <div class="date"><span class="icon clock"></span><time datetime="{{moment this.date null}}">{{moment this.date "LLLL"}}</time></div>
-                            {{#if this.location }}<div class="location"><span class="icon marker"></span>{{this.location}}</div>{{/if}}
-                        </div>
-                        <div class="links"><a class="btn" href="/üritused/{{this.event_id}}">Lisainfo</a><a class="btn fb" href="https://facebook.com/events/{{this.event_id}}/" target="_blank" rel="noopener">Facebook</a></div>
-                    </div>
-                {{/each}}
-            </div>
-            <div class="more"><a href="/üritused">Vaata kõiki üritusi</a></div>
-        </div>
-    </div>
-</section>
-{{!--<section id="blog">
-    <div class="container">
-        <div class="content">
-            <h1>Blogi</h1>
-            <div class="bloggrid">
-                {{#each articles}}
-                    <article class="article">
-                        <h3 class="title">{{this.title}}</h3>
-                        <div class="author">{{this.author.username}}</div>
-                        <div class="date">{{this.date}}</div>
-                        <p class="text">{{this.content}}</p>
-                        <p><a href="/blogi/{{this._id}}">Loe edasi</a></p>
-                    </article>
-                {{else}}
-                    <h1>Postitusi pole veel!</h1>
-                {{/each}}
-            </div>
-            <a href="/blogi">Vaata veel postitusi</a>
-        </div>
-    </div>
-</section>--}}
 <section id="sponsors">
     <div class="container">
         <div class="content">
@@ -104,16 +62,19 @@
             <div class="sponsorgrid">
                 <a title="ATI" id="ati" class="sponsor svg" href="https://cs.ut.ee/"></a>
                 <a title="OLE ROHKEM" id="olerohkem" class="sponsor svg" href="https://olerohkem.ee/"></a>
-                <a title="Nortal" id="nortal" class="sponsor svg" href="https://nortal.com/"></a>
-                <a title="LHV" id="lhv" class="sponsor svg" href="https://www.lhv.ee/"></a>
-                <a title="Cybernetica" id="cybernetica" class="sponsor svg" href="https://cyber.ee/"></a>
-                <a title="Helmes" id="helmes" class="sponsor svg" href="https://helmes.com/"></a>
-                <a title="Playtech" id="playtech" class="sponsor svg" href="https://playtech.com/"></a>
-                <a title="Futuruum" id="futuruum" class="sponsor svg" href="https://www.futuruum.ee/"></a>
-                <a title="Wisemedia" id="wisemedia" class="sponsor svg" href="http://wisemedia.ee/"></a>
-                <a title="Mooncascade" id="mooncascade" class="sponsor svg" href="https://mooncascade.com/"></a>
-                <a title="CGI" id="cgi" class="sponsor svg" href="https://cgi.com/"></a>
                 <a title="IT Akadeemia" id="itakadeemia" class="sponsor svg" href="https://www.hitsa.ee/ikt-haridus/ita"></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="sponsors">
+    <div class="container">
+        <div class="content">
+            <h1>Meie partnerid</h1>
+            <div class="sponsorgrid">
+                <a title="Nortal" id="nortal" class="sponsor svg" href="https://nortal.com/"></a>
+                <a title="Veriff" id="veriff" class="sponsor svg" href="https://www.veriff.com/"></a>
+                <a title="Pipedrive" id="pipedrive" class="sponsor svg" href="https://www.pipedrive.com/"></a>
             </div>
         </div>
     </div>
