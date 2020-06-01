@@ -92,7 +92,7 @@ MentorQuiz.prototype.questions = [
     {
         id: 1,
         question: 'Lemmik keel?',
-        color: '86FF2A',
+        color: '864CB6',
         answers: ['Python', 'Java', 'LaTeX', 'HTML']
     },
     {
@@ -104,7 +104,7 @@ MentorQuiz.prototype.questions = [
     {
         id: 3,
         question: 'Keskmine hinne?',
-        color: '7EF400',
+        color: '7E00F4',
         answers: ['0.5', 'keskmine', 'stipi saab kätte', 'cum laude squad']
     },
     {
