@@ -5,7 +5,8 @@ router.post("/calculate-result", (req, res, next) => {
     console.log('asd');
     res.json({
         name: 'Internal server error',
-        image: 'error.jpg',
+        image: 'media/error.jpg',
+        imagePosition: 'center',
         description: 'Tegelt on päris vastuse arvutamine lihtsalt peidus! ;)'
     });
 });

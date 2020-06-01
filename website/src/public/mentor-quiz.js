@@ -52,7 +52,7 @@ MentorQuiz.prototype.showResult = function (result) {
         `<div>
              <div id="resultContainer">
                  <div class="resultImage" 
-                      style="background: linear-gradient(to top, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0) 33%), url('media/${result.image}') center/cover no-repeat;">
+                      style="background: linear-gradient(to top, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0) 33%), url('${result.image}') ${result.imagePosition}/cover no-repeat;">
                      <div>${result.name}</div>
                  </div>
                  <div class="resultText">${result.description}</div>
@@ -85,63 +85,75 @@ MentorQuiz.prototype.calculateResults = function () {
 MentorQuiz.prototype.questions = [
     {
         id: 0,
-        question: 'Lemmikõppejõud?',
+        question: 'Lemmik õppejõud?',
         color: '2A86FF',
-        answers: ['Härmel Nestra', 'pole loengus käinud', 'Vambola', 'Toomas Plank']
+        answers: ['Härmel Nestra', 'Kati Ain', 'Vambola', 'Toomas Plank']
     },
     {
         id: 1,
-        question: 'Ideaalne reede õhtu?',
-        color: '7EF400',
-        answers: ['triibud ninna ja linna', 'järgmise nädala kodutööd', 'netflix & chill', 'lauamängud']
+        question: 'Lemmik keel?',
+        color: '86FF2A',
+        answers: ['Python', 'Java', 'LaTeX', 'HTML']
     },
     {
         id: 2,
-        question: 'Õhtusöögiks',
-        color: 'A22BE1',
-        answers: ['kokkan kogu ühikale', 'wolt', 'paastun', 'kiirnuudlid']
+        question: 'Ideaalne reede õhtu?',
+        color: '7EF400',
+        answers: ['linna jooma', 'tuttu ära', 'netflix & chill ;)', ' Zulrah grind']
     },
     {
         id: 3,
-        question: 'Kodutööd esitan ära',
-        color: '314CB6',
-        answers: ['küsin pikendust', '23:54:56', 'kui jõuan', 'kodutööd?']
+        question: 'Keskmine hinne?',
+        color: '7EF400',
+        answers: ['0.5', 'keskmine', 'stipi saab kätte', 'cum laude squad']
     },
     {
         id: 4,
-        question: 'Õpin pigem',
-        color: '00D106',
-        answers: ['ainet korrates', 'ei õpi', 'sõpradega', 'üksi']
+        question: 'Kodutööd esitad ära',
+        color: '314CB6',
+        answers: ['kodutööd?', 'teemant valmib surve all', 'kohe', 'küll keegi rühmas esitab']
     },
     {
         id: 5,
-        question: 'Lemmik lokaal',
-        color: 'E94F37',
-        answers: ['Illegaard', 'Säde', 'Shooters', 'FLAFY']
+        question: 'Õhtusöögiks',
+        color: 'A22BE1',
+        answers: ['kokkad kogu ühikale', 'wolt', 'paastub', 'kiirnuudlid']
     },
     {
         id: 6,
-        question: 'Suhtestaatus',
-        color: '6610F2',
-        answers: ['vallaline', 'palju sul aega on', 'suhtes lol xd', 'programmeerija']
+        question: 'Õpid pigem',
+        color: '00D106',
+        answers: ['ainet korrates', 'ei', 'rahulikult', 'kursachatis']
     },
     {
         id: 7,
-        question: 'Lemmiklaulja',
-        color: 'FDCA40',
-        answers: ['Sabaton', 'mina ise', 'Uku Suviste', 'Synne Valtri']
+        question: 'Lemmik lokaal?',
+        color: 'E94F37',
+        answers: ['Illegaard', 'Säde', 'Shoot', 'raamatukogu']
     },
     {
         id: 8,
-        question: 'Keskmine hinne',
-        color: 'D11149',
-        answers: ['0.5', '3.0 gäng', 'cum laude squad', 'TOODE ÜKS VALIK ON PUUDU']
+        question: 'Suhtestaatus?',
+        color: '6610F2',
+        answers: ['ära ei ütleks', 'keeruline', 'programmeerija', 'friendzoned']
     },
     {
         id: 9,
-        question: 'Ideaalne õhtu sõpradega',
+        question: 'Muusikamaitse?',
+        color: 'FDCA40',
+        answers: ['sa pole sellest kuulnud', 'nublu', 'vaikus', 'ainult aegumatu']
+    },
+    {
+        id: 10,
+        question: 'Lemmik aine?',
+        color: '11D149',
+        answers: ['OOP', 'MMP', 'DMT', 'AAR']
+    },
+    {
+        id: 11,
+        question: 'Ideaalne õhtu mentorgrupiga?',
         color: 'E1A22B',
-        answers: ['Pythonrämmar', 'D&D', 'lauamänguõhtu', 'Rannamaja maraton']
+        answers: ['Pythonrämmar', 'Dungeons & Dragons', 'sööks', 'Rannamaja maraton']
     }
 ];
 
