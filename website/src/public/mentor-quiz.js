@@ -79,7 +79,13 @@ MentorQuiz.prototype.calculateResults = function () {
     return fetch('/mentor-quiz/calculate-result', {
         method: 'post',
         body: JSON.stringify(this.answers)
-    }).then(result => result.json());
+    }).then(result => result.json())
+        .catch(() => ({
+            name: 'Mingi viga',
+            image: 'media/error.jpg',
+            imagePosition: 'center',
+            description: 'Kuskil läks midagi valesti, keegi vb tegeleb sellega kunagi!'
+        }));
 };
 
 MentorQuiz.prototype.questions = [
