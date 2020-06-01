@@ -924,3 +924,93 @@ input {
 .center {
     text-align: center;
 }
+
+// TEMP - MENTOR QUIZ
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+#mentorlanding .content {
+    align-items: center;
+    font-family: 'Carter One', cursive;
+    text-shadow: 1px 1px 1px hsla(0, 0%, 0%, 0.4);
+}
+
+#quizContainer {
+    height: 700px;
+    width: 100%;
+    overflow: hidden;
+    background-color: hsla(0, 0%, 0%, 0.5);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-radius: 3px;
+}
+#quizContainer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+#quizContainer > * {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.questionContainer {
+    font-size: 1.5em;
+}
+.questionContainer > * {
+    cursor: pointer;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 42%;
+    user-select: none;
+    justify-content: center;
+    transition: all 300ms;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.questionContainer >:first-child {
+    pointer-events: none;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+.questionContainer.answered .mentor-quiz-answer:not(.active) {
+    transform: scale(0.95);
+    opacity: 0.6;
+    text-shadow: 0px 0px 0px hsla(0, 0%, 0%, 0);
+}
+
+.active {
+    pointer-events: none;
+}
+
+#resultContainer {
+    margin: 15px;
+    background-color: #fff;
+    border-radius: 14px;
+    text-shadow: none;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    color: #000;
+    overflow: hidden;
+    padding: 10px;
+    flex-grow: 1;
+}
+.resultImage {
+    width: 100%; display: flex; flex-direction: column; justify-content: flex-end; flex-grow: 1;
+    font-size: 3em; color: #fff;
+    border-radius: 9px 9px 0px 0px;
+}
+.resultText {
+    margin: 0.75em 2em 0; font-family: 'Open Sans', sans-serif; text-align: justify;
+}
+.resultFooter {
+    display: flex;flex-wrap: wrap;margin-top: 1.5em;justify-content: center;align-items: center;
+}
+.resultFooter > div {
+    margin-right: 1em; font-family: 'Open Sans', sans-serif;
+}
+.resultFooter > a {
+    background-color: #2A86FF;border-radius: 50px;padding: 5px 10px;text-decoration: none;color: #fff;
+}

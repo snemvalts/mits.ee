@@ -91,6 +91,8 @@ app.use("/", indexRouter);
 app.use("/blogi", blogRouter);
 app.use("/admin", adminRouter);
 
+app.use("/mentor-quiz", require('./routes/mentor-quiz'))
+
 /* Sitemap  */
 sitemap.toFile();
 
