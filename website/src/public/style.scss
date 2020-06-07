@@ -31,6 +31,10 @@ $break-big: 1200px;
     #{$property}: $value;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: "Open Sans", sans-serif;

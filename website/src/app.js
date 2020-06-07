@@ -1,5 +1,6 @@
 require("dotenv").config();
 //const createError = require("http-errors");
+const url = require('url');
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -61,6 +62,17 @@ hbs.registerPartials(path.join(__dirname, "views", "partials"));
 hbs.registerHelper("moment", (datetime, format) => {
     moment.locale("et_EE");
     return moment(datetime).format(format);
+});
+
+app.use(function (req, res, next) {
+    res.locals = {
+        url: url.format({
+            protocol: req.protocol,
+            host: req.get('host'),
+            pathname: req.originalUrl
+        })
+    };
+    next();
 });
 
 app.use(compression());
