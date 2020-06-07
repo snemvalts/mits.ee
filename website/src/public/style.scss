@@ -617,6 +617,38 @@ section#articles {
     }
 }
 
+section#mentorquiz {
+    color: white;
+    padding: 12rem 0 6rem;
+    font-size: 1.5em;
+    text-align: center;
+    display: flex;
+    //TODO: tuleks lisada pilt mille link on siin media kausta https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9
+    //Link mis on commentis on FULL HD max quality
+    background:
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+            $main url("https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80") no-repeat scroll center;
+    background-size: cover;
+
+    .buttons {
+        margin: 3rem 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        .btn {
+            margin: 0.5rem;
+        }
+
+        @include responsive(small) {
+            flex-direction: column;
+        }
+    }
+
+    @include responsive(small) {
+        font-size: 1em;
+        padding: 4rem 0 0;
+    }
+}
 
 header#mentorlanding {
     color: white;
