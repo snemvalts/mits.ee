@@ -1,16 +1,18 @@
 <header id="mentorlanding">
     <div class="container">
-        <div class="content">
+        <div class="content" id="mentor-main">
             <h1>Mentor<wbr>programm</h1>
             <p>Hei, vahva tudeng! <strong>14. juunini</strong> saab veel registreerida mentoriks!
             </p>
             <div class="buttons">
-                <a class="btn mentorbtn1" href="#mentor3" rel="noopener">Tutvu mentorprogrammiga</a>
-                <a class="btn mentorbtn1" href="#mentor-quiz" rel="noopener">Milline mentor oled Sina?</a>
-
-                <a class="btn mentorbtn2"
+                <a class="btn blue" href="#mentor3">Tutvu mentorprogrammiga</a>
+                <a class="btn big gradient"
                     href="https://docs.google.com/forms/d/e/1FAIpQLSet-tyai-_Ex1hqlhO01PwP2YooflSKEyMgzzjc9kSy9wKJjQ/viewform?usp=sf_link"
                     target="_blank" rel="noopener">Registreeri mentoriks</a>
+                <a class="btn blue" href="#"
+                   onclick="event.preventDefault(); new MentorQuiz(document.querySelector('#mentor-main'));">
+                    Milline mentor oled Sina?
+                </a>
             </div>
         </div>
     </div>
@@ -166,6 +168,3 @@
     </div>
 </section>
 <script src="mentor-quiz.js"></script>
-<script>
-    new MentorQuiz(document.querySelector('#mentor-quiz'));
-</script>

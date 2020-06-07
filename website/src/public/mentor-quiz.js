@@ -2,6 +2,8 @@ MentorQuiz = function (elementRef) {
     this.elementRef = elementRef;
     this.answers = {};
     this.quizContainer = htmlToElement('<div id="quizContainer"></div>');
+    this.elementRef.innerHTML = '';
+    this.elementRef.classList.add('mentor-quiz');
     this.elementRef.appendChild(htmlToElement('<h1>Milline mentor oled Sina?</h1>'));
     this.elementRef.appendChild(this.quizContainer);
     this.questions.forEach(question => this.quizContainer.appendChild(this.createQuestionView(question)));
@@ -56,10 +58,12 @@ MentorQuiz.prototype.showResult = function (result) {
                      <div>${result.name}</div>
                  </div>
                  <div class="resultText">${result.description}</div>
-                 <div class="resultFooter">
-                     <a href="https://docs.google.com/forms/d/1uc_xg8GuNd3iUdVT9oYb_zM_z2IKVHcK6Z5vM4iZ4_U">
+                 <div class="resultFooter buttons">
+                    <a class="btn gradient" 
+                        href="https://docs.google.com/forms/d/1uc_xg8GuNd3iUdVT9oYb_zM_z2IKVHcK6Z5vM4iZ4_U">
                          Ole ise vastus, registreeru mentoriks!
                      </a>
+                     <a class="btn blue" href="#mentor3">Tutvu mentorprogrammiga</a>
                  </div>
              </div>
          </div>`);
