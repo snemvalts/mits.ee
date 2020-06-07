@@ -850,6 +850,22 @@ input {
             color: $dark;
         }
     }
+    &.mentorbtn1 {
+      background-color: #574bc5;
+      color: white;
+      border: none;
+      &:hover {
+          background-color: #355088;
+      }
+    }
+    &.mentorbtn2 {
+      background-color: #3b77da;
+      color: white;
+      border: none;
+      &:hover {
+          background-color: #2767d1;
+      }
+    }
     &.fb {
         background-color: #3B5998;
         color: white;
