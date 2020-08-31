@@ -942,6 +942,17 @@ input {
             background-position: 0 100%;
         }
     }
+    &.disabled {
+        background: #666666;
+        background-size: 100% 125%;
+        background-position: 0 0;
+        color: #CCCCCC;
+        border: 1px solid #999999;
+        cursor: not-allowed;
+        &:hover {
+            background-position: 0 100%;
+        }
+    }
 }
 
 .icon {
