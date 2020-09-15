@@ -3,3 +3,5 @@
 /public/style.css
 /public/style.css.map
 .env
+build/
+mongo-data/
