@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "build": "babel src/ --out-dir build/",
     "devstart": "nodemon --exec babel-node ./bin/www",
-    "startforever": "forever start ./bin/www"
+    "startforever": "forever start ./bin/www",
+    "lint": "npx eslint --fix ./src"
   },
   "dependencies": {
     "async": "^2.6.1",
@@ -40,6 +41,9 @@
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
     "@types/express": "^4.16.1",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "nodemon": "^1.18.9"
   }
 }
