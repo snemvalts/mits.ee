@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "babel src/ --out-dir build/",
+    "build": "babel src/ --out-dir build/ --copy-files",
     "devstart": "nodemon --exec babel-node ./bin/www",
     "startforever": "forever start ./bin/www",
     "lint": "npx eslint --fix ./src"
