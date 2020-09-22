@@ -3,7 +3,8 @@ services:
   web:
     build:
       context: $PWD
-      env_file: ./docker/development
+      dockerfile: docker/development/Dockerfile
+    env_file: $PWD/.env
     restart: 'always'
     depends_on:
       - 'db'
