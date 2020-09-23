@@ -4,6 +4,9 @@ services:
     build:
       context: ../../
       dockerfile: docker/development/Dockerfile
+    image: mits.ee
+    volumes:
+      - ../../:/srv/app/
     env_file: ../../.env
     restart: 'always'
     depends_on:
