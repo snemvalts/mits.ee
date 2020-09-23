@@ -25,9 +25,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      working-directory: website
-    - run: npm ci
-    - run: npm run build
+    - name: Install dependencies
+        working-directory: website
+        run: |
+          npm ci
+    - name: Build
+        working-directory: website
+        run: |
+          npm run build
   lint:
     runs-on: ubuntu-latest
 
@@ -43,6 +48,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        working-directory: website
-      - run: npm ci
-      - run: npm run lint
+      - name: Install dependencies
+          working-directory: website
+          run: |
+            npm ci
+      - name: Build
+          working-directory: website
+          run: |
+            npm run lint
