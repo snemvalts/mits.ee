@@ -52,7 +52,7 @@ jobs:
         working-directory: website
         run: |
           npm ci
-      - name: Build
+      - name: Lint
         working-directory: website
         run: |
           npm run lint
