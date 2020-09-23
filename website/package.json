@@ -7,7 +7,7 @@
     "build": "babel src/ --out-dir build/ --copy-files",
     "devstart": "nodemon --exec babel-node ./bin/www",
     "startforever": "forever start ./bin/www",
-    "lint": "npx eslint --fix ./src"
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "async": "^2.6.1",
