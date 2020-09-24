@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "babel src/ --out-dir build/ --copy-files",
-    "devstart": "nodemon --exec babel-node ./bin/www",
+    "devstart": "export NODE_ENV=development && nodemon ./bin/www",
     "startforever": "forever start ./bin/www",
     "lint": "eslint ./src"
   },
@@ -45,5 +45,12 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "nodemon": "^1.18.9"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src/"
+    ],
+    "ext": "js,hbs",
+    "exec": "babel-node"
   }
 }
