@@ -1,9 +1,10 @@
+/* eslint-disable consistent-return */
 const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 const User = require('../models/user');
 
 /* GET login form */
-exports.loginGet = (req, res, next) => {
+exports.loginGet = (req, res) => {
   if (req.session && req.session.userID) {
     return res.redirect('/admin');
   }
@@ -43,6 +44,7 @@ exports.loginPost = [
       if (err) {
         return next(err);
       }
+      // eslint-disable-next-line no-underscore-dangle
       req.session.userID = user._id;
       req.session.user = user;
       return res.redirect('/admin');
@@ -51,7 +53,7 @@ exports.loginPost = [
 ];
 
 /* GET register form */
-exports.registerGet = (req, res, next) => {
+exports.registerGet = (req, res) => {
   if (req.session && req.session.userID) {
     return res.redirect('/admin');
   }
@@ -111,6 +113,7 @@ exports.registerPost = [
       if (err) {
         return next(err);
       }
+      // eslint-disable-next-line no-underscore-dangle
       req.session.userID = user._id;
       req.session.user = user;
       return res.redirect('/admin');

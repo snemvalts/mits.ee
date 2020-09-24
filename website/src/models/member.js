@@ -14,9 +14,7 @@ const MemberSchema = new Schema({
 });
 
 // Virtual for full name
-MemberSchema.virtual('fullName').get(function () {
-  return `${this.firstName} ${this.lastName}`;
-});
+MemberSchema.virtual('fullName').get(() => `${this.firstName} ${this.lastName}`);
 
 // Virtual for array of memberships that doesn't work
 /* MemberSchema.virtual("memberships", {

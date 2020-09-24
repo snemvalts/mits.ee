@@ -2,8 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.post('/calculate-result', (req, res, next) => {
-  console.log('asd');
+router.post('/calculate-result', (req, res) => {
   res.json({
     name: 'Internal server error',
     image: 'media/error.jpg',

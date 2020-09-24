@@ -40,25 +40,26 @@ const sitemap = require('express-sitemap')({
   },
 });
 
+// Set up mongoose connection
+const MongoStore = require('connect-mongo')(session);
+
+// view engine setup
+const hbs = require('hbs');
+
 const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const blogRouter = require('./routes/blog');
 const adminRouter = require('./routes/admin');
 
-// Set up mongoose connection
-const MongoStore = require('connect-mongo')(session);
-
 const mongoDB = process.env.DB_HOST;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
+// eslint-disable-next-line no-console
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 mongoose.set('useCreateIndex', true); // avoid deprecation warning
 
 const app = express();
-
-// view engine setup
-const hbs = require('hbs');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -94,6 +95,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public'), { dotfiles: 'allow' }));
 app.use(session({
+  // eslint-disable-next-line global-require
   secret: require('crypto').randomBytes(64).toString('hex'),
   resave: true,
   saveUninitialized: true,
