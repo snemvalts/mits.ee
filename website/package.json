@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "babel src/ --out-dir build/ --copy-files",
-    "devstart": "nodemon ./bin/www",
+    "devstart": "export NODE_ENV=development && nodemon ./bin/www",
     "startforever": "forever start ./bin/www",
     "lint": "npx eslint --fix ./src"
   },
@@ -51,9 +51,6 @@
       "src/"
     ],
     "ext": "js,hbs",
-    "events": {
-      "restart": "rm -rf build/views build/public && cp -r src/views build/views && cp -r src/public build/public"
-    },
     "exec": "babel-node"
   }
 }
