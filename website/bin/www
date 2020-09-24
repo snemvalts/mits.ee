@@ -3,8 +3,9 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../build/app');
+const appEntryPoint = process.env.NODE_ENV === 'development' ? '../src/app' : '../build/app';
+// eslint-disable-next-line import/no-dynamic-require
+var app = require(appEntryPoint);
 var debug = require('debug')('mits.ee:server');
 var http = require('http');
 var https = require('https');
