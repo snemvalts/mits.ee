@@ -7,6 +7,7 @@ const Semester = require(`${modelPath}semester`);
 const Team = require(`${modelPath}team`);
 const Member = require(`${modelPath}member`);
 const Membership = require(`${modelPath}membership`);
+const CMSField = require(`${modelPath}cmsfield`);
 
 const async = require('async');
 const csv = require('fast-csv');
@@ -20,6 +21,19 @@ exports.indexGet = (req, res) => {
   res.render('admin/index.hbs', {
     title: 'Admin paneel - MITS',
   });
+};
+
+/* GET admin panel CMS */
+exports.cmsGet = (req, res, next) => {
+  CMSField.find({})
+    .exec((err, cmsFields) => {
+      if (err) return next(err);
+
+      res.render('admin/cms.hbs', {
+        title: 'CMS - MITS',
+        cmsFields,
+      });
+    });
 };
 
 /* GET admin panel blog */
