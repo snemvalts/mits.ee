@@ -16,8 +16,6 @@ const EventSchema = new Schema({
 }, { toJSON: { virtuals: true } });
 
 // Virtual for pretty date
-EventSchema.virtual('prettyDate').get(function () {
-  return moment(this.date).format('LLLL');
-});
+EventSchema.virtual('prettyDate').get(() => moment(this.date).format('LLLL'));
 
 module.exports = mongoose.model('Event', EventSchema);

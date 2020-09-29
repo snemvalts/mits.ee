@@ -1,5 +1,24 @@
+function resizeNavbar() {
+  const navlogo = document.getElementById('navlogo');
+  if (window.scrollY < 10) {
+    navlogo.style.height = '5rem';
+    navlogo.style.width = '9rem';
+  } else {
+    navlogo.style.height = '4rem';
+    navlogo.style.width = '6rem';
+  }
+}
+
+// https://css-tricks.com/restart-css-animation/
+function restartLogoAnimation() {
+  const element = document.getElementById('animatedlogo');
+  const newElement = element.cloneNode(true);
+  newElement.onclick = restartLogoAnimation;
+  element.parentNode.replaceChild(newElement, element);
+}
+
 window.onload = () => {
-  const navbar = document.getElementById('navbar');
+  // const navbar = document.getElementById('navbar');
   const menuButton = document.getElementById('menubutton');
   const right = document.getElementById('right');
 
@@ -20,22 +39,3 @@ window.onload = () => {
   const animatedLogo = document.getElementById('animatedlogo');
   animatedLogo.onclick = restartLogoAnimation;
 };
-
-function resizeNavbar() {
-  const navlogo = document.getElementById('navlogo');
-  if (window.scrollY < 10) {
-    navlogo.style.height = '5rem';
-    navlogo.style.width = '9rem';
-  } else {
-    navlogo.style.height = '4rem';
-    navlogo.style.width = '6rem';
-  }
-}
-
-// https://css-tricks.com/restart-css-animation/
-function restartLogoAnimation() {
-  const element = document.getElementById('animatedlogo');
-  const newElement = element.cloneNode(true);
-  newElement.onclick = restartLogoAnimation;
-  element.parentNode.replaceChild(newElement, element);
-}

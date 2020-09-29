@@ -1,4 +1,12 @@
-MentorQuiz = function (elementRef) {
+function htmlToElement(html) {
+  const template = document.createElement('template');
+  // eslint-disable-next-line no-param-reassign
+  html = html.trim(); // Never return a text node of whitespace as the result
+  template.innerHTML = html;
+  return template.content.firstChild;
+}
+
+const MentorQuiz = (elementRef) => {
   this.elementRef = elementRef;
   this.answers = {};
   this.quizContainer = htmlToElement('<div id="quizContainer"></div>');
@@ -6,10 +14,11 @@ MentorQuiz = function (elementRef) {
   this.elementRef.classList.add('mentor-quiz');
   this.elementRef.appendChild(htmlToElement('<h1>Milline mentor oled Sina?</h1>'));
   this.elementRef.appendChild(this.quizContainer);
+  // eslint-disable-next-line max-len
   this.questions.forEach((question) => this.quizContainer.appendChild(this.createQuestionView(question)));
 };
 
-MentorQuiz.prototype.createQuestionView = function (question) {
+MentorQuiz.prototype.createQuestionView = (question) => {
   const questionContainer = htmlToElement(
     `<div class="questionContainer" data-question-id="${question.id}">
              <div style="background-color: #${question.color}">
@@ -17,7 +26,7 @@ MentorQuiz.prototype.createQuestionView = function (question) {
              </div>
          </div>`,
   );
-  for (let answerNumber = 0; answerNumber < question.answers.length; answerNumber++) {
+  for (let answerNumber = 0; answerNumber < question.answers.length; answerNumber + 1) {
     const answer = question.answers[answerNumber];
     const answerElement = htmlToElement(
       `<div style="background-color: #${question.color}" 
@@ -32,7 +41,7 @@ MentorQuiz.prototype.createQuestionView = function (question) {
   return questionContainer;
 };
 
-MentorQuiz.prototype.handleAnswerClick = function (answerElement) {
+MentorQuiz.prototype.handleAnswerClick = (answerElement) => {
   const questionContainer = answerElement.parentElement;
   const questionNumber = questionContainer.getAttribute('data-question-id');
   const answerNumber = answerElement.getAttribute('data-answer-id');
@@ -51,7 +60,7 @@ MentorQuiz.prototype.handleAnswerClick = function (answerElement) {
   }
 };
 
-MentorQuiz.prototype.showResult = function (result) {
+MentorQuiz.prototype.showResult = (result) => {
   const container = htmlToElement(
     `<div>
              <div id="resultContainer">
@@ -74,16 +83,16 @@ MentorQuiz.prototype.showResult = function (result) {
   container.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
 };
 
-MentorQuiz.prototype.setAnswer = function (questionNumber, answerNumber) {
+MentorQuiz.prototype.setAnswer = (questionNumber, answerNumber) => {
   this.answers[questionNumber] = answerNumber;
 };
 
-MentorQuiz.prototype.setAnswer = function (questionNumber, answerNumber) {
+MentorQuiz.prototype.setAnswer = (questionNumber, answerNumber) => {
   this.answers[questionNumber] = answerNumber;
 };
 
-MentorQuiz.prototype.calculateResults = function () {
-  return fetch('/mentor-quiz/calculate-result', {
+MentorQuiz.prototype.calculateResults = () => {
+  fetch('/mentor-quiz/calculate-result', {
     method: 'post',
     body: JSON.stringify(this.answers),
   }).then((result) => result.json())
@@ -169,10 +178,3 @@ MentorQuiz.prototype.questions = [
     answers: ['Pythonrämmar', 'Dungeons & Dragons', 'sööks', 'Rannamaja maraton'],
   },
 ];
-
-function htmlToElement(html) {
-  const template = document.createElement('template');
-  html = html.trim(); // Never return a text node of whitespace as the result
-  template.innerHTML = html;
-  return template.content.firstChild;
-}
