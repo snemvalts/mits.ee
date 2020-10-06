@@ -37,6 +37,13 @@ router.get('/', requiresLogin, adminController.indexGet);
 /* GET admin panel CMS */
 router.get('/cms', requiresLogin, adminController.cmsGet);
 
+/* GET admin panel CMS */
+router.get('/cms/field/:id', requiresLogin, adminController.cmsFieldGet);
+
+/* GET admin panel CMS */
+router.post('/cms/update-field/:id', requiresLogin, adminController.cmsUpdateFieldPost);
+
+
 /* GET admin panel blog */
 router.get('/blogi', requiresLogin, adminController.blogGet);
 

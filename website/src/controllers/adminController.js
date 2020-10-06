@@ -36,6 +36,31 @@ exports.cmsGet = (req, res, next) => {
     });
 };
 
+/* GET admin panel CMS value */
+exports.cmsFieldGet = (req, res, next) => {
+  CMSField.findOne({
+    _id: req.params.id,
+  })
+    .exec((err, cmsField) => {
+      if (err) return next(err);
+
+      res.render('admin/cmsField.hbs', {
+        title: 'CMS - MITS',
+        cmsField,
+      });
+    });
+};
+
+/* GET admin panel CMS value */
+exports.cmsUpdateFieldPost = (req, res, next) => {
+  console.log(req.body.newValue);
+  CMSField.updateOne({ _id: req.params.id }, { value: req.body.newValue })
+    .exec((err) => {
+      if (err) return next(err);
+      res.redirect('/admin/cms/');
+    });
+};
+
 /* GET admin panel blog */
 exports.blogGet = (req, res, next) => {
   Article.find({})
