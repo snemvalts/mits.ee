@@ -43,6 +43,7 @@ const sitemap = require('express-sitemap')({
 const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const blogRouter = require('./routes/blog');
+const cmsRouter = require('./routes/cms');
 const adminRouter = require('./routes/admin');
 
 // Set up mongoose connection
@@ -104,6 +105,8 @@ app.use(i18n.init);
 
 app.use('/', indexRouter);
 app.use('/blogi', blogRouter);
+app.use('/cms', cmsRouter);
+
 app.use('/admin', adminRouter);
 
 app.use('/mentor-quiz', require('./routes/mentor-quiz'));

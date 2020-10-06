@@ -3,6 +3,7 @@ const Article = require(`${modelPath}article`);
 const Event = require(`${modelPath}event`);
 
 const async = require('async');
+const https = require('https');
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
@@ -19,6 +20,8 @@ exports.indexGet = (req, res, next) => {
         .sort({ date: 1 })
         .exec(callback);
     },
+    cmsFields: (callback) => {
+      https.get('/cms/values')
   }, (err, results) => {
     if (err) return next(err);
 

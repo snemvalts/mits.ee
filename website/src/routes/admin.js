@@ -43,7 +43,6 @@ router.get('/cms/field/:id', requiresLogin, adminController.cmsFieldGet);
 /* GET admin panel CMS */
 router.post('/cms/update-field/:id', requiresLogin, adminController.cmsUpdateFieldPost);
 
-
 /* GET admin panel blog */
 router.get('/blogi', requiresLogin, adminController.blogGet);
 
