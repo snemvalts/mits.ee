@@ -5,5 +5,5 @@ WORKDIR /srv/app
 COPY . /srv/app
 RUN npm ci
 
-ENV PORT 8080
-EXPOSE 8080
+ENV PORT 80
+EXPOSE 80
