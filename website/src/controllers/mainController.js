@@ -1,9 +1,7 @@
-const modelPath = '../models/';
-const Article = require(`${modelPath}article`);
-const Event = require(`${modelPath}event`);
-
-const async = require('async');
-const https = require('https');
+import async from 'async';
+import axios from 'axios';
+import Article from '../models/article';
+import Event from '../models/event';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
@@ -21,7 +19,17 @@ exports.indexGet = (req, res, next) => {
         .exec(callback);
     },
     cmsFields: (callback) => {
-      https.get('/cms/values')
+      const endpoint = process.env.NODE_ENV === 'development' ? 'http://0.0.0.0:8080/cms/values' : '/cms/values';
+      axios.get(endpoint, {
+        params: {
+          keys: JSON.stringify(['cta_text']),
+        },
+      }).then((fieldsResponse) => {
+        callback(null, fieldsResponse.data);
+      }).catch((error) => {
+        callback('failed to fetch CMS values', null);
+      });
+    },
   }, (err, results) => {
     if (err) return next(err);
 
@@ -30,6 +38,7 @@ exports.indexGet = (req, res, next) => {
       user: req.session.user,
       articles: results.articles,
       events: results.events,
+      cmsFields: results.cmsFields,
     });
   });
 };
