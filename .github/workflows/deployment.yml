@@ -19,4 +19,3 @@ jobs:
         script: |
           cd ${{ secrets.PROJECT_PATH }}
           ./start-production-server
-					 
