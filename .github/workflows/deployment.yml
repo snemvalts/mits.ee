@@ -5,19 +5,18 @@ on:
     branches: [ master ]
     
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-
-        name: Deploy the project
-
-        steps:
-        - uses: actions/checkout@v2
-        - name: Push to server
-            uses: appleboy/ssh-action@master
-            with:
-            host: ${{ secrets.SERVER_IP }}
-            username: ${{ secrets.SERVER_USERNAME }}
-            key: ${{ secrets.SSH_KEY }}
-            script: |
-                cd ${{ secrets.PROJECT_PATH }}
-                ./start-production-server
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy the project
+    steps:
+    - uses: actions/checkout@v2
+    - name: Push to server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd ${{ secrets.PROJECT_PATH }}
+          ./start-production-server
+					 
