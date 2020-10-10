@@ -22,7 +22,7 @@ exports.indexGet = (req, res, next) => {
       const endpoint = process.env.NODE_ENV === 'development' ? 'http://0.0.0.0:8080/cms/values' : '/cms/values';
       axios.get(endpoint, {
         params: {
-          keys: JSON.stringify(['cta_text']),
+          keys: JSON.stringify(['cta_text', 'people_container', 'sponsors', 'partners']),
         },
       }).then((fieldsResponse) => {
         callback(null, fieldsResponse.data);
