@@ -1,3 +1,8 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-param-reassign */
+/* eslint-disable consistent-return */
+/* eslint-disable import/no-dynamic-require */
 // Fix IntelliJ mongoose functions with this
 // https://youtrack.jetbrains.com/issue/WEB-17099#focus=streamItem-27-1441265-0-0
 const modelPath = '../models/';
@@ -359,6 +364,7 @@ exports.memberEditGet = (req, res, next) => {
         if (a.leader < b.leader) return 1;
         return 0;
       });
+    // eslint-disable-next-line no-empty
     } catch (e) {}
 
     res.render('admin/memberEdit.hbs', {
@@ -543,6 +549,7 @@ exports.teamEditGet = (req, res, next) => {
         if (a.member.lastName < b.member.lastName) return -1;
         return 0;
       });
+    // eslint-disable-next-line no-empty
     } catch (e) {}
 
     res.render('admin/teamEdit.hbs', {
@@ -623,6 +630,7 @@ exports.membershipsGet = (req, res, next) => {
         if (a.member.lastName < b.member.lastName) return -1;
         return 0;
       });
+    // eslint-disable-next-line no-empty
     } catch (e) {}
 
     res.render('admin/memberships.hbs', {

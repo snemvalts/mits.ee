@@ -13,13 +13,9 @@ const SemesterSchema = new Schema({
 SemesterSchema.index({ year: 1, season: 1 }, { unique: true });
 
 // Virtual for short name
-SemesterSchema.virtual('short').get(function () {
-  return this.year + this.season;
-});
+SemesterSchema.virtual('short').get(() => this.year + this.season);
 
 // Virtual for full name
-SemesterSchema.virtual('full').get(function () {
-  return this.year + (this.season === 'k' ? ' kevad' : ' sügis');
-});
+SemesterSchema.virtual('full').get(() => this.year + (this.season === 'k' ? ' kevad' : ' sügis'));
 
 module.exports = mongoose.model('Semester', SemesterSchema);

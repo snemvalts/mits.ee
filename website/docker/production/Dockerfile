@@ -1,9 +1,9 @@
 FROM node:10.18.0
 
-WORKDIR /srv/../../app
+WORKDIR /srv/app
 
-COPY . /srv/app/
+COPY . /srv/app
 RUN npm ci
 
-ENV PORT 8080
-EXPOSE 8080
+ENV PORT 80
+EXPOSE 80

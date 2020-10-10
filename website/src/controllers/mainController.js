@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable import/no-dynamic-require */
 import async from 'async';
 import axios from 'axios';
 import Article from '../models/article';
@@ -44,7 +46,7 @@ exports.indexGet = (req, res, next) => {
 };
 
 /* GET about page */
-exports.aboutGet = (req, res, next) => {
+exports.aboutGet = (req, res) => {
   res.render('about', {
     title: 'Meist - MITS',
     user: req.session.user,
@@ -116,7 +118,7 @@ exports.eventGet = (req, res, next) => {
 };
 
 /* GET mentor page */
-exports.mentorGet = (req, res, next) => {
+exports.mentorGet = (req, res) => {
   res.render('mentor', {
     title: 'Mentorprogramm - MITS',
     user: req.session.user,
