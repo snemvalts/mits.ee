@@ -1,10 +1,9 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/no-dynamic-require */
-const modelPath = '../models/';
-const Article = require(`${modelPath}article`);
-const Event = require(`${modelPath}event`);
-
-const async = require('async');
+import async from 'async';
+import axios from 'axios';
+import Article from '../models/article';
+import Event from '../models/event';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
@@ -21,6 +20,18 @@ exports.indexGet = (req, res, next) => {
         .sort({ date: 1 })
         .exec(callback);
     },
+    cmsFields: (callback) => {
+      const endpoint = process.env.NODE_ENV === 'development' ? 'http://0.0.0.0:8080/cms/values' : '/cms/values';
+      axios.get(endpoint, {
+        params: {
+          keys: JSON.stringify(['cta_text', 'people_container', 'sponsors', 'partners']),
+        },
+      }).then((fieldsResponse) => {
+        callback(null, fieldsResponse.data);
+      }).catch((error) => {
+        callback('failed to fetch CMS values', null);
+      });
+    },
   }, (err, results) => {
     if (err) return next(err);
 
@@ -29,6 +40,7 @@ exports.indexGet = (req, res, next) => {
       user: req.session.user,
       articles: results.articles,
       events: results.events,
+      cmsFields: results.cmsFields,
     });
   });
 };

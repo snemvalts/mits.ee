@@ -1,0 +1,7 @@
+<h1>CMS</h1>
+<p>CMS võtmete ja väärtuste paarid:</p>
+<ul>
+{{#each cmsFields}}
+   <li> <a href="/admin/cms/field/{{ this.id }}">{{ this.key }}</a></li>
+{{/each}}
+</ul>

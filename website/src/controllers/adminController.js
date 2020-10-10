@@ -12,6 +12,7 @@ const Semester = require(`${modelPath}semester`);
 const Team = require(`${modelPath}team`);
 const Member = require(`${modelPath}member`);
 const Membership = require(`${modelPath}membership`);
+const CMSField = require(`${modelPath}cmsfield`);
 
 const async = require('async');
 const csv = require('fast-csv');
@@ -25,6 +26,44 @@ exports.indexGet = (req, res) => {
   res.render('admin/index.hbs', {
     title: 'Admin paneel - MITS',
   });
+};
+
+/* GET admin panel CMS */
+exports.cmsGet = (req, res, next) => {
+  CMSField.find({})
+    .exec((err, cmsFields) => {
+      if (err) return next(err);
+
+      res.render('admin/cms.hbs', {
+        title: 'CMS - MITS',
+        cmsFields,
+      });
+    });
+};
+
+/* GET admin panel CMS value */
+exports.cmsFieldGet = (req, res, next) => {
+  CMSField.findOne({
+    _id: req.params.id,
+  })
+    .exec((err, cmsField) => {
+      if (err) return next(err);
+
+      res.render('admin/cmsField.hbs', {
+        title: 'CMS - MITS',
+        cmsField,
+      });
+    });
+};
+
+/* GET admin panel CMS value */
+exports.cmsUpdateFieldPost = (req, res, next) => {
+  console.log(req.body.newValue);
+  CMSField.updateOne({ _id: req.params.id }, { value: req.body.newValue })
+    .exec((err) => {
+      if (err) return next(err);
+      res.redirect('/admin/cms/');
+    });
 };
 
 /* GET admin panel blog */
