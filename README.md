@@ -9,9 +9,9 @@ Welcome to MITS website
 2. Clone or download the project
 3. Open terminal or CMD and navigate to mits.ee/website folder.
 4. Run following commands<br>
-'npm run install'
-'npm run build'
-5. While in /website folder, to start production server run<br> 'start-production-server' script or to start dev server run<br> 'start-dev-server'.<br>
+`npm run install`
+`npm run build`
+5. While in /website folder, to start production server run<br> `start-production-server` script or to start dev server run<br> `start-dev-server`.<br>
 If you are on Windows, you can run those commands manualy.
 6. To see website, go to localhost:8080
 
