@@ -1,47 +1,42 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/no-dynamic-require */
-import async from 'async';
+import async, { reject } from 'async';
 import axios from 'axios';
+import { promises } from 'fs';
+import { resolve } from 'path';
 import Article from '../models/article';
 import Event from '../models/event';
+import CMSField from '../models/cmsfield'
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
-  async.parallel({
-    articles: (callback) => {
-      Article.find({})
-        .sort({ date: -1 })
-        .limit(3)
-        .populate('author')
-        .exec(callback);
-    },
-    events: (callback) => {
-      Event.find({ date: { $gte: new Date() } })
-        .sort({ date: 1 })
-        .exec(callback);
-    },
-    cmsFields: (callback) => {
-      const endpoint = process.env.NODE_ENV === 'development' ? 'http://0.0.0.0:8080/cms/values' : '/cms/values';
-      axios.get(endpoint, {
-        params: {
-          keys: JSON.stringify(['cta_text', 'people_container', 'sponsors', 'partners']),
-        },
-      }).then((fieldsResponse) => {
-        callback(null, fieldsResponse.data);
-      }).catch((error) => {
-        callback('failed to fetch CMS values', null);
-      });
-    },
-  }, (err, results) => {
-    if (err) return next(err);
 
+  const queries = [
+    Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
+    Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
+    CMSField.findOne({'key': 'cta_text'}),
+    CMSField.findOne({'key': 'people_container'}),
+    CMSField.findOne({'key': 'sponsors'}),
+    CMSField.findOne({'key': 'partners'})
+  ]
+
+  Promise.all(queries)
+  .then((results) => {    
     res.render('index', {
       title: 'MAT-INF tudengiselts',
       user: req.session.user,
-      articles: results.articles,
-      events: results.events,
-      cmsFields: results.cmsFields,
+      articles: results[0],
+      events: results[1],
+      cmsFields: {
+        cta_text: results[2].value,
+        people_container: results[3].value,
+        sponsors: results[4].value,
+        partners: results[5].value
+      }
     });
+  })
+  .catch((error) => {
+    return next(error);
   });
 };
 
