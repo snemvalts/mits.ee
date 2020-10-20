@@ -1,38 +1,22 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/no-dynamic-require */
-import async, { reject } from 'async';
-import axios from 'axios';
-import { promises } from 'fs';
-import { resolve } from 'path';
-import Article from '../models/article';
+import async from 'async';
 import Event from '../models/event';
-import CMSField from '../models/cmsfield'
+import fields from '../helpers/dbHelper.js'
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
-
-  const queries = [
-    Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
-    Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
-    CMSField.findOne({'key': 'cta_text'}),
-    CMSField.findOne({'key': 'people_container'}),
-    CMSField.findOne({'key': 'sponsors'}),
-    CMSField.findOne({'key': 'partners'})
-  ]
+  const queries = fields.get(req.url)
 
   Promise.all(queries)
   .then((results) => {    
+    const [articles, events, data] = results;
     res.render('index', {
       title: 'MAT-INF tudengiselts',
       user: req.session.user,
-      articles: results[0],
-      events: results[1],
-      cmsFields: {
-        cta_text: results[2].value,
-        people_container: results[3].value,
-        sponsors: results[4].value,
-        partners: results[5].value
-      }
+      articles: articles,
+      events: events,
+      cmsFields: data
     });
   })
   .catch((error) => {
