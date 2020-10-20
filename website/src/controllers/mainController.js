@@ -2,13 +2,13 @@
 /* eslint-disable import/no-dynamic-require */
 import Article from '../models/article';
 import Event from '../models/event';
-import cmsFieldGetter from '../helpers/dbHelper';
+import cmsFieldsGetter from '../helpers/dbHelper';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
   const queries = [Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
     Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
-    cmsFieldGetter.get(req.url)];
+    cmsFieldsGetter.get(req.url)];
 
   Promise.all(queries)
     .then((results) => {
