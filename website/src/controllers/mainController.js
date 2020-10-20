@@ -35,13 +35,13 @@ exports.eventsGet = (req, res, next) => {
 
   Promise.all(queries)
     .then((results) => {
-      const [new_events, old_events] = results;
+      const [newEvents, oldEvents] = results;
       res.render('events', {
         title: 'Üritused - MITS',
         user: req.session.user,
-        new_events: new_events,
-        old_events: old_events,
-      })
+        newEvents,
+        oldEvents,
+      });
     })
     .catch((error) => next(error));
 };
