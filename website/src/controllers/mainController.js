@@ -9,18 +9,16 @@ exports.indexGet = (req, res, next) => {
 
   Promise.all(queries)
     .then((results) => {
-      const [articles, events, data] = results;
+      const [articles, events, cmsFields] = results;
       res.render('index', {
         title: 'MAT-INF tudengiselts',
         user: req.session.user,
-        articles: articles,
-        events: events,
-        cmsFields: data
+        articles,
+        events,
+        cmsFields,
       });
     })
-    .catch((error) => {
-      return next(error);
-    });
+    .catch((error) => next(error));
 };
 
 /* GET about page */
@@ -33,18 +31,19 @@ exports.aboutGet = (req, res) => {
 
 /* GET events page */
 exports.eventsGet = (req, res, next) => {
-  queries = fields.get(req.url)
+  const queries = fields.get(req.url);
 
   Promise.all(queries)
-  .then((results) => {
-    const [new_events, old_events] = results;
-    res.render('events', {
-      title: 'Üritused - MITS',
-      user: req.session.user,
-      new_events: new_events,
-      old_events: old_events,
-    });
-  });
+    .then((results) => {
+      const [new_events, old_events] = results;
+      res.render('events', {
+        title: 'Üritused - MITS',
+        user: req.session.user,
+        new_events: new_events,
+        old_events: old_events,
+      })
+    })
+    .catch((error) => next(error));
 };
 
 /* GET events query page */
