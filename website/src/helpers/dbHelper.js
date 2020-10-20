@@ -18,7 +18,7 @@ const fields = {
     events: [Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
         Event.find({ date: { $lte: new Date() } }).limit(9).sort({ date: -1 })
     ],
-    get: function(template) {
+    get(template) {
         switch (template) {
             case '/':
                 return this.index;

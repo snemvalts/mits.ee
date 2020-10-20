@@ -1,26 +1,26 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/no-dynamic-require */
 import Event from '../models/event';
-import fields from '../helpers/dbHelper.js'
+import fields from '../helpers/dbHelper';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
-  const queries = fields.get(req.url)
+  const queries = fields.get(req.url);
 
   Promise.all(queries)
-  .then((results) => {    
-    const [articles, events, data] = results;
-    res.render('index', {
-      title: 'MAT-INF tudengiselts',
-      user: req.session.user,
-      articles: articles,
-      events: events,
-      cmsFields: data
+    .then((results) => {
+      const [articles, events, data] = results;
+      res.render('index', {
+        title: 'MAT-INF tudengiselts',
+        user: req.session.user,
+        articles: articles,
+        events: events,
+        cmsFields: data
+      });
+    })
+    .catch((error) => {
+      return next(error);
     });
-  })
-  .catch((error) => {
-    return next(error);
-  });
 };
 
 /* GET about page */
