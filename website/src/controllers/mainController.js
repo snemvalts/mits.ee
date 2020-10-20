@@ -1,11 +1,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/no-dynamic-require */
+import Article from '../models/article';
 import Event from '../models/event';
-import fields from '../helpers/dbHelper';
+import cmsFieldGetter from '../helpers/dbHelper';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
-  const queries = fields.get(req.url);
+  const queries = [Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
+    Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
+    cmsFieldGetter.get(req.url)];
 
   Promise.all(queries)
     .then((results) => {
@@ -31,7 +34,8 @@ exports.aboutGet = (req, res) => {
 
 /* GET events page */
 exports.eventsGet = (req, res, next) => {
-  const queries = fields.get(req.url);
+  const queries = [Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
+    Event.find({ date: { $lte: new Date() } }).limit(9).sort({ date: -1 })];
 
   Promise.all(queries)
     .then((results) => {
