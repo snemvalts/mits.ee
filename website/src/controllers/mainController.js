@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/no-dynamic-require */
-import async from 'async';
 import Event from '../models/event';
 import fields from '../helpers/dbHelper.js'
 
@@ -34,26 +33,16 @@ exports.aboutGet = (req, res) => {
 
 /* GET events page */
 exports.eventsGet = (req, res, next) => {
-  async.parallel({
-    new_events: (callback) => {
-      Event.find({ date: { $gte: new Date() } })
-        .sort({ date: 1 })
-        .exec(callback);
-    },
-    old_events: (callback) => {
-      Event.find({ date: { $lte: new Date() } })
-        .limit(9)
-        .sort({ date: -1 })
-        .exec(callback);
-    },
-  }, (err, results) => {
-    if (err) return next(err);
+  queries = fields.get(req.url)
 
+  Promise.all(queries)
+  .then((results) => {
+    const [new_events, old_events] = results;
     res.render('events', {
       title: 'Üritused - MITS',
       user: req.session.user,
-      new_events: results.new_events,
-      old_events: results.old_events,
+      new_events: new_events,
+      old_events: old_events,
     });
   });
 };
