@@ -58,7 +58,6 @@ exports.cmsFieldGet = (req, res, next) => {
 
 /* GET admin panel CMS value */
 exports.cmsUpdateFieldPost = (req, res, next) => {
-  console.log(req.body.newValue);
   CMSField.updateOne({ _id: req.params.id }, { value: req.body.newValue })
     .exec((err) => {
       if (err) return next(err);

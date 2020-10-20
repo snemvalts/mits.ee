@@ -1,48 +1,27 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/no-dynamic-require */
-import async from 'async';
-import axios from 'axios';
 import Article from '../models/article';
 import Event from '../models/event';
+import cmsFieldsGetter from '../helpers/dbHelper';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
-  async.parallel({
-    articles: (callback) => {
-      Article.find({})
-        .sort({ date: -1 })
-        .limit(3)
-        .populate('author')
-        .exec(callback);
-    },
-    events: (callback) => {
-      Event.find({ date: { $gte: new Date() } })
-        .sort({ date: 1 })
-        .exec(callback);
-    },
-    cmsFields: (callback) => {
-      const endpoint = process.env.NODE_ENV === 'development' ? 'http://0.0.0.0:8080/cms/values' : '/cms/values';
-      axios.get(endpoint, {
-        params: {
-          keys: JSON.stringify(['cta_text', 'people_container', 'sponsors', 'partners']),
-        },
-      }).then((fieldsResponse) => {
-        callback(null, fieldsResponse.data);
-      }).catch((error) => {
-        callback('failed to fetch CMS values', null);
-      });
-    },
-  }, (err, results) => {
-    if (err) return next(err);
+  const queries = [Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
+    Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
+    cmsFieldsGetter.get(req.url)];
 
-    res.render('index', {
-      title: 'MAT-INF tudengiselts',
-      user: req.session.user,
-      articles: results.articles,
-      events: results.events,
-      cmsFields: results.cmsFields,
-    });
-  });
+  Promise.all(queries)
+    .then((results) => {
+      const [articles, events, cmsFields] = results;
+      res.render('index', {
+        title: 'MAT-INF tudengiselts',
+        user: req.session.user,
+        articles,
+        events,
+        cmsFields,
+      });
+    })
+    .catch((error) => next(error));
 };
 
 /* GET about page */
@@ -55,28 +34,20 @@ exports.aboutGet = (req, res) => {
 
 /* GET events page */
 exports.eventsGet = (req, res, next) => {
-  async.parallel({
-    new_events: (callback) => {
-      Event.find({ date: { $gte: new Date() } })
-        .sort({ date: 1 })
-        .exec(callback);
-    },
-    old_events: (callback) => {
-      Event.find({ date: { $lte: new Date() } })
-        .limit(9)
-        .sort({ date: -1 })
-        .exec(callback);
-    },
-  }, (err, results) => {
-    if (err) return next(err);
+  const queries = [Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
+    Event.find({ date: { $lte: new Date() } }).limit(9).sort({ date: -1 })];
 
-    res.render('events', {
-      title: 'Üritused - MITS',
-      user: req.session.user,
-      new_events: results.new_events,
-      old_events: results.old_events,
-    });
-  });
+  Promise.all(queries)
+    .then((results) => {
+      const [newEvents, oldEvents] = results;
+      res.render('events', {
+        title: 'Üritused - MITS',
+        user: req.session.user,
+        newEvents,
+        oldEvents,
+      });
+    })
+    .catch((error) => next(error));
 };
 
 /* GET events query page */
