@@ -9,7 +9,8 @@ if (process.env.NODE_ENV === 'development') {
     password: '12345678',
   });
 
-  adminUser.save(err => err ? console.log('err', err) : console.log('created admin'));
+  // eslint-disable-next-line no-console
+  adminUser.save((err) => (err ? console.log('err', err) : console.log('created admin')));
 }
 
 /* GET login form */

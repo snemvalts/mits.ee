@@ -1,7 +1,7 @@
 import CMSField from '../models/cmsfield';
 
 /* GET cms fields based on keys */
-export const getValues = function (req, res, next) {
+export default (req, res, next) => {
   const cmsKeys = JSON.parse(req.query.keys);
   CMSField.find().where('key').in(cmsKeys)
     .exec((err, fields) => {
