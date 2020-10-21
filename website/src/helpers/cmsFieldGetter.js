@@ -9,15 +9,17 @@ const fetchCMSKeys = (keys) => axios.get(endpoint, {
 }).then((fieldsResponse) => fieldsResponse.data);
 
 const cmsFieldsGetter = {
-  index: fetchCMSKeys(['cta_text', 'people_container', 'sponsors', 'partners']),
-  about: fetchCMSKeys(['aboutus_intro', 'aboutus_mission_vision', 'aboutus_leadership', 'aboutus_history', 'aboutus_workgroups']),
-
+  index: () => fetchCMSKeys(['index_cta_text', 'index_people_container', 'index_sponsors', 'index_partners']),
+  about: () => fetchCMSKeys(['aboutus_intro', 'aboutus_mission_vision', 'aboutus_leadership', 'aboutus_history', 'aboutus_workgroups']),
+  mentor: () => fetchCMSKeys(['mentor_intro', 'mentor_description', 'mentor_benefits', 'mentor_administration']),
   get(request) {
     switch (request.path) {
       case '/':
-        return this.index;
+        return this.index();
       case '/meist':
-        return this.about;
+        return this.about();
+      case '/mentor':
+        return this.mentor();
       default:
         return Promise.reject(new Error('cannot find CMS fields'));
     }

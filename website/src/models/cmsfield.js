@@ -3,14 +3,14 @@ const { Schema } = mongoose;
 
 // not sure if this is how mongo works
 const defaultValues = {
-  cta_text: `
+  index_cta_text: `
     <h1>Hei!</h1>
     <h2>Liitumine MITSi on avatud!</h2>
     <a class="btn gradient"
        href="/liitumine"
        target="_blank" rel="noopener">Liitu</a>
   `,
-  people_container: `
+  index_people_container: `
     <p><strong>MAT-INF tudengiselts</strong> ehk <strong>MITS</strong> on Tartu Ülikooli matemaatika, matemaatilise statistika ja informaatika tudengeid ühendav erialaselts, mis tegutseb aktiivselt oma teaduskondade tudengite argipäeva elavdamise ja heaolu tagamisega.</p>
             <p>Seisame selle eest, et ülikool ja reaalteaduste õppimine oleks enamat, kui pelgalt uute teadmiste omandamine.</p>
             <div class="peoplegrid">
@@ -38,7 +38,7 @@ const defaultValues = {
             <p class="more"><a class="btn ghost" href="/meist">Loe veel MITSi kohta</a></p>
   `,
 
-  sponsors: `
+  index_sponsors: `
     <h1>Meie toetajad</h1>
             <div class="sponsorgrid">
                 <a title="ATI" id="ati" class="sponsor svg" href="https://cs.ut.ee/"></a>
@@ -46,7 +46,7 @@ const defaultValues = {
                 <a title="IT Akadeemia" id="itakadeemia" class="sponsor svg" href="https://www.hitsa.ee/ikt-haridus/ita"></a>
             </div>
   `,
-  partners: `
+  index_partners: `
   <h1>Meie partnerid</h1>
             <div class="sponsorgrid">
                 <a title="Nortal" id="nortal" class="sponsor svg" href="https://nortal.com/"></a>
@@ -185,6 +185,141 @@ const defaultValues = {
                 </div>
             </div>
   `,
+  mentor_intro: `
+  <h1>Mentor<wbr>programm</h1>
+            <p>Hei, vahva tudeng! <strong>7. - 11. september</strong> saab registreerida menteeks!
+            </p>
+            <div class="buttons">
+                <a class="btn blue" href="#mentor3">Tutvu mentorprogrammiga</a>
+                <a class="btn big gradient"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfr0ExK9SDtP2OwEGYehR51WeK_c8ZdJudKLIw2nyRTbGEaTw/viewform"
+                    target="_blank" rel="noopener" >Registreeri menteeks</a>
+                <a class="btn blue" href="/Mentorid2020.pdf" download="mentorid2020" >Tutvu mentoritega</a>
+            </div>`,
+  mentor_description: `
+  <h2>Mentorprogrammi olemus ja töögrupp</h2>
+            <p>Mentorprogrammi eesmärgiks on tagada, et iga matemaatika, matemaatilise statistika ja informaatika
+                esmakursuslane elaks ülikooliellu sisse võimalikult sujuvalt, saades tuge ja nõu vanemkursuslaste käest.
+                Mentorprogrammi töögrupp tegeleb mentorprogrammi arendamisega, viies kokku mentorid ja esmakursuslased,
+                suurendamaks kursustevahelist põimumist. Lisaks tegeleb töögrupp motiveeritud mentorite otsimise ja
+                toetamisega läbi koolituste ja koosolekute.</p>`,
+  mentor_benefits: `
+  <h2>Mida saab mentorprogramm Sulle pakkuda?</h2>
+            <details>
+                <summary class="green">Olen esmakursuslane</summary>
+                <article>
+                    <h3>Mentorprogrammis osalenud leidsid, et mentorprogramm andis neile:</h3>
+                    <ul>
+                        <li>“Tutuvusi nii esimesest kui ka teiselt kursuselt ja häid nõuandeid, mis on kooliga
+                            aidanud.”
+                        </li>
+                        <li>“Uusi tutvusi, kogemusi ning motivatsiooni õppida IT-d”</li>
+                        <li>“League of Legendsi oskused”</li>
+                        <li>“Head sõbrad ja tutvused. Mentorid on koolitööga ka aidanud.”</li>
+                        <li>“Arusaamist, kuidas on parem õppida.”</li>
+                    </ul>
+                    <h3>Mida mentorgrupiga liitudes teha saab?</h3>
+                    <p>Võimalusi on palju! Tuues paar näidet on varasemad mentorgrupid teinud koos järgnevat:</p>
+                    <ul>
+                        <li>progeõhtu;</li>
+                        <li>kino;</li>
+                        <li>LANid;</li>
+                        <li>trenni tegemine – jõusaal, tantsimine, discgolf, bowling, uisutamine jms;</li>
+                        <li>koosõppimine;</li>
+                        <li>muusika tegemine;</li>
+                        <li>lauamänguõhtu;</li>
+                        <li>ööelu nautimine;</li>
+                        <li>filmi- või pokkeriõhtu;</li>
+                        <li>tudengipäevad;</li>
+                        <li>raamatuõhtu;</li>
+                        <li>põgenemistoad.</li>
+                    </ul>
+                    <h3>Miks liituda?</h3>
+                    <ul>
+                        <li>Saad abi ülikooliellu sujuvaks sisse sulandumiseks.</li>
+                        <li>Leiad tuttavaid ja sõpru üle ülikooli.</li>
+                        <li>Saad kamba inimesi, kellega koos teile ühiselt meeldivaid asju teha!</li>
+                        <li>Mentorid aitavad ja toetavad Sind, kui kool üle jõu käib.</li>
+                    </ul>
+                    <h3>Kuidas protsess välja näeb?</h3>
+                    <ol>
+                        <li>Esita taotlus liitumaks mentorgrupiga. Taotluste esitamine algab sügisel.</li>
+                        <li>Saadame Sulle emailile lingi, mille abil saad valida endale meelepäraseima(d)
+                            mentorpaari(d).
+                        </li>
+                        <li>Kuulutame välja mentorgrupid ning ühine aeg grupiga saab alguse.</li>
+                        <li>Veedad sügissemestril aega koos oma mentori(te) ja kaastudengitega.</li>
+                        <li>Lõpetad semestri suure kogemuse võrra rikkamana.</li>
+                    </ol>
+                    <h3>Kuidas liituda?</h3>
+                    <p>Registreerimine on võimalik alates 7. septembrist käesoleval lehel.</p>
+                </article>
+            </details>
+            <details>
+                <summary class="blue">Olen vanemkursuslane või võimalik mentor</summary>
+                <article>
+                    <h3>Mentorprogrammis kaasalöönud mentorite muljeid:</h3>
+                    <ul>
+                        <li>"Mulle andis mentorprogramm unustamatu sõpruskonna. Samuti õpetas mentorprogramm mu aega
+                            paremini planeerima. Tihtilugu oli olukord, kus tegin kodutööd kõvasti enne ära, et saaksin
+                            mentorgrupiga tegeleda või nendega jälle kokku saada."
+                        </li>
+                        <li>"Tänu mentorprogrammile leidsin uusi sõpru menteede ja kaasmentori näol."</li>
+                    </ul>
+                    <h3>Mida mentorgrupiga liitudes teha saab?</h3>
+                    <p>Võimalusi on palju! Varasemad mentorgrupid on näiteks teinud koos järgnevat:</p>
+                    <ul>
+                        <li>lauamänguõhtu;</li>
+                        <li>Tartu ööelu nautimine;</li>
+                        <li>filmi- või pokkeriõhtu;</li>
+                        <li>tudengipäevad;</li>
+                        <li>raamatuõhtu;</li>
+                        <li>põgenemistoad;</li>
+                        <li>progeõhtu;</li>
+                        <li>kino;</li>
+                        <li>LANid;</li>
+                        <li>koos trenni tegemine – jõusaal, tantsimine, discgolf, bowling, uisutamine jms;</li>
+                        <li>koosõppimine;</li>
+                        <li>muusika tegemine.</li>
+                    </ul>
+                    <h3>Miks liituda?</h3>
+                    <ul>
+                        <li>Leiad ägedaid tutvusi!</li>
+                        <li>Saad kellegi ja ka iseenda ülikooli kogemust vägevamaks teha.</li>
+                        <li>Võimalus saada 3 EAP-d valikainete alla: <a
+                                href="https://ois2.ut.ee/#/courses/LTAT.00.011/version/cf761df5ffe0e4a539b17711cd537fcd/details"
+                                target="_blank" rel="noopener">LTAT.00.011</a> (ainele ise registreerima ei pea , selle
+                            saab automaatselt arvestatud, kui olete täitnud kõik aine läbimise tingimused)
+                        </li>
+                    </ul>
+                    <h2>Kuidas protsess välja näeb?</h2>
+                    <ul>
+                        <li>Registreeri end mentoriks. Mentorid pannakse programmi raames paaridesse. Kogemus näitab, et
+                            sõbraga tulles on lõbu kahekordne.
+                        </li>
+                        <li>Leiame Sulle ägedad menteed.</li>
+                        <li>Veedate koos menteedega semestrijagu aega koos.</li>
+                    </ul>
+                    <h3>Kuidas liituda?</h3>
+                    <p>Liitumine 2020 sügissemestriks kestab kuni 19.06. Kahjuks selleks aastaks on mentoriks registreerimine lõppenud </p>
+                </article>
+            </details>`,
+  mentor_administration: `<h2>Programmi tervise eest hoolitsevad:</h2>
+            <div class="peoplegrid">
+                <div class="person">
+                    <img alt="Martin Toode" src="/media/liikmed/MartinToode.jpg">
+                    <h3 class="name">Martin Toode</h3>
+                    <div class="email"><a href="mailto:toodemartin@gmail.com">toodemartin<wbr>@gmail.com</a></div>
+                </div>
+                <div class="person">
+                    <img alt="Alo Aasmäe" src="/media/liikmed/AloAasmae.jpg">
+                    <h3 class="name">Alo Aasmäe</h3>
+                    <div class="email"><a href="mailto:aloaas@gmail.com">aloaas<wbr>@gmail.com</a></div>
+                </div>
+            </div>
+            <p class="topmargin center">Kas Sul on häid mõtteid või tagasisidet meile? <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSevsm6LJNu2_WwXUoJP7B4KPSga9ZZ_BW6Cpf0QrU9bD1gFYA/viewform?usp=sf_link"
+                    target="_blank" rel="noopener">Jäta see siia.</a></p>`,
 };
 const CMSFieldSchema = new Schema({
   key: {
