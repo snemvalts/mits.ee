@@ -29,7 +29,6 @@ exports.indexGet = (req, res, next) => {
 /* GET about page */
 exports.aboutGet = (req, res, next) => {
   cmsFieldsGetter.get(req).then((cmsFields) => {
-    console.log(cmsFields['aboutus_intro']);
     res.render('about', {
       title: 'Meist - MITS',
       user: req.session.user,
