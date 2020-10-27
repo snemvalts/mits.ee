@@ -7,7 +7,9 @@
     "build": "babel src/ --out-dir build/ --copy-files",
     "devstart": "export NODE_ENV=development && nodemon ./bin/www",
     "startforever": "forever start ./bin/www",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "lint-cypress": "eslint ./cypress",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "async": "^2.6.1",
@@ -45,6 +47,7 @@
     "cypress": "^5.5.0",
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.22.0",
     "nodemon": "^2.0.5"
   },
