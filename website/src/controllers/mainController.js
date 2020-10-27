@@ -2,13 +2,15 @@
 /* eslint-disable import/no-dynamic-require */
 import Article from '../models/article';
 import Event from '../models/event';
-import cmsFieldsGetter from '../helpers/dbHelper';
+import cmsFieldsGetter from '../helpers/cmsFieldGetter';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
-  const queries = [Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
+  const queries = [
+    Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
     Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
-    cmsFieldsGetter.get(req.url)];
+    cmsFieldsGetter.get(req),
+  ];
 
   Promise.all(queries)
     .then((results) => {
@@ -25,11 +27,14 @@ exports.indexGet = (req, res, next) => {
 };
 
 /* GET about page */
-exports.aboutGet = (req, res) => {
-  res.render('about', {
-    title: 'Meist - MITS',
-    user: req.session.user,
-  });
+exports.aboutGet = (req, res, next) => {
+  cmsFieldsGetter.get(req).then((cmsFields) => {
+    res.render('about', {
+      title: 'Meist - MITS',
+      user: req.session.user,
+      cmsFields,
+    });
+  }).catch((error) => next(error));
 };
 
 /* GET events page */
@@ -89,9 +94,12 @@ exports.eventGet = (req, res, next) => {
 };
 
 /* GET mentor page */
-exports.mentorGet = (req, res) => {
-  res.render('mentor', {
-    title: 'Mentorprogramm - MITS',
-    user: req.session.user,
-  });
+exports.mentorGet = (req, res, next) => {
+  cmsFieldsGetter.get(req).then((cmsFields) => {
+    res.render('mentor', {
+      title: 'Mentorprogramm - MITS',
+      user: req.session.user,
+      cmsFields,
+    });
+  }).catch((error) => next(error));
 };

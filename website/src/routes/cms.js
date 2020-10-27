@@ -1,5 +1,5 @@
 import express from 'express';
-import { getValues } from '../controllers/cmsController';
+import getValues from '../controllers/cmsController';
 
 const router = express.Router();
 
