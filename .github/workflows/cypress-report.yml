@@ -22,10 +22,7 @@ jobs:
           npm ci
           $(npm bin)/cypress verify
 
-      - name: Print docker version
-        working-directory: website
-        run: docker -v
-
+      - uses: actions/checkout@v2
       - name: Start server
         working-directory: website
         run: |
