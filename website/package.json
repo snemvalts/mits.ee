@@ -11,6 +11,7 @@
     "lint-cypress": "eslint ./cypress",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
+    "e2e:ci": "cp sample.env .env && docker-compose -f docker/development/docker-compose.yaml up &",
     "cypress:run-ci": "cypress run --browser chrome",
     "cypress:report": "generate-mochawesome-report --screenshotsDir cypress/screenshots --output publicCypress && mv publicCypress/mochawesome.html publicCypress/index.html  && rm -rf cypress/results/json/"
   },

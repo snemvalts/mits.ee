@@ -31,9 +31,7 @@ jobs:
 
       - name: Start server
         working-directory: website
-        run: |
-          cp sample.env .env
-          docker-compose -f docker/development/docker-compose.yaml up
+        run: npm run e2e:ci
           
       - name: Run Cypress tests
         working-directory: website
