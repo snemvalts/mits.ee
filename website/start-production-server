@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-docker-compose -f docker/production/docker-compose.yaml stop
-git pull
-npm install
-docker-compose -f docker/production/docker-compose.yaml up -d

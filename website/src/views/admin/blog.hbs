@@ -1,8 +1,0 @@
-<h1>Admin blog here</h1>
-<a href="/admin/blogi/uus">New blog post</a>
-{{#each articles}}
-    <h2><a href="/admin/blogi/{{this._id}}">{{this.title}}</a></h2>
-    <h4>{{this.author.username}} {{this.date}}</h4>
-{{else}}
-    <h2>No blog posts yet!!!</h2>
-{{/each}}
