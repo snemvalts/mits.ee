@@ -12,7 +12,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "cypress:run-ci": "cypress run --browser chrome",
-    "cypress:report": "generate-mochawesome-report --screenshotsDir cypress/screenshots --output publicCypress/reports/html && rm -rf cypress/results/json/"
+    "cypress:report": "generate-mochawesome-report --screenshotsDir cypress/screenshots --output publicCypress && rm -rf cypress/results/json/"
   },
   "dependencies": {
     "async": "^2.6.1",
