@@ -7,31 +7,31 @@ on:
         branches: [ master ]
 
 jobs:
-    cypress-test:
-        name: Run on Chrome
-        runs-on: ubuntu-latest
-        container: cypress/browsers:latest
-        steps:
-        - uses: actions/checkout@v2
+  cypress-test:
+    name: Run on Chrome
+    runs-on: ubuntu-latest
+    container: cypress/browsers:latest
+    steps:
+    - uses: actions/checkout@v2
 
-        - name: Install cypress and verify
-          working-directory: website
-          run: |
-            npm ci
-            $(npm bin)/cypress verify
-            
-        - name: Run Cypress tests
-          working-directory: website
-          run: npm run cypress:run-ci
-          continue-on-error: true
+    - name: Install cypress and verify
+      working-directory: website
+      run: |
+        npm ci
+        $(npm bin)/cypress verify
+        
+    - name: Run Cypress tests
+      working-directory: website
+      run: npm run cypress:run-ci
+      continue-on-error: true
 
-        - name: Generate HTML report
-          working-directory: website
-          run: npm run cypress:report
-          
-        - name: Deploy report page to GitHub Pages
-          working-directory: website
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./publicCypress
+    - name: Generate HTML report
+      working-directory: website
+      run: npm run cypress:report
+      
+    - name: Deploy report page to GitHub Pages
+      working-directory: website
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./publicCypress
