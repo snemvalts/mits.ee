@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container: cypress/browsers:latest
-    
+
     steps:
       - uses: actions/checkout@v2
       - name: Install cypress and verify
@@ -32,8 +32,7 @@ jobs:
         run: npm run cypress:report
         
       - name: Deploy report page to GitHub Pages
-        working-directory: website
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./publicCypress
+          publish_dir: ./website/publicCypress
