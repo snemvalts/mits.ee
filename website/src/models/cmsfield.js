@@ -322,6 +322,23 @@ const defaultValues = {
                     href="https://docs.google.com/forms/d/e/1FAIpQLSevsm6LJNu2_WwXUoJP7B4KPSga9ZZ_BW6Cpf0QrU9bD1gFYA/viewform?usp=sf_link"
                     target="_blank" rel="noopener">Jäta see siia.</a></p>`,
 };
+
+const defaultCssValues = {
+  index_cta_text: "header#landing \{ \}",
+  index_people_container: "section#description \{ \}",
+  index_sponsors: "section#sponsors \{ \}",
+  index_partners: "section#sponsors \{ \}",
+  aboutus_intro: "section#aboutlanding \{ \}",
+  aboutus_mission_vision: "section#description \{ \}",
+  aboutus_leadership: "section#juhatus \{ \}",
+  aboutus_history: "section#history \{ \}",
+  aboutus_workgroups: "section#teams \{ \}",
+  mentor_intro: "section#mentorlanding \{ \}",
+  mentor_description: "section#mentor2 \{ \}",
+  mentor_benefits: "section#mentor3 \{ \}",
+  mentor_administration: "section#mentor4 \{ \}",
+};
+
 const CMSFieldSchema = new Schema({
   key: {
     type: String,
@@ -330,6 +347,7 @@ const CMSFieldSchema = new Schema({
     trim: true,
   },
   value: { type: String, required: true },
+  css: { type: String, required: true }
 });
 
 const CMSField = mongoose.model('CMSField', CMSFieldSchema);
@@ -338,6 +356,7 @@ Object.keys(defaultValues).forEach((key) => {
   const field = new CMSField({
     key,
     value: defaultValues[key],
+    css: defaultCssValues[key]
   });
 
   field.save();

@@ -2,21 +2,24 @@
 /* eslint-disable import/no-dynamic-require */
 import Article from '../models/article';
 import Event from '../models/event';
-import cmsFieldsGetter from '../helpers/cmsFieldGetter';
+import cmsFieldsGetter from '../helpers/cmsFieldsGetter';
+import cmsFieldsParser from '../helpers/cmsFieldsParser';
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
   const queries = [
     Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
     Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
-    cmsFieldsGetter.get(req),
+    cmsFieldsGetter.get(req)
   ];
 
   Promise.all(queries)
     .then((results) => {
-      const [articles, events, cmsFields] = results;
+      const [articles, events, cms] = results;
+      const [cmsFields, style] = cmsFieldsParser.get(cms);
       res.render('index', {
         title: 'MAT-INF tudengiselts',
+        style,
         user: req.session.user,
         articles,
         events,
@@ -28,9 +31,11 @@ exports.indexGet = (req, res, next) => {
 
 /* GET about page */
 exports.aboutGet = (req, res, next) => {
-  cmsFieldsGetter.get(req).then((cmsFields) => {
+  cmsFieldsGetter.get(req).then((cms) => {
+    const [cmsFields, style] = cmsFieldsParser.get(cms);
     res.render('about', {
       title: 'Meist - MITS',
+      style,
       user: req.session.user,
       cmsFields,
     });
@@ -95,9 +100,11 @@ exports.eventGet = (req, res, next) => {
 
 /* GET mentor page */
 exports.mentorGet = (req, res, next) => {
-  cmsFieldsGetter.get(req).then((cmsFields) => {
+  cmsFieldsGetter.get(req).then((cms) => {
+    const [cmsFields, style] = cmsFieldsParser.get(cms);
     res.render('mentor', {
       title: 'Mentorprogramm - MITS',
+      style,
       user: req.session.user,
       cmsFields,
     });
