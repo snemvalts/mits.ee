@@ -22,9 +22,15 @@ jobs:
           npm ci
           $(npm bin)/cypress verify
 
+      - name: Print docker version
+        working-directory: website
+        run: docker -v
+
       - name: Start server
         working-directory: website
-        run: docker-compose -f docker/development/docker-compose.yaml up
+        run: |
+          cp sample.env .env
+          docker-compose -f docker/development/docker-compose.yaml up
           
       - name: Run Cypress tests
         working-directory: website
