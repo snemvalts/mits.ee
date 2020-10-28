@@ -23,7 +23,7 @@ jobs:
         - name: Run Cypress tests
           working-directory: website
           run: npm run cypress:run-ci
-            continue-on-error: false
+          continue-on-error: true
 
         - name: Generate HTML report
           working-directory: website
