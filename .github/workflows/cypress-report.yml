@@ -37,11 +37,19 @@ jobs:
       - name: Run Cypress tests
         working-directory: website
         run: npm run cypress:run-ci
-        continue-on-error: false
+        continue-on-error: true
 
       - name: Generate HTML report
         working-directory: website
         run: npm run cypress:report
+
+      - name: Copy files to commit folder
+        working-directory: website
+        run: |
+          mv ./publicCypress/index.html ./publicCypress/${{ github.event.pull_request.head.sha }}/
+          mv ./publicCypress/screenshots/ ./publicCypress/${{ github.event.pull_request.head.sha }}/screenshots/
+          mv ./publicCypress/videos/ ./publicCypress/${{ github.event.pull_request.head.sha }}/videos/
+          mv ./publicCypress/assets/ ./publicCypress/${{ github.event.pull_request.head.sha }}/assets/
         
       - name: Deploy report page to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -49,19 +57,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/publicCypress
 
-      - name: Get PR nr
-        uses: actions/github-script@0.3.0
-        with:
-          github-token: ${{github.token}}
-          script: |
-            const core = require('@actions/core')
-            const prNumber = context.payload.number;
-            core.exportVariable('PULL_NUMBER', prNumber);
-
-      - name: Print pull_request nr
-        run: |
-          echo "1. PR nr ${{github.event.number}}"
-          echo "2. PR nr ${{github.event.issue.number}}"
-          echo "$GITHUB_REF" | awk -F / '{print $3}'
-          echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }'
-          echo $PULL_NUMBER
+      - name: Print report page link
+        run: echo https://snemvalts.github.io/mits.ee/${{ github.event.pull_request.head.sha }}
