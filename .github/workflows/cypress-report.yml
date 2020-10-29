@@ -31,7 +31,17 @@ jobs:
 
       - name: Start server
         working-directory: website
-        run: npm run e2e:ci
+        run: |
+          cp sample.env .env
+          docker-compose -f docker/development/docker-compose.yaml up &
+        
+      - name: Wait for server
+        working-directory: website
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-build
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Start server
           
       - name: Run Cypress tests
         working-directory: website
