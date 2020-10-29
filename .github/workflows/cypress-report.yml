@@ -49,5 +49,19 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/publicCypress
 
-      - name: Get pull_request sha
-        run: echo "PR sha ${{ github.event.pull_request.head.sha }}"
+      - name: Get PR nr
+        uses: actions/github-script@0.3.0
+        with:
+          github-token: ${{github.token}}
+          script: |
+            const core = require('@actions/core')
+            const prNumber = context.payload.number;
+            core.exportVariable('PULL_NUMBER', prNumber);
+
+      - name: Print pull_request nr
+        run: |
+          echo "1. PR nr ${{github.event.number}}"
+          echo "2. PR nr ${{github.event.issue.number}}"
+          echo "$GITHUB_REF" | awk -F / '{print $3}'
+          echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }'
+          echo $PULL_NUMBER
