@@ -18,5 +18,25 @@ import './commands'
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'cypress-mochawesome-reporter/register';
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+import addContext from 'mochawesome/addContext'
+
+Cypress.on('test:after:run', (test, runnable) => {
+    let item = runnable
+    const nameParts = [runnable.title]
+
+    // Iterate through all parents and grab the titles
+    while (item.parent) {
+        nameParts.unshift(item.parent.title)
+        item = item.parent
+    }
+
+    const videoUrl = `videos/${
+        Cypress.spec.name
+    }.mp4`
+
+    addContext({ test }, videoUrl)
+})
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

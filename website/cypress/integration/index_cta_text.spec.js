@@ -1,6 +1,7 @@
 describe('Test index_cta_text', () => {
     it('Visit CMS and edit', () => {
-        cy.visit('http://localhost:8080/admin/cms/field/5f9878ee24dd5f00442d36be')
+        cy.visit('http://localhost:8080/admin/cms/')
+        cy.contains('index_cta_text').click()
         cy.get('textarea').invoke('val').then((text) => {
             cy.get('textarea').clear().type(`
             <h1>Hello!</h1>
