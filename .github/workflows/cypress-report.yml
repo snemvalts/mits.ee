@@ -46,13 +46,11 @@ jobs:
       - name: Copy files to commit folder
         working-directory: website
         run: |
-          echo $(ls ./publicCypress)
-          echo $(ls ./publicCypress/${{ github.event.pull_request.head.sha }})
           mkdir ./publicCypress/${{ github.event.pull_request.head.sha }}
           mv ./publicCypress/index.html ./publicCypress/${{ github.event.pull_request.head.sha }}/
-          mv ./publicCypress/videos ./publicCypress/${{ github.event.pull_request.head.sha }}/videos/
           mv ./publicCypress/assets ./publicCypress/${{ github.event.pull_request.head.sha }}/assets/
-          mv ./publicCypress/screenshots ./publicCypress/${{ github.event.pull_request.head.sha }}/screenshots/
+          if [ -d ./publicCypress/screenshots ]; then mv ./publicCypress/screenshots ./publicCypress/${{ github.event.pull_request.head.sha }}/; fi
+          if [ -d ./publicCypress/videos ]; then mv ./publicCypress/videos ./publicCypress/${{ github.event.pull_request.head.sha }}/; fi
         
       - name: Deploy report page to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

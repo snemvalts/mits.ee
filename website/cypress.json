@@ -1,3 +1,5 @@
 {
-    "reporter": "cypress-mochawesome-reporter"
+    "reporter": "cypress-mochawesome-reporter",
+    "screenshotsFolder": "publicCypress/screenshots",
+    "videosFolder": "publicCypress/videos"
 }
