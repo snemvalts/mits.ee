@@ -46,6 +46,7 @@ jobs:
       - name: Copy files to commit folder
         working-directory: website
         run: |
+          mkdir ./publicCypress/${{ github.event.pull_request.head.sha }}
           mv ./publicCypress/index.html ./publicCypress/${{ github.event.pull_request.head.sha }}/
           mv ./publicCypress/screenshots/ ./publicCypress/${{ github.event.pull_request.head.sha }}/screenshots/
           mv ./publicCypress/videos/ ./publicCypress/${{ github.event.pull_request.head.sha }}/videos/
