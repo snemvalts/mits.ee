@@ -48,3 +48,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/publicCypress
+
+      - name: Get pull_request sha
+        run: echo "PR sha ${{ github.event.pull_request.head.sha }}"
