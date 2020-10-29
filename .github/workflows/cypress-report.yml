@@ -29,19 +29,17 @@ jobs:
           npm ci
           $(npm bin)/cypress verify
 
-      - name: Start server
+      - name: Start-server
         working-directory: website
         run: |
           cp sample.env .env
           docker-compose -f docker/development/docker-compose.yaml up &
-        
-      - name: Wait for server
-        working-directory: website
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        id: wait-for-build
+        uses: cygnetdigital/wait_for_response@v2.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: Start server
+          url: 'http://localhost:8080/'
+          responseCode: '200,500'
+          timeout: 120000
+          interval: 20000
           
       - name: Run Cypress tests
         working-directory: website
