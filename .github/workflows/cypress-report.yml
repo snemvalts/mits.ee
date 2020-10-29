@@ -12,36 +12,29 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [ 10.x ]
-
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-          
       - name: Install cypress and verify
         working-directory: website
         run: |
           npm ci
           $(npm bin)/cypress verify
 
-      - name: Start-server
+      - name: Start server
         working-directory: website
         run: |
           cp sample.env .env
-          docker-compose -f docker/development/docker-compose.yaml up &
+          docker-compose -f docker/development/docker-compose.yaml up -d
 
-      - name: Wait for server
-        uses: cygnetdigital/wait_for_response@v2.0.0
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
         with:
-          url: 'http://localhost:8080/'
-          responseCode: '200,500'
-          timeout: 120000
-          interval: 20000
+          time: '80s'
+          
+      - name: Check running containers
+        working-directory: website
+        run: docker ps -a
+        
           
       - name: Run Cypress tests
         working-directory: website
