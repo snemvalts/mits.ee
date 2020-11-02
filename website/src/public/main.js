@@ -37,5 +37,7 @@ window.onload = () => {
 
   /* Restart logo animation by clicking it */
   const animatedLogo = document.getElementById('animatedlogo');
-  animatedLogo.onclick = restartLogoAnimation;
+  if (animatedLogo !== null) {
+    animatedLogo.onclick = restartLogoAnimation;
+  }
 };
