@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('changeValue', (container, changedText) => {
+    cy.visit('http://localhost:8080/admin/cms/')
+    cy.contains(container).click()
+    cy.get('textarea').clear().type(changedText)
+    cy.get('button').click()
+    cy.visit('http://localhost:8080/')
+})
+
+Cypress.Commands.add('resetField', (container) => {
+    cy.fixture('../../src/models/cms-default-values.json').then((json) => {
+        cy.changeValue(container, json[container])
+    })
+})
