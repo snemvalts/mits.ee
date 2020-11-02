@@ -58,7 +58,8 @@ exports.cmsFieldGet = (req, res, next) => {
 
 /* GET admin panel CMS value */
 exports.cmsUpdateFieldPost = (req, res, next) => {
-  CMSField.updateOne({ _id: req.params.id }, { value: req.body.newValue })
+  CMSField.updateOne({ _id: req.params.id },
+    { value: req.body.newValue, css: req.body.newValueCss })
     .exec((err) => {
       if (err) return next(err);
       res.redirect('/admin/cms/');
