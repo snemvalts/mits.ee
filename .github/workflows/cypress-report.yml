@@ -57,6 +57,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/publicCypress
+          keep_files: true
 
       - name: Print report page link
         run: echo https://snemvalts.github.io/mits.ee/${{ github.event.pull_request.head.sha }}
