@@ -10,7 +10,7 @@ exports.indexGet = (req, res, next) => {
   const queries = [
     Article.find({}).sort({ date: -1 }).limit(3).populate('author'),
     Event.find({ date: { $gte: new Date() } }).sort({ date: 1 }),
-    cmsFieldsGetter.get(req)
+    cmsFieldsGetter.get(req),
   ];
 
   Promise.all(queries)
