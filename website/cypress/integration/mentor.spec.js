@@ -15,7 +15,7 @@ describe('Test mentor page', () => {
             return false
         })
         cy.changeValue('mentor_intro', `
-        <h1>Mentor<wbr>programm</h1>
+            <h1>Mentor<wbr>programm</h1>
             <p>Hello student-ae21312add! <strong>7. - 11. september</strong> saab registreerida menteeks!
             </p>
             <div class="buttons">
@@ -47,7 +47,7 @@ describe('Test mentor page', () => {
             return false
         })
         cy.changeValue('mentor_description', `
-        <h1>Mentorprogrammi olemus ja töögrupp</h1>
+            <h1>Mentorprogrammi olemus ja töögrupp</h1>
             <p>Mentorprogrammi eesmärgiks on tagada, et iga matemaatika, matemaatilise statistika ja informaatika
                 esmakursuslane elaks ülikooliellu sisse võimalikult sujuvalt, saades tuge ja nõu vanemkursuslaste käest.
                 Mentorprogrammi töögrupp tegeleb mentorprogrammi arendamisega, viies kokku mentorid ja esmakursuslased,
@@ -75,7 +75,7 @@ describe('Test mentor page', () => {
             return false
         })
         cy.changeValue('mentor_administration', `
-        <h2>Programmi tervise eest hoolitsevad:</h2>
+            <h2>Programmi tervise eest hoolitsevad:</h2>
             <div class="peoplegrid">
                 <div class="person">
                     <img alt="Martin Toode" src="/media/liikmed/MartinToode.jpg">
