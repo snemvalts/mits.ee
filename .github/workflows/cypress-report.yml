@@ -61,3 +61,6 @@ jobs:
 
       - name: Print report page link
         run: echo https://snemvalts.github.io/mits.ee/${{ github.event.pull_request.head.sha }}
+
+      - name: Debug
+        run: echo "Debug"
