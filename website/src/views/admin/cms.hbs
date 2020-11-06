@@ -1,7 +1,23 @@
 <h1>CMS</h1>
 <p>CMS võtmete ja väärtuste paarid:</p>
-<ul>
-{{#each cmsFields}}
-   <li> <a href="/admin/cms/field/{{ this.id }}">{{ this.key }}</a></li>
-{{/each}}
-</ul>
+<div>
+    <div class="col1">
+            <div class="pagename"><h3>Main Page</h3></div>
+            <div class="pagename"><h3>About Page</h3></div>
+            <div class="pagename"><h3>Mentor Page</h3></div>
+    </div>
+    <div class="col2">
+        {{#each cmsFields}}
+            {{#ifcond this.key 'index_'}}
+            <!--li--> <a class="homepage" href="/admin/cms/field/{{ ../this.id }}"><button id="{{ ../this.key }}" class="cmsbutton"></button></a>
+            {{/ifcond}}
+            {{#ifcond this.key 'aboutus_'}}
+                <!--li--> <a class="aboutpage" href="/admin/cms/field/{{ ../this.id }}"><button id="{{ ../this.key }}" class="cmsbutton">j</button></a>
+            {{/ifcond}}
+            {{#ifcond this.key 'mentor_'}}
+                <!--li--> <a class="mentorpage" href="/admin/cms/field/{{ ../this.id }}"><button id="{{ ../this.key }}" class="cmsbutton">7</button></a>
+            {{/ifcond}}
+        {{/each}}
+    </div>
+</div>
+

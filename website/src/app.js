@@ -69,6 +69,12 @@ hbs.registerHelper('moment', (datetime, format) => {
   moment.locale('et_EE');
   return moment(datetime).format(format);
 });
+// eslint-disable-next-line consistent-return
+hbs.registerHelper('ifcond', (field, str, options) => {
+  if (field.includes(str)) {
+    return options.fn(this);
+  }
+});
 
 app.use((req, res, next) => {
   res.locals = {

@@ -106,3 +106,27 @@ code {
         }
     }
 }
+
+.col1 {
+    float: left;
+    width: 10%;
+}
+.pagename {
+    height: 50px;
+}
+
+.col2 {
+    float: left;
+    width: 80%;
+}
+
+.cmsbutton {
+    margin: 5px;
+    float: left;
+    width: 23%;
+    height: 60px;
+}
+
+[id^='aboutus_'] {
+    width: 18.2%;
+}
