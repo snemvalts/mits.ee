@@ -1,5 +1,3 @@
-// import cmsFieldsGetter from "../helpers/cmsFieldsGetter";
-
 window.onload = () => {
   const collapsibles = document.getElementsByClassName('collapsible');
   const ids = ['index_cta_text', 'index_people_container', 'index_sponsors', 'index_partners',
@@ -14,27 +12,31 @@ window.onload = () => {
   //     collapsible.classList.toggle('collapsed');
   //   };
   // }
-  // const buttons = document.getElementsByClassName('cmsbutton');
-  // const cmsfields = cmsFieldsGetter.get();
   Object.keys(collapsibles).forEach((collapsible) => {
     // eslint-disable-next-line no-param-reassign
     collapsible.children[0].onclick = () => {
       collapsible.classList.toggle('collapsed');
     };
   });
-  for (let i = 0; i < ids.length; i += 1) {
-    document.getElementById(ids[i]).innerHTML = names[i];
-  }
   /*
-  for (let i = 0; i < buttons.length; i += 1) {
-    buttons.item(i).innerHTML = buttons.item(i).innerHTML.replace('index_', '')
-      .replace('aboutus_', '').replace('mentor_', '');
-  }
-  function fillArea(value, css) {
+  function fillArea() {
+    document.getElementById('currentpage').innerText = name;
+    document.getElementById('currentsection').innerText = name;
     document.getElementById('cmshtml').value = value;
     document.getElementById('cmscss').value = css;
   }
-  document.getElementById('people_container').addEventListener('click', fillArea('0', '1'));
-  document.getElementById('people_container').addEventListener('click', fillArea('0', '1'));
   */
+  for (let i = 0; i < ids.length; i += 1) {
+    document.getElementById(ids[i]).innerHTML = names[i];
+    document.getElementById(ids[i]).addEventListener('click', (e) => {
+      document.getElementById('currentpage').innerText = e.target.parentNode.className;
+      document.getElementById('currentsection').innerText = names[ids.indexOf(e.target.id)];
+      const values = e.target.parentNode.id.split('@@@');
+      // eslint-disable-next-line prefer-destructuring
+      document.getElementById('cmshtml').innerText = values[0];
+      // eslint-disable-next-line prefer-destructuring
+      document.getElementById('cmscss').innerText = values[1];
+      document.getElementById('postform').action = `/admin/cms/update-field/${values[2].toString()}/`;
+    });
+  }
 };

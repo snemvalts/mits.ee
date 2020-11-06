@@ -2,22 +2,34 @@
 <p>CMS võtmete ja väärtuste paarid:</p>
 <div>
     <div class="col1">
-            <div class="pagename"><h3>Main Page</h3></div>
-            <div class="pagename"><h3>About Page</h3></div>
-            <div class="pagename"><h3>Mentor Page</h3></div>
+        <div class="pagename"><h3>Main Page</h3></div>
+        <div class="pagename"><h3>About Page</h3></div>
+        <div class="pagename"><h3>Mentor Page</h3></div>
     </div>
     <div class="col2">
         {{#each cmsFields}}
             {{#ifcond this.key 'index_'}}
-            <!--li--> <a class="homepage" href="/admin/cms/field/{{ ../this.id }}"><button id="{{ ../this.key }}" class="cmsbutton"></button></a>
+            <!--li--> <a class="Main page" id="{{../this.value }}@@@{{../this.css}}@@@{{../this.id}}"><button id="{{ ../this.key }}" class="cmsbutton"></button></a>
             {{/ifcond}}
             {{#ifcond this.key 'aboutus_'}}
-                <!--li--> <a class="aboutpage" href="/admin/cms/field/{{ ../this.id }}"><button id="{{ ../this.key }}" class="cmsbutton">j</button></a>
+                <!--li--> <a class="About page" id="{{../this.value }}@@@{{../this.css}}"><button id="{{ ../this.key }}" class="cmsbutton">j</button></a>
             {{/ifcond}}
             {{#ifcond this.key 'mentor_'}}
-                <!--li--> <a class="mentorpage" href="/admin/cms/field/{{ ../this.id }}"><button id="{{ ../this.key }}" class="cmsbutton">7</button></a>
+                <!--li--> <a class="Mentor page" id="{{../this.value }}@@@{{../this.css}}"><button id="{{ ../this.key }}" class="cmsbutton">7</button></a>
             {{/ifcond}}
         {{/each}}
     </div>
 </div>
-
+<div>
+    <h1 id="currentpage" style="margin-top: 30px">Main page</h1>
+    <h2 id="currentsection">Cta_text</h2>
+    <form id="postform" action="" method="post" style="display: block">
+        <textarea id="cmshtml" name="newValue" rows="15" cols="40" style="font-family: monospace">
+            {{cmsFields.0.value}}
+        </textarea>
+        <textarea id="cmscss" name="newValueCss" rows="15" cols="40" style="font-family: monospace">
+            {{cmsFields.0.css}}
+        </textarea>
+        <button type="submit">Salvesta</button>
+    </form>
+</div>

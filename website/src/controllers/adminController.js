@@ -42,6 +42,7 @@ exports.cmsGet = (req, res, next) => {
 };
 
 /* GET admin panel CMS value */
+/*
 exports.cmsFieldGet = (req, res, next) => {
   CMSField.findOne({
     _id: req.params.id,
@@ -55,6 +56,7 @@ exports.cmsFieldGet = (req, res, next) => {
       });
     });
 };
+*/
 
 /* GET admin panel CMS value */
 exports.cmsUpdateFieldPost = (req, res, next) => {
