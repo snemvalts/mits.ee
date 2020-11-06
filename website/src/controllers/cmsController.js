@@ -10,8 +10,9 @@ export default (req, res, next) => {
         .map((field) => ({ key: field.key, value: field.value, css: field.css }))
         .reduce((acc, field) => ({
           ...acc,
-          [field.key]: { value: field.value, css: field.css },
+          [field.key]: { value: field.value, css: field.css || '' },
         }), {});
+
       return res.json(mappedFields);
     });
 };

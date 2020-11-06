@@ -1,0 +1,37 @@
+name: Run E2E tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  cypress-test:
+    name: Cypress Tests
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install cypress and verify
+        working-directory: website
+        run: |
+          npm ci
+          $(npm bin)/cypress verify
+      - name: Start server
+        working-directory: website
+        run: |
+          cp sample.env .env
+          docker-compose -f docker/development/docker-compose.yaml up -d
+      - name: Wait for server
+        uses: cygnetdigital/wait_for_response@v2.0.0
+        with:
+          url: 'http://localhost:8080/'
+          responseCode: '200,500'
+          timeout: 60000
+          interval: 10000
+
+      - name: Run Cypress tests
+        working-directory: website
+        run: npm run cypress:run-ci

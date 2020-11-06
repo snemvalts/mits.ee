@@ -1,0 +1,11 @@
+{
+    "rules": {
+        "indent": ["error", 4],
+        "no-undef": "off",
+        "semi": "off",
+        "no-unused-vars": "off"
+    },
+    "plugins": [
+        "cypress"
+      ]
+}
