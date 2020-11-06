@@ -27,7 +27,7 @@
 Cypress.Commands.add('changeValue', (container, changedText) => {
     cy.visit('http://localhost:8080/admin/cms/')
     cy.contains(container).click()
-    cy.get('textarea').clear().type(changedText)
+    cy.get('textarea[name="newValue"]').clear().type(changedText)
     cy.get('button').click()
     cy.visit('http://localhost:8080/')
 })

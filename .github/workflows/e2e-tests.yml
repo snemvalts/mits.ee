@@ -35,4 +35,3 @@ jobs:
       - name: Run Cypress tests
         working-directory: website
         run: npm run cypress:run-ci
-        continue-on-error: true
