@@ -1,11 +1,45 @@
 <h1>CMS</h1>
-<p>Sisesta uus väärtus võtmele <b>{{ cmsField.key }}</b>:</p>
-<form action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
-    <textarea name="newValue" rows="15" cols="40" style="font-family: monospace">
-        {{cmsField.value}}
-    </textarea>
-    <textarea name="newValueCss" rows="15" cols="40" style="font-family: monospace">
-        {{cmsField.css}}
-    </textarea>
+<p>Sisesta uus HTML võtmele <b>{{ cmsField.key }}</b>:</p>
+<div id="html-editor" style="width: 800px; height: 300px;"></div>
+<p>Kui tahad lisada custom SCSS-i, lisa see siia:</p>
+<div id="css-editor" style="width: 800px; height: 300px;"></div>
+
+<form id="cms-field-form" action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
+    <textarea name="newValue" style="visibility: hidden"></textarea>
+    <textarea name="newValueCss" style="visibility: hidden"></textarea>
     <button type="submit">Salvesta</button>
 </form>
+
+<script>
+    var require = { paths: { vs: '/monaco-editor/vs' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.0/beautify-html.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.0/beautify-css.min.js"></script>
+
+<script src="/monaco-editor/vs/loader.js"></script>
+<script src="/monaco-editor/vs//editor/editor.main.nls.js"></script>
+<script src="/monaco-editor/vs/editor/editor.main.js"></script>
+
+<script>
+    var el = document.createElement('span');
+    el.innerHTML = `{{cmsField.value}}`;
+
+    var htmlEditor = monaco.editor.create(document.getElementById('html-editor'), {
+        value: html_beautify(el.innerText.trim()),
+        language: 'html',
+    });
+
+    var cssEditor = monaco.editor.create(document.getElementById('css-editor'), {
+        value: css_beautify(`{{cmsField.css}}`.trim()),
+        language: 'scss',
+    });
+
+    document.getElementById('cms-field-form').onsubmit = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      document.getElementsByName('newValue')[0].value = htmlEditor.getValue();
+      document.getElementsByName('newValueCss')[0].value = cssEditor.getValue();
+
+      document.getElementById('cms-field-form').submit();
+    }
+</script>
