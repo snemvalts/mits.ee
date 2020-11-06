@@ -7,10 +7,10 @@ export default (req, res, next) => {
     .exec((err, fields) => {
       if (err) return next(err);
       const mappedFields = fields
-        .map((field) => ({ key: field.key, value: field.value }))
+        .map((field) => ({ key: field.key, value: field.value, css: field.css }))
         .reduce((acc, field) => ({
           ...acc,
-          [field.key]: field.value,
+          [field.key]: { value: field.value, css: field.css },
         }), {});
       return res.json(mappedFields);
     });
