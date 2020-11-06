@@ -1,5 +1,5 @@
 # mits.ee
-Welcome to MITS website
+Welcome to MITS websites
 
 [Read our wiki](https://github.com/snemvalts/mits.ee/wiki/Home)
 
