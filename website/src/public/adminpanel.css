@@ -73,4 +73,25 @@ code {
   .collapsible.collapsed > *:not(:first-child) {
     display: none; }
 
+.cms-pages {
+  display: flex; }
+  .cms-pages .cms-page-container {
+    margin: 0 30px; }
+    .cms-pages .cms-page-container .cms-page {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      height: 500px;
+      background: #ededed;
+      border-radius: 8px; }
+      .cms-pages .cms-page-container .cms-page a {
+        font-size: 20px;
+        flex-grow: 1;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center; }
+        .cms-pages .cms-page-container .cms-page a:not(:last-child) {
+          border-bottom: 2px solid white; }
+
 /*# sourceMappingURL=adminpanel.css.map */

@@ -106,3 +106,30 @@ code {
         }
     }
 }
+
+.cms-pages {
+    display: flex;
+    .cms-page-container {
+        margin: 0 30px;
+        .cms-page {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            height: 500px;
+            background: #ededed;
+            border-radius: 8px;
+
+            a {
+                font-size: 20px;
+                flex-grow: 1;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                &:not(:last-child){
+                    border-bottom: 2px solid white;
+                }
+            }
+        }
+    }
+}
