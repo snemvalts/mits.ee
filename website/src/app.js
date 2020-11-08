@@ -82,7 +82,9 @@ app.use((req, res, next) => {
 });
 
 app.use(compression());
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
