@@ -11,8 +11,8 @@ Welcome to MITS website
 4. Run following commands<br>
 `npm run install`<br>
 `npm run build`
-5. While in /website folder, to start production server run<br>
-`start-production-server`<br>
+5. While in /website folder, to start development server run<br>
+`start-dev-server`<br>
 script. If you are on Windows, you can run those commands manually.
 6. To see website, go to localhost:8080
 
