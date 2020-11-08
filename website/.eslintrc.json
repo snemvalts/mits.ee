@@ -7,6 +7,9 @@
     "extends": [
         "airbnb-base"
     ],
+    "ignorePatterns": [
+        "src/public/**"
+    ],
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"

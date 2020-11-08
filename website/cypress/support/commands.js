@@ -25,9 +25,16 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('changeValue', (container, changedText) => {
+    const selectAllKeyCombo = Cypress.platform === 'darwin' ? '{cmd}a' : '{ctrl}a';
+
     cy.visit('http://localhost:8080/admin/cms/')
+    cy.wait(2000);
     cy.contains(container).click()
-    cy.get('textarea[name="newValue"]').clear().type(changedText)
+    cy.get('#html-editor')
+        .click()
+        .focused()
+        .type(selectAllKeyCombo)
+        .type(changedText)
     cy.get('button').click()
     cy.visit('http://localhost:8080/')
 })
