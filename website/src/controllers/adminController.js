@@ -34,9 +34,12 @@ exports.cmsGet = (req, res, next) => {
     .exec((err, cmsFields) => {
       if (err) return next(err);
 
+      const cmsMap = cmsFields.reduce((acc, field) => ({ ...acc, [field.key]: field }), {});
+
       res.render('admin/cms.hbs', {
         title: 'CMS - MITS',
         cmsFields,
+        cmsMap,
       });
     });
 };
