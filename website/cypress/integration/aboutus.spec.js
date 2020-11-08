@@ -1,5 +1,17 @@
 describe('Test about us page', () => {
     it('Change text', () => {
+        cy.on('uncaught:exception', (err, runnable) => { // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress
+
+            // using mocha's async done callback to finish
+            // this test so we prove that an uncaught exception
+            // was thrown
+            done()
+
+            // return false to prevent the error from
+            // failing this test
+            return false
+        })
+
         cy.changeValue('aboutus_intro', `
             <h1>Midagi_muu-112512adsadas</h1>
             <p><strong>MAT-INF tudengiselts</strong> ehk <strong>MITS</strong> on Tartu Ülikooli matemaatika, matemaatilise statistika ja informaatika tudengeid ühendav erialaselts, mis tegutseb aktiivselt oma teaduskondade tudengite argipäeva elavdamise ja heaolu tagamisega.</p>
@@ -12,6 +24,18 @@ describe('Test about us page', () => {
     })
 
     it('Change HTML tag', () => {
+        cy.on('uncaught:exception', (err, runnable) => { // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress
+
+            // using mocha's async done callback to finish
+            // this test so we prove that an uncaught exception
+            // was thrown
+            done()
+
+            // return false to prevent the error from
+            // failing this test
+            return false
+        })
+
         cy.changeValue('aboutus_leadership', `
             <h1>Juhatus</h1>
             <p>Juhatuse eesmärk on luua seltsis keskkond, kus tiimijuhtidel oleks meeldiv ja mugav koos oma töögrupiga korraldada just neile meelepäraseid üritusi. Hoolitseme välise suhtluse eest seltsi ja instituutide vahel ning otsime alati uusi väljundeid ning võimalusi, et ükski lennukas idee ei jääks teostuse taha pidama.</p>
@@ -44,6 +68,18 @@ describe('Test about us page', () => {
     })
 
     it('Remove element', () => {
+        cy.on('uncaught:exception', (err, runnable) => { // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress
+
+            // using mocha's async done callback to finish
+            // this test so we prove that an uncaught exception
+            // was thrown
+            done()
+
+            // return false to prevent the error from
+            // failing this test
+            return false
+        })
+        
         cy.changeValue('aboutus_history', `
             <p>
                 Esmakordselt sai MAT-INF tudengiselts alguse Taivo Pungase eestvedamisel 23. aprillil 2014.
