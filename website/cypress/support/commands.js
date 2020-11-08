@@ -31,6 +31,7 @@ Cypress.Commands.add('changeValue', (container, changedText) => {
     cy.get('#html-editor')
         .click()
         .focused()
+        .clear()
         .type(changedText)
     cy.get('button').click()
     cy.visit('http://localhost:8080/')
