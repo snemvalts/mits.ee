@@ -28,7 +28,7 @@ Cypress.Commands.add('changeValue', (container, changedText) => {
     const selectAllKeyCombo = Cypress.platform === 'darwin' ? '{cmd}a' : '{ctrl}a';
 
     cy.visit('http://localhost:8080/admin/cms/')
-    cy.wait(1000);
+    cy.wait(2000);
     cy.contains(container).click()
     cy.get('#html-editor')
         .click()
