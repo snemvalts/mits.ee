@@ -13,7 +13,6 @@ const UserSchema = new Schema({
 /* Hashing a password before saving it to the database */
 UserSchema.pre('save', (next) => {
   const user = this;
-  // eslint-disable-next-line consistent-return
   bcrypt.hash(user.password, 12, (err, hash) => {
     if (err) {
       return next(err);
@@ -24,9 +23,8 @@ UserSchema.pre('save', (next) => {
 });
 
 /* Authentication based on input */
-UserSchema.statics.authenticate = (username, password, callback) => {
+UserSchema.statics.authenticate = function(username, password, callback) {
   this.findOne({ username })
-    // eslint-disable-next-line consistent-return
     .exec((err, user) => {
       const error = new Error('Invalid username or password.');
       error.status = 401;
@@ -35,8 +33,8 @@ UserSchema.statics.authenticate = (username, password, callback) => {
       } if (!user) {
         return callback(error);
       }
-      bcrypt.compare(password, user.password, (result) => {
-        if (result) {
+      bcrypt.compare(password, user.password, function (err, isMatch) {
+        if (isMatch) {
           return callback(null, user);
         }
         return callback(error);

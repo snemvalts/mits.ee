@@ -3,16 +3,6 @@ const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 const User = require('../models/user');
 
-if (process.env.NODE_ENV === 'development') {
-  const adminUser = new User({
-    username: 'admin',
-    password: '12345678',
-  });
-
-  // eslint-disable-next-line no-console
-  adminUser.save((err) => (err ? console.log('err', err) : console.log('created admin')));
-}
-
 /* GET login form */
 exports.loginGet = (req, res) => {
   if (req.session && req.session.userID) {
@@ -54,7 +44,6 @@ exports.loginPost = [
       if (err) {
         return next(err);
       }
-      // eslint-disable-next-line no-underscore-dangle
       req.session.userID = user._id;
       req.session.user = user;
       return res.redirect('/admin');

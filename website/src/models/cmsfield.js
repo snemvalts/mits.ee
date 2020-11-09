@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-// not sure if this is how mongo works
 const defaultValues = require('./cms-default-values.json');
 
 const CMSFieldSchema = new Schema({
