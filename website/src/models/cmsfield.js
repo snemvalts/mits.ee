@@ -24,7 +24,6 @@ if (process.env.NODE_ENV === 'development') {
       value: defaultValues[key],
       css: '/* Add custom SCSS */',
     });
-  
     field.save();
   });
 }

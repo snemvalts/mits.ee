@@ -44,6 +44,7 @@ exports.loginPost = [
       if (err) {
         return next(err);
       }
+      // eslint-disable-next-line no-underscore-dangle
       req.session.userID = user._id;
       req.session.user = user;
       return res.redirect('/admin');
