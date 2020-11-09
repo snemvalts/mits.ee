@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const endpoint = process.env.NODE_ENV === 'development' ? 'http://0.0.0.0:8080/cms/values' : '/cms/values';
+const endpoint = 'http://0.0.0.0:8080/cms/values';
 
 const fetchCMSKeys = (keys) => axios.get(endpoint, {
   params: {

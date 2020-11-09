@@ -17,13 +17,14 @@ const upload = multer({ storage });
 
 const adminController = require('../controllers/adminController');
 
-// eslint-disable-next-line consistent-return
 const requiresLogin = (req, res, next) => {
-  next();
-  // if (req.session && req.session.userID) {
-  //   return next();
-  // }
-  // res.redirect('/login');
+  if (process.env.NODE_ENV === 'development') {
+    next();
+  }
+  if (req.session && req.session.userID) {
+    return next();
+  }
+  res.redirect('/login');
 };
 
 router.all('/*', (req, res, next) => {

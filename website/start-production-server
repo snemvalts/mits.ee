@@ -2,5 +2,6 @@
 
 docker-compose -f docker/production/docker-compose.yaml stop
 git pull
-npm install
+npm ci --production
+npm run build
 docker-compose -f docker/production/docker-compose.yaml up -d

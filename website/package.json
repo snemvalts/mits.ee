@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "babel src/ --out-dir build/ --copy-files",
+    "build": "babel src/ --ignore src/public/monaco-editor/ --out-dir build/ --copy-files",
     "devstart": "export NODE_ENV=development && nodemon ./bin/www",
     "startforever": "forever start ./bin/www",
     "lint": "eslint ./src",
@@ -17,6 +17,10 @@
   "dependencies": {
     "async": "^2.6.1",
     "axios": "^0.20.0",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.3",
     "connect-mongo": "^3.2.0",
@@ -43,10 +47,6 @@
     "node-sass-middleware": "0.11.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.11.6",
-    "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.5",
     "@types/express": "^4.16.1",
     "cypress": "^5.5.0",
     "cypress-mochawesome-reporter": "^1.0.3",
