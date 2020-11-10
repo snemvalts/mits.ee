@@ -18,4 +18,4 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd ${{ secrets.PROJECT_PATH }}
-          ./start-production-server
+          ./start-production-server -d

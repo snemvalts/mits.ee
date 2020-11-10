@@ -24,7 +24,7 @@ UserSchema.pre('save', (next) => {
 });
 
 /* Authentication based on input */
-UserSchema.statics.authenticate = (username, password, callback) => {
+UserSchema.statics.authenticate = function auth(username, password, callback) {
   this.findOne({ username })
     // eslint-disable-next-line consistent-return
     .exec((err, user) => {
@@ -35,8 +35,11 @@ UserSchema.statics.authenticate = (username, password, callback) => {
       } if (!user) {
         return callback(error);
       }
-      bcrypt.compare(password, user.password, (result) => {
-        if (result) {
+      bcrypt.compare(password, user.password, (errhash, isMatch) => {
+        if (errhash) {
+          return callback(errhash);
+        }
+        if (isMatch) {
           return callback(null, user);
         }
         return callback(error);

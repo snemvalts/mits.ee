@@ -4,6 +4,11 @@ services:
     build:
       context: ../../
       dockerfile: docker/production/Dockerfile
+    image: mits.ee
+    volumes:
+      - ../../:/srv/app/
+      # ignore node_modules
+      - /srv/app/node_modules
     env_file: ../../.env
     restart: 'always'
     depends_on:

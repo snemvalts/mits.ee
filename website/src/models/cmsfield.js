@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-// not sure if this is how mongo works
 const defaultValues = require('./cms-default-values.json');
 
 const CMSFieldSchema = new Schema({
@@ -18,14 +17,15 @@ const CMSFieldSchema = new Schema({
 
 const CMSField = mongoose.model('CMSField', CMSFieldSchema);
 
-Object.keys(defaultValues).forEach((key) => {
-  const field = new CMSField({
-    key,
-    value: defaultValues[key],
-    css: '/* Add custom SCSS */',
+if (process.env.NODE_ENV === 'development') {
+  Object.keys(defaultValues).forEach((key) => {
+    const field = new CMSField({
+      key,
+      value: defaultValues[key],
+      css: '/* Add custom SCSS */',
+    });
+    field.save();
   });
-
-  field.save();
-});
+}
 
 module.exports = CMSField;
