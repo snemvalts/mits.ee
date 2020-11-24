@@ -4,16 +4,19 @@ const router = express.Router();
 
 const multer = require('multer');
 
+const path = require('path');
+
 const storage = multer.diskStorage({
-  destination: 'public/media/liikmed/',
-  filename: (req, file, callback) => {
-    callback(null, `${req.params.id}.jpg`);
+  destination: (req, file, cb) => {
+    cb(null, './src/public/media/uploads')
   },
-  limits: {
-    fieldSize: '10KB',
-  },
+  filename: (req, file, cb) => {
+      console.log(file)
+      cb(null, file.originalname)
+  }
 });
-const upload = multer({ storage });
+
+const upload = multer({ storage: storage });
 
 const adminController = require('../controllers/adminController');
 
@@ -45,6 +48,9 @@ router.get('/cms/field/:id', requiresLogin, adminController.cmsFieldGet);
 
 /* GET admin panel CMS */
 router.post('/cms/update-field/:id', requiresLogin, adminController.cmsUpdateFieldPost);
+
+/* GET admin panel CMS */
+router.post('/upload',requiresLogin, upload.array('uploadedImages'), adminController.cmsUploadImages);
 
 /* GET admin panel blog */
 router.get('/blogi', requiresLogin, adminController.blogGet);

@@ -34,3 +34,17 @@
         </div>
     </div>
 </div>
+
+<div>
+    <h2>Piltide üleslaadimine</h2>
+    {{#if imagesUploaded}}
+    <h4 style='color: green;'>Piltide üleslaadimine õnnestus</h4>
+    {{/if}}
+    {{#if imagesNotUploaded}}
+    <h4 style='color: red;'>Piltide üleslaadimine ebaõnnestus</h4>
+    {{/if}}
+    <form action="/admin/upload" method="post" enctype="multipart/form-data">
+        <input type="file", accept='image/*', name="uploadedImages" multiple>
+        <input style='width: 5em;' type="submit" value="Lae üles" >
+    </form>
+</div>

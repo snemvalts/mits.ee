@@ -15,12 +15,12 @@
     "cypress:report": "generate-mochawesome-report --screenshotsDir publicCypress/screenshots/ --output publicCypress && mv publicCypress/mochawesome.html publicCypress/index.html  && rm -rf cypress/results/json/"
   },
   "dependencies": {
-    "async": "^2.6.1",
-    "axios": "^0.20.0",
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
+    "async": "^2.6.1",
+    "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.3",
     "connect-mongo": "^3.2.0",
@@ -42,7 +42,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.5",
     "morgan": "~1.9.0",
-    "multer": "^1.4.1",
+    "multer": "^1.4.2",
     "node-sass": "^5.0.0",
     "node-sass-middleware": "0.11.0"
   },
