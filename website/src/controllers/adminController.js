@@ -52,9 +52,12 @@ exports.cmsFieldGet = (req, res, next) => {
     .exec((err, cmsField) => {
       if (err) return next(err);
 
+      const section = req.query.section
+
       res.render('admin/cmsField.hbs', {
         title: 'CMS - MITS',
         cmsField,
+        section,
       });
     });
 };
