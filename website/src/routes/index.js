@@ -18,7 +18,7 @@ const requiresLogin = (req, res, next) => {
   if (req.session && req.session.userID) {
     return next();
   }
-  res.redirect('/login');
+  return res.redirect('/login');
 };
 
 /* GET home page */

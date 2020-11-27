@@ -4,8 +4,9 @@ import Article from '../models/article';
 import Event from '../models/event';
 import cmsFieldsGetter from '../helpers/cmsFieldsGetter';
 import cmsFieldsParser from '../helpers/cmsFieldsParser';
-let sectionSCSSWrappers = require('../helpers/sectionSCSSWrappers.js');
+
 const sass = require('node-sass');
+const sectionSCSSWrappers = require('../helpers/sectionSCSSWrappers.js');
 
 /* GET index page */
 exports.indexGet = (req, res, next) => {
@@ -114,15 +115,13 @@ exports.mentorGet = (req, res, next) => {
 };
 
 /* GET admin panel test env */
-exports.cmsTestenv = (req, res, next) => {
-
-  let cmsFields = {}
+exports.cmsTestenv = (req, res) => {
+  const cmsFields = {};
   cmsFields[req.query.field] = req.body.newTest;
 
-  let section = req.query.section
+  const { section } = req.query;
+  const scss = `${sectionSCSSWrappers.values[Object.keys(cmsFields)[0]]}${req.body.newTestCss}}`;
 
-  let scss = sectionSCSSWrappers.values[Object.keys(cmsFields)[0]] + req.body.newTestCss + '}'
-  
   const style = sass.renderSync({
     data: scss,
   }).css;

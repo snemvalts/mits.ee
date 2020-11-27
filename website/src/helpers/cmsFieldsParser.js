@@ -1,5 +1,5 @@
 const sass = require('node-sass');
-let sectionSCSSWrappers = require('../helpers/sectionSCSSWrappers.js');
+const sectionSCSSWrappers = require('./sectionSCSSWrappers.js');
 
 const cmsFieldsParser = {
   get(cmsFields) {

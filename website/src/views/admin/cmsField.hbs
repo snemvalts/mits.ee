@@ -10,16 +10,16 @@
         <form id="cms-field-form" action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
             <textarea name="newValue" style="visibility: hidden"></textarea>
             <textarea name="newValueCss" style="visibility: hidden"></textarea>
-            <button type="submit">Salvesta</button>
+            <button id="save-button" type="submit">Salvesta</button>
         </form>
     </div>
     <div style="display: flex; flex-direction: column; width: 100%;">
         <form id="cms-test-form" action="/testenv?section={{ section }}&field={{ cmsField.key }}" method="post" style="display: block" target='testenv'>
-            <textarea name="newTest" style="visibility: hidden"></textarea>
-            <textarea name="newTestCss" style="visibility: hidden"></textarea>
-            <button type="submit">Uuenda</button>
+            <textarea name="newTest" style="display: none;"></textarea>
+            <textarea name="newTestCss" style="display: none;"></textarea>
+            <button id="test-button" type="submit">Uuenda</button>
         </form>
-        <iframe name='testenv' src="/testenv?section={{ section }}&field={{ cmsField.key }}" style="height: 100%;"></iframe>
+        <iframe name="testenv" src="/testenv?section={{ section }}&field={{ cmsField.key }}" style="height: 100%;"></iframe>
     </div>
 </div>
 
