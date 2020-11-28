@@ -1,14 +1,27 @@
 <h1>CMS</h1>
-<p>Sisesta uus HTML võtmele <b>{{ cmsField.key }}</b>:</p>
-<div id="html-editor" style="width: 800px; height: 300px;"></div>
-<p>Kui tahad lisada custom SCSS-i, lisa see siia:</p>
-<div id="css-editor" style="width: 800px; height: 300px;"></div>
 
-<form id="cms-field-form" action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
-    <textarea name="newValue" style="visibility: hidden"></textarea>
-    <textarea name="newValueCss" style="visibility: hidden"></textarea>
-    <button type="submit">Salvesta</button>
-</form>
+<div style="display: flex; flex-direction: row;">
+    <div>
+        <p>Sisesta uus HTML võtmele <b>{{ cmsField.key }}</b>:</p>
+        <div id="html-editor" style="width: 800px; height: 300px;"></div>
+        <p>Kui tahad lisada custom SCSS-i, lisa see siia:</p>
+        <div id="css-editor" style="width: 800px; height: 300px;"></div>
+
+        <form id="cms-field-form" action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
+            <textarea name="newValue" style="visibility: hidden"></textarea>
+            <textarea name="newValueCss" style="visibility: hidden"></textarea>
+            <button id="save-button" type="submit">Salvesta</button>
+        </form>
+    </div>
+    <div style="display: flex; flex-direction: column; width: 100%;">
+        <form id="cms-test-form" action="/testenv?section={{ section }}&field={{ cmsField.key }}" method="post" style="display: block" target='testenv'>
+            <textarea name="newTest" style="display: none;"></textarea>
+            <textarea name="newTestCss" style="display: none;"></textarea>
+            <button id="test-button" type="submit">Uuenda</button>
+        </form>
+        <iframe name="testenv" src="/testenv?section={{ section }}&field={{ cmsField.key }}" style="height: 100%;"></iframe>
+    </div>
+</div>
 
 <script>
     var require = { paths: { vs: '/monaco-editor/vs' } };
@@ -34,6 +47,8 @@
         language: 'scss',
     });
 
+    submitTest();
+
     document.getElementById('cms-field-form').onsubmit = (e) => {
       e.stopPropagation();
       e.preventDefault();
@@ -41,5 +56,17 @@
       document.getElementsByName('newValueCss')[0].value = cssEditor.getValue();
 
       document.getElementById('cms-field-form').submit();
+    }
+
+    document.getElementById('cms-test-form').onsubmit = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      submitTest();
+    }
+
+    function submitTest() {
+      document.getElementsByName('newTest')[0].value = htmlEditor.getValue();
+      document.getElementsByName('newTestCss')[0].value = cssEditor.getValue();
+      document.getElementById('cms-test-form').submit();
     }
 </script>

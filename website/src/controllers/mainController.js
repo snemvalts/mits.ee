@@ -5,6 +5,9 @@ import Event from '../models/event';
 import cmsFieldsGetter from '../helpers/cmsFieldsGetter';
 import cmsFieldsParser from '../helpers/cmsFieldsParser';
 
+const sass = require('node-sass');
+const sectionSCSSWrappers = require('../helpers/sectionSCSSWrappers.js');
+
 /* GET index page */
 exports.indexGet = (req, res, next) => {
   const queries = [
@@ -109,4 +112,24 @@ exports.mentorGet = (req, res, next) => {
       cmsFields,
     });
   }).catch((error) => next(error));
+};
+
+/* GET admin panel test env */
+exports.cmsTestenv = (req, res) => {
+  const cmsFields = {};
+  cmsFields[req.query.field] = req.body.newTest;
+
+  const { section } = req.query;
+  const scss = `${sectionSCSSWrappers.values[Object.keys(cmsFields)[0]]}${req.body.newTestCss}}`;
+
+  const style = sass.renderSync({
+    data: scss,
+  }).css;
+
+  res.render(section, {
+    title: 'MAT-INF tudengiselts',
+    style,
+    user: req.session.user,
+    cmsFields,
+  });
 };
