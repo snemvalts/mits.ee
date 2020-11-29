@@ -11,6 +11,16 @@ router.all('/*', (req, res, next) => {
   next();
 });
 
+const requiresLogin = (req, res, next) => {
+  if (process.env.NODE_ENV === 'development') {
+    return next();
+  }
+  if (req.session && req.session.userID) {
+    return next();
+  }
+  return res.redirect('/login');
+};
+
 /* GET home page */
 router.get('/', mainController.indexGet);
 
@@ -43,6 +53,9 @@ router.post('/login', loginController.loginPost);
 
 /* GET logout */
 router.get('/logout', loginController.logout);
+
+/* GET admin panel CMS */
+router.post('/testenv', requiresLogin, mainController.cmsTestenv);
 
 /* Locale cookies */
 // https://gist.github.com/mashpie/5246334

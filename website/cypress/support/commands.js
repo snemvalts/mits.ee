@@ -35,7 +35,7 @@ Cypress.Commands.add('changeValue', (container, changedText) => {
         .focused()
         .type(selectAllKeyCombo)
         .type(changedText)
-    cy.get('button').click()
+    cy.get('#save-button').click()
     cy.visit('http://localhost:8080/')
 })
 
