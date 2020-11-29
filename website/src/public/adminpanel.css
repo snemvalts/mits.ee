@@ -80,12 +80,12 @@ code {
     .cms-pages .cms-page-container .cms-page {
       display: flex;
       flex-direction: column;
-      width: 300px;
-      height: 500px;
-      background: #ededed;
-      border-radius: 8px; }
+      width: 200px;
+      height: 350px;
+      background: #ededed; }
       .cms-pages .cms-page-container .cms-page a {
-        font-size: 20px;
+        color: black;
+        text-decoration: none;
         flex-grow: 1;
         display: flex;
         text-align: center;
@@ -93,5 +93,12 @@ code {
         align-items: center; }
         .cms-pages .cms-page-container .cms-page a:not(:last-child) {
           border-bottom: 2px solid white; }
+        .cms-pages .cms-page-container .cms-page a p {
+          color: inherit;
+          font-size: 15px;
+          font-weight: 500;
+          width: 80%; }
+      .cms-pages .cms-page-container .cms-page a:hover {
+        color: grey; }
 
 /*# sourceMappingURL=adminpanel.css.map */

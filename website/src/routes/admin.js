@@ -1,22 +1,35 @@
 const express = require('express');
 
 const router = express.Router();
-
 const multer = require('multer');
-
+const fs = require('fs');
 const path = require('path');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './src/public/media/uploads')
+    const { folder } = req.body;
+    return cb(null, `./src/public/${folder}`);
   },
   filename: (req, file, cb) => {
-      console.log(file)
-      cb(null, file.originalname)
-  }
+    cb(null, file.originalname);
+  },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    const { folder } = req.body;
+    if (fs.existsSync(path.join(`./src/public/${folder}`, file.originalname))) {
+      if (req.fileValidationError) {
+        req.fileValidationError = `${req.fileValidationError}, "${folder}/${file.originalname}"`;
+      } else {
+        req.fileValidationError = `"${folder}/${file.originalname}"`;
+      }
+      return cb(null, false, req.fileValidationError);
+    }
+    return cb(null, true);
+  },
+});
 
 const adminController = require('../controllers/adminController');
 
@@ -33,7 +46,6 @@ const requiresLogin = (req, res, next) => {
 
 router.all('/*', (req, res, next) => {
   req.app.locals.layout = 'admin/layout.hbs';
-  req.app.locals.user = req.session.user;
   next();
 });
 
@@ -50,7 +62,7 @@ router.get('/cms/field/:id', requiresLogin, adminController.cmsFieldGet);
 router.post('/cms/update-field/:id', requiresLogin, adminController.cmsUpdateFieldPost);
 
 /* GET admin panel CMS */
-router.post('/upload',requiresLogin, upload.array('uploadedImages'), adminController.cmsUploadImages);
+router.post('/upload', requiresLogin, upload.array('uploadedImages'), adminController.cmsUploadImages);
 
 /* GET admin panel blog */
 router.get('/blogi', requiresLogin, adminController.blogGet);

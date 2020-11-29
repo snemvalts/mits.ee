@@ -1,12 +1,12 @@
 <h1>CMS</h1>
-<p>Sisesta uus HTML võtmele <b>{{ cmsField.key }}</b>:</p>
-<div id="html-editor" style="width: 800px; height: 300px;"></div>
-<p>Kui tahad lisada custom SCSS-i, lisa see siia:</p>
-<div id="css-editor" style="width: 800px; height: 300px;"></div>
+<p>Sisesta uus HTML sektsioonile <b>{{ cmsField.key }}</b>.</p>
+<div id="html-editor" style="width: 800px; height: 500px; border: 1px solid black;"></div>
+<p>Kui tahad lisada sektsioonile SCSS-i, lisa see siia.</p>
+<div id="css-editor" style="width: 800px; height: 500px; border: 1px solid black;"></div>
 
 <form id="cms-field-form" action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
-    <textarea name="newValue" style="visibility: hidden"></textarea>
-    <textarea name="newValueCss" style="visibility: hidden"></textarea>
+    <textarea name="newValue" style="display: none;"></textarea>
+    <textarea name="newValueCss" style="display: none;"></textarea>
     <button type="submit">Salvesta</button>
 </form>
 
