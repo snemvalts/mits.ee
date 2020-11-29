@@ -49,6 +49,7 @@
   "devDependencies": {
     "@types/express": "^4.16.1",
     "cypress": "^5.5.0",
+    "cypress-file-upload": "^4.1.1",
     "cypress-mochawesome-reporter": "^1.0.3",
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
