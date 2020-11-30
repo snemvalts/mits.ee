@@ -7,8 +7,8 @@
             <button class="pill" id="css" style="margin-left: 5px;">CSS</button>
         </div>
         <div style="margin-left: auto; padding-right: 1rem;">
-            <button class="pill" onclick="wrap()">Wrap</button>
-            <button class="pill" onclick="unwrap()" style="margin-left: 5px;">Unwrap</button>
+            <button id="wrap" class="pill" onclick="wrap()">Wrap</button>
+            <button id="unwrap" class="pill" onclick="unwrap()" style="margin-left: 5px;">Unwrap</button>
         </div>
         </div>
         <div class="tab active" id="htmlTab" style="margin: 1rem;">
@@ -23,14 +23,14 @@
         <form id="cms-field-form" action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
           <textarea name="newValue" style="display: none;"></textarea>
           <textarea name="newValueCss" style="display: none;"></textarea>
-          <button id="save-button" type="submit">Salvesta</button>
+          <button id="save-button" class="pill" type="submit" style="margin-left: 1rem;">Salvesta</button>
         </form>
     </div>
     <div style="display: flex; flex-direction: column; width: 100%;">
         <form id="cms-test-form" action="/testenv?section={{ section }}&field={{ cmsField.key }}" method="post" style="display: block" target='testenv'>
             <textarea name="newTest" style="display: none;"></textarea>
             <textarea name="newTestCss" style="display: none;"></textarea>
-            <button id="test-button" type="submit">Uuenda</button>
+            <button id="test-button" class="pill" type="submit" style="margin-left: 1rem;">Uuenda</button>
         </form>
         <iframe name="testenv" src="/testenv?section={{ section }}&field={{ cmsField.key }}" style="height: 100%; margin: 1rem;"></iframe>
     </div>
@@ -39,7 +39,6 @@
 <style>
   .pill {
     padding: 10px;
-
     border-radius: 4px;
     background-color:#ffffff;
     color:#000000;
