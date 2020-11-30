@@ -1,8 +1,16 @@
 <h1>CMS</h1>
 <div style="display: flex; flex-direction: row;">
     <div>
-        <button class="pill active" id="html">HTML</button>
-        <button class="pill" id="css">CSS</button>
+        <div style="display: flex; flex-direction: row;">
+          <div style="margin-right: auto; padding-left: 1rem;">
+            <button class="pill active" id="html">HTML</button>
+            <button class="pill" id="css" style="margin-left: 5px;">CSS</button>
+        </div>
+        <div style="margin-left: auto; padding-right: 1rem;">
+            <button class="pill" onclick="wrap()">Wrap</button>
+            <button class="pill" onclick="unwrap()" style="margin-left: 5px;">Unwrap</button>
+        </div>
+        </div>
         <div class="tab active" id="htmlTab" style="margin: 1rem;">
           <p>Sisesta uus HTML sektsioonile <b>{{ cmsField.key }}</b>.</p>
           <div id="html-editor" style="width: 800px; height: 700px; border: 1px solid black;"></div>
@@ -31,6 +39,7 @@
 <style>
   .pill {
     padding: 10px;
+
     border-radius: 4px;
     background-color:#ffffff;
     color:#000000;
@@ -69,6 +78,7 @@
     var htmlEditor = monaco.editor.create(document.getElementById('html-editor'), {
         value: html_beautify(el.innerText.trim()),
         language: 'html',
+        wordWrap: 'on',
       });
 
     var cssEditor;
@@ -110,7 +120,6 @@
   const htmlButton = document.querySelector('#html');
   const cssButton = document.querySelector('#css');
   const tabs = document.querySelectorAll('.tab');
-  let firstRun = true;
 
   htmlButton.onclick = () => {
     if (!htmlButton.classList.contains('active')) {
@@ -123,19 +132,21 @@
   };
 
   cssButton.onclick = () => {
-    if (!cssButton.classList.contains('active') && firstRun) {
+    if (!cssButton.classList.contains('active')) {
       htmlButton.classList.toggle('active');
       cssButton.classList.toggle('active');
       tabs.forEach((el) => {
         el.classList.toggle('active')
       });
-    } else if (document.querySelector('#cssTab').classList.contains('hidden')) {
-      htmlButton.classList.toggle('active');
-      cssButton.classList.toggle('active');
-      document.querySelector('#htmlTab').classList.toggle('active');
-      document.querySelector('#cssTab').className = 'tab active';
-      firstRun = false;
-    }
+    };
   };
+
+  function wrap() {
+    htmlEditor.updateOptions({wordWrap: 'on'});
+  }
+
+  function unwrap() {
+    htmlEditor.updateOptions({wordWrap: 'off'});
+  }
 
 </script>
