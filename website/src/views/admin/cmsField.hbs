@@ -1,27 +1,63 @@
 <h1>CMS</h1>
-
 <div style="display: flex; flex-direction: row;">
     <div>
-        <p>Sisesta uus HTML võtmele <b>{{ cmsField.key }}</b>:</p>
-        <div id="html-editor" style="width: 800px; height: 300px;"></div>
-        <p>Kui tahad lisada custom SCSS-i, lisa see siia:</p>
-        <div id="css-editor" style="width: 800px; height: 300px;"></div>
+        <div style="display: flex; flex-direction: row;">
+          <div style="margin-right: auto; padding-left: 1rem;">
+            <button class="pill active" id="html">HTML</button>
+            <button class="pill" id="css" style="margin-left: 5px;">CSS</button>
+        </div>
+        <div style="margin-left: auto; padding-right: 1rem;">
+            <button id="wrap" class="pill" onclick="wrap()">Wrap</button>
+            <button id="unwrap" class="pill" onclick="unwrap()" style="margin-left: 5px;">Unwrap</button>
+        </div>
+        </div>
+        <div class="tab active" id="htmlTab" style="margin: 1rem;">
+          <p>Sisesta uus HTML sektsioonile <b>{{ cmsField.key }}</b>.</p>
+          <div id="html-editor" style="width: 800px; height: 700px; border: 1px solid black;"></div>
+        </div>
+        <div class="tab active" id="cssTab" style="margin: 1rem;">
+          <p>Kui tahad lisada sektsioonile SCSS-i, lisa see siia.</p>
+          <div id="css-editor" style="width: 800px; height: 700px; border: 1px solid black;"></div>
+        </div>
 
         <form id="cms-field-form" action="/admin/cms/update-field/{{ cmsField.id }}/" method="post" style="display: block">
-            <textarea name="newValue" style="visibility: hidden"></textarea>
-            <textarea name="newValueCss" style="visibility: hidden"></textarea>
-            <button id="save-button" type="submit">Salvesta</button>
+          <textarea name="newValue" style="display: none;"></textarea>
+          <textarea name="newValueCss" style="display: none;"></textarea>
+          <button id="save-button" class="pill" type="submit" style="margin-left: 1rem;">Salvesta</button>
         </form>
     </div>
     <div style="display: flex; flex-direction: column; width: 100%;">
         <form id="cms-test-form" action="/testenv?section={{ section }}&field={{ cmsField.key }}" method="post" style="display: block" target='testenv'>
             <textarea name="newTest" style="display: none;"></textarea>
             <textarea name="newTestCss" style="display: none;"></textarea>
-            <button id="test-button" type="submit">Uuenda</button>
+            <button id="test-button" class="pill" type="submit" style="margin-left: 1rem;">Uuenda</button>
         </form>
-        <iframe name="testenv" src="/testenv?section={{ section }}&field={{ cmsField.key }}" style="height: 100%;"></iframe>
+        <iframe name="testenv" src="/testenv?section={{ section }}&field={{ cmsField.key }}" style="height: 100%; margin: 1rem;"></iframe>
     </div>
 </div>
+
+<style>
+  .pill {
+    padding: 10px;
+    border-radius: 4px;
+    background-color:#ffffff;
+    color:#000000;
+    outline: none !important;
+  }
+
+  .pill.active {
+    border:2px solid #4b98c2;
+    box-shadow: 0px 0px 8px 0px #3892c2;
+  }
+
+  .tab {
+    display: none;
+  }
+
+  .tab.active {
+    display: block;
+  }
+</style>
 
 <script>
     var require = { paths: { vs: '/monaco-editor/vs' } };
@@ -34,17 +70,27 @@
 <script src="/monaco-editor/vs/editor/editor.main.js"></script>
 
 <script>
+    
     var el = document.createElement('span');
     el.innerHTML = `{{cmsField.value}}`;
 
     var htmlEditor = monaco.editor.create(document.getElementById('html-editor'), {
         value: html_beautify(el.innerText.trim()),
         language: 'html',
-    });
+        wordWrap: 'on',
+      });
 
-    var cssEditor = monaco.editor.create(document.getElementById('css-editor'), {
-        value: css_beautify(`{{cmsField.css}}`.trim()),
-        language: 'scss',
+    var cssEditor;
+
+    async function init() {
+      cssEditor = monaco.editor.create(document.getElementById('css-editor'), {
+          value: css_beautify(`{{cmsField.css}}`.trim()),
+          language: 'scss',
+      });
+    };
+
+    init().then(() => {
+      document.querySelector('#cssTab').className = 'tab';
     });
 
     submitTest();
@@ -69,4 +115,37 @@
       document.getElementsByName('newTestCss')[0].value = cssEditor.getValue();
       document.getElementById('cms-test-form').submit();
     }
+
+  const htmlButton = document.querySelector('#html');
+  const cssButton = document.querySelector('#css');
+  const tabs = document.querySelectorAll('.tab');
+
+  htmlButton.onclick = () => {
+    if (!htmlButton.classList.contains('active')) {
+      htmlButton.classList.toggle('active');
+      cssButton.classList.toggle('active');
+      tabs.forEach((el) => {
+        el.classList.toggle('active')
+      });
+    }
+  };
+
+  cssButton.onclick = () => {
+    if (!cssButton.classList.contains('active')) {
+      htmlButton.classList.toggle('active');
+      cssButton.classList.toggle('active');
+      tabs.forEach((el) => {
+        el.classList.toggle('active')
+      });
+    };
+  };
+
+  function wrap() {
+    htmlEditor.updateOptions({wordWrap: 'on'});
+  }
+
+  function unwrap() {
+    htmlEditor.updateOptions({wordWrap: 'off'});
+  }
+
 </script>

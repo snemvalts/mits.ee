@@ -1,35 +1,60 @@
 <h1>CMS</h1>
-<p>Vali lehekülg, ja muudetav sektsioon:</p>
+<p>Vali muudetav sektsioon.</p>
 
 <div class="cms-pages">
     <div class="cms-page-container">
         <h2>Avaleht</h2>
         <div class="cms-page">
-            <a href="/admin/cms/field/{{ cmsMap.index_cta_text._id }}?section=index" id="index_cta_text">Intro ja CTA</a>
-            <a href="/admin/cms/field/{{ cmsMap.index_people_container._id }}?section=index" id="index_people_container">Missioon ja inimesed</a>
-            <a href="/admin/cms/field/{{ cmsMap.index_sponsors._id }}?section=index" id="index_sponsors">Sponsorid</a>
-            <a href="/admin/cms/field/{{ cmsMap.index_partners._id }}?section=index" id="index_partners">Partnerid</a>
+            <a href="/admin/cms/field/{{ cmsMap.index_cta_text._id }}?section=index" id="index_cta_text"><p>Intro ja CTA</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.index_people_container._id }}?section=index" id="index_people_container"><p>Missioon ja inimesed</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.index_sponsors._id }}?section=index" id="index_sponsors"><p>Sponsorid</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.index_partners._id }}?section=index" id="index_partners"><p>Partnerid</p></a>
         </div>
     </div>
 
     <div class="cms-page-container">
         <h2>Meist</h2>
         <div class="cms-page">
-            <a href="/admin/cms/field/{{ cmsMap.aboutus_intro._id }}?section=about" id="aboutus_intro">Intro</a>
-            <a href="/admin/cms/field/{{ cmsMap.aboutus_mission_vision._id }}?section=about" id="aboutus_mission_vision">Missioon ja visioon </a>
-            <a href="/admin/cms/field/{{ cmsMap.aboutus_leadership._id }}?section=about" id="aboutus_leadership">Juhatus</a>
-            <a href="/admin/cms/field/{{ cmsMap.aboutus_history._id }}?section=about" id="aboutus_history">Ajalugu</a>
-            <a href="/admin/cms/field/{{ cmsMap.aboutus_workgroups._id }}?section=about" id="aboutus_workgroups">Töögrupid</a>
+            <a href="/admin/cms/field/{{ cmsMap.aboutus_intro._id }}?section=about" id="aboutus_intro"><p>Intro</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.aboutus_mission_vision._id }}?section=about" id="aboutus_mission_vision"><p>Missioon ja visioon</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.aboutus_leadership._id }}?section=about" id="aboutus_leadership"><p>Juhatus</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.aboutus_history._id }}?section=about" id="aboutus_history"><p>Ajalugu</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.aboutus_workgroups._id }}?section=about" id="aboutus_workgroups"><p>Töögrupid</p></a>
         </div>
     </div>
-
+     
     <div class="cms-page-container">
         <h2>Mentor</h2>
         <div class="cms-page">
-            <a href="/admin/cms/field/{{ cmsMap.mentor_intro._id }}?section=mentor" id="mentor_intro">Intro</a>
-            <a href="/admin/cms/field/{{ cmsMap.mentor_description._id }}?section=mentor" id="mentor_description">Mentorprogrammi kirjeldus</a>
-            <a href="/admin/cms/field/{{ cmsMap.mentor_benefits._id }}?section=mentor" id="mentor_benefits">Mentorprogrammi pakkumised</a>
-            <a href="/admin/cms/field/{{ cmsMap.mentor_administration._id }}?section=mentor" id="mentor_administration">Mentorprogrammi vastutajad</a>
+            <a href="/admin/cms/field/{{ cmsMap.mentor_intro._id }}?section=mentor" id="mentor_intro"><p>Intro</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.mentor_description._id }}?section=mentor" id="mentor_description"><p>Mentorprogrammi kirjeldus</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.mentor_benefits._id }}?section=mentor" id="mentor_benefits"><p>Mentorprogrammi pakkumised</p></a>
+            <a href="/admin/cms/field/{{ cmsMap.mentor_administration._id }}?section=mentor" id="mentor_administration"><p>Mentorprogrammi vastutajad</p></a>
         </div>
     </div>
+</div>
+
+<div>
+    <h2>Piltide üleslaadimine</h2>
+    {{#if imagesUploaded}}
+    <h5 style='color: green;'>Piltide üleslaadimine õnnestus</h5>
+    {{/if}}
+    {{#if imagesNotUploaded}}
+    <h5 style='color: red;'>Piltide üleslaadimine ebaõnnestus</h5>
+    {{/if}}
+    {{#if error}}
+    <h5 style='color: red;'>Nimedega {{ error }} failid on juba olemas.</h5>
+    <h5 style='color: green;'>Teiste failide üleslaadimine õnnestus.</h5>
+    {{/if}}
+    <label for="folder">Vali kaust:</label>
+    <select name="folder" id="folder" form="uploadform">
+        <option value="media">/media</option>
+        <option value="media/liikmed">/media/liikmed</option>
+        <option value="media/sponsors">/media/sponsors</option>
+        <option value="media/icons">/media/icons</option>
+    </select>
+    <form action="/admin/upload" method="post" enctype="multipart/form-data" id="uploadform">
+        <input type="file", accept='image/*', name="uploadedImages" multiple>
+        <input style='width: 5em;' type="submit" value="Lae üles" >
+    </form>
 </div>

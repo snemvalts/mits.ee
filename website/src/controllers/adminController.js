@@ -36,10 +36,15 @@ exports.cmsGet = (req, res, next) => {
 
       const cmsMap = cmsFields.reduce((acc, field) => ({ ...acc, [field.key]: field }), {});
 
+      const { imagesUploaded, imagesNotUploaded, error } = req.query;
+
       res.render('admin/cms.hbs', {
         title: 'CMS - MITS',
         cmsFields,
         cmsMap,
+        imagesUploaded,
+        imagesNotUploaded,
+        error,
       });
     });
 };
@@ -70,6 +75,16 @@ exports.cmsUpdateFieldPost = (req, res, next) => {
       if (err) return next(err);
       res.redirect('/admin/cms/');
     });
+};
+
+exports.cmsUploadImages = (req, res) => {
+  if (req.fileValidationError) {
+    return res.redirect(`/admin/cms?error=${req.fileValidationError}`);
+  }
+  if (!req.files) {
+    return res.redirect('/admin/cms?imagesNotUploaded=1');
+  }
+  return res.redirect('/admin/cms?imagesUploaded=1');
 };
 
 /* GET admin panel blog */

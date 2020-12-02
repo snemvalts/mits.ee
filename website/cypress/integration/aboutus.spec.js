@@ -1,7 +1,6 @@
 describe('Test about us page', () => {
     it('Change text', () => {
         cy.on('uncaught:exception', (err, runnable) => { // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress
-
             // using mocha's async done callback to finish
             // this test so we prove that an uncaught exception
             // was thrown
@@ -25,7 +24,6 @@ describe('Test about us page', () => {
 
     it('Change HTML tag', () => {
         cy.on('uncaught:exception', (err, runnable) => { // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress
-
             // using mocha's async done callback to finish
             // this test so we prove that an uncaught exception
             // was thrown
@@ -69,7 +67,6 @@ describe('Test about us page', () => {
 
     it('Remove element', () => {
         cy.on('uncaught:exception', (err, runnable) => { // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress
-
             // using mocha's async done callback to finish
             // this test so we prove that an uncaught exception
             // was thrown
@@ -79,7 +76,7 @@ describe('Test about us page', () => {
             // failing this test
             return false
         })
-        
+
         cy.changeValue('aboutus_history', `
             <p>
                 Esmakordselt sai MAT-INF tudengiselts alguse Taivo Pungase eestvedamisel 23. aprillil 2014.
