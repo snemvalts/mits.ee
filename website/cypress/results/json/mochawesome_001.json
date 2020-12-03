@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-11-08T18:09:21.655Z",
+    "end": "2020-11-08T18:10:39.653Z",
+    "duration": 77998,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ad7a5aa4-2614-4133-8737-fa795e811fad",
+      "title": "",
+      "fullFile": "cypress/integration/index.spec.js",
+      "file": "cypress/integration/index.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "31599af8-c155-4849-bda8-eaafa23fbf20",
+          "title": "Test index page (main page)",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Change text",
+              "fullTitle": "Test index page (main page) Change text",
+              "timedOut": null,
+              "duration": 11755,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/index.spec.js.mp4\"",
+              "code": "cy.changeValue('index_cta_text', \"\\n            <h1>Hello!</h1>\\n            <h2>Liitumine MITSi on avatud!</h2>\\n            <a class=\\\"btn gradient\\\"\\n                href=\\\"/liitumine\\\"\\n                target=\\\"_blank\\\" rel=\\\"noopener\\\">Liitu</a>\\n           \");\ncy.get('#joininfo').should('contain', 'Hello!');\ncy.resetField('index_cta_text');",
+              "err": {},
+              "uuid": "9f321afa-f65b-4a67-a88c-f36e32f5438d",
+              "parentUUID": "31599af8-c155-4849-bda8-eaafa23fbf20",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Change HTML tag",
+              "fullTitle": "Test index page (main page) Change HTML tag",
+              "timedOut": null,
+              "duration": 49648,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/index.spec.js.mp4\"",
+              "code": "cy.changeValue('index_people_container', \"\\n            <p><strong>MAT-INF tudengiselts</strong> ehk <strong>MITS</strong> on Tartu \\xDClikooli matemaatika, matemaatilise statistika ja informaatika tudengeid \\xFChendav erialaselts, mis tegutseb aktiivselt oma teaduskondade tudengite argip\\xE4eva elavdamise ja heaolu tagamisega.</p>\\n            <p>Seisame selle eest, et \\xFClikool ja reaalteaduste \\xF5ppimine oleks enamat, kui pelgalt uute teadmiste omandamine.</p>\\n            <div class=\\\"peoplegrid\\\">\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Marten T\\xFCrk\\\" src=\\\"/media/liikmed/MartenTurk.jpg\\\">\\n                    <h3 class=\\\"name\\\">Marten T\\xFCrk</h3>\\n                    <div class=\\\"role\\\">President</div>\\n                </div>\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Alo Aasm\\xE4e\\\" src=\\\"/media/liikmed/AloAasmae.jpg\\\">\\n                    <h1 class=\\\"name\\\">Alo Aasm\\xE4e</h1>\\n                    <div class=\\\"role\\\">Asepresident</div>\\n                </div>\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Danver Hans V\\xE4rv\\\" src=\\\"/media/liikmed/DanverHansVarv.jpg\\\">\\n                    <h3 class=\\\"name\\\">Danver Hans V\\xE4rv</h3>\\n                    <div class=\\\"role\\\">Finantsjuht</div>\\n                </div>\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Kristiina Krause\\\" src=\\\"/media/liikmed/KristiinaKrause.jpg\\\">\\n                    <h3 class=\\\"name\\\">Kristiina Krause</h3>\\n                    <div class=\\\"role\\\">Sponsorlusjuht</div>\\n                </div>\\n            </div>\\n            <p class=\\\"more\\\"><a class=\\\"btn ghost\\\" href=\\\"/meist\\\">Loe veel MITSi kohta</a></p>\\n        \");\ncy.contains('h1', 'Alo Aasmäe');\ncy.resetField('index_people_container');",
+              "err": {},
+              "uuid": "237c81ca-5afe-4b81-8677-37182d9cdaab",
+              "parentUUID": "31599af8-c155-4849-bda8-eaafa23fbf20",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Remove element",
+              "fullTitle": "Test index page (main page) Remove element",
+              "timedOut": null,
+              "duration": 15807,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/index.spec.js.mp4\"",
+              "code": "cy.changeValue('index_sponsors', \"\\n            <h1>Meie toetajad</h1>\\n            <div class=\\\"sponsorgrid\\\">\\n                <a title=\\\"OLE ROHKEM\\\" id=\\\"olerohkem\\\" class=\\\"sponsor svg\\\" href=\\\"https://olerohkem.ee/\\\"></a>\\n                <a title=\\\"IT Akadeemia\\\" id=\\\"itakadeemia\\\" class=\\\"sponsor svg\\\" href=\\\"https://www.hitsa.ee/ikt-haridus/ita\\\"></a>\\n            </div>\\n        \");\ncy.get('#ati').should('not.exist');\ncy.resetField('index_sponsors');",
+              "err": {},
+              "uuid": "5884aca3-83d8-496a-b272-9389949bd967",
+              "parentUUID": "31599af8-c155-4849-bda8-eaafa23fbf20",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9f321afa-f65b-4a67-a88c-f36e32f5438d",
+            "237c81ca-5afe-4b81-8677-37182d9cdaab",
+            "5884aca3-83d8-496a-b272-9389949bd967"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 77210,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results/json",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

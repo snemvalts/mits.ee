@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-11-08T18:10:44.948Z",
+    "end": "2020-11-08T18:12:00.802Z",
+    "duration": 75854,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f744bc44-86b4-4384-a067-f6914a75382f",
+      "title": "",
+      "fullFile": "cypress/integration/mentor.spec.js",
+      "file": "cypress/integration/mentor.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ab75c45d-e685-417f-99eb-5f14f22afc46",
+          "title": "Test mentor page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Change text",
+              "fullTitle": "Test mentor page Change text",
+              "timedOut": null,
+              "duration": 24151,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/mentor.spec.js.mp4\"",
+              "code": "// this event will automatically be unbound when this\n// test ends because it's attached to 'cy'\ncy.on('uncaught:exception', function (err, runnable) {\n  // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress\n  expect(err.message).to.include('something about the error'); // using mocha's async done callback to finish\n  // this test so we prove that an uncaught exception\n  // was thrown\n  done(); // return false to prevent the error from\n  // failing this test\n  return false;\n});\ncy.changeValue('mentor_intro', \"\\n            <h1>Mentor<wbr>programm</h1>\\n            <p>Hello student-ae21312add! <strong>7. - 11. september</strong> saab registreerida menteeks!\\n            </p>\\n            <div class=\\\"buttons\\\">\\n                <a class=\\\"btn blue\\\" href=\\\"#mentor3\\\">Tutvu mentorprogrammiga</a>\\n                <a class=\\\"btn big gradient\\\"\\n                    href=\\\"https://docs.google.com/forms/d/e/1FAIpQLSfr0ExK9SDtP2OwEGYehR51WeK_c8ZdJudKLIw2nyRTbGEaTw/viewform\\\"\\n                    target=\\\"_blank\\\" rel=\\\"noopener\\\" >Registreeri menteeks</a>\\n                <a class=\\\"btn blue\\\" href=\\\"/Mentorid2020.pdf\\\" download=\\\"mentorid2020\\\" >Tutvu mentoritega</a>\\n            </div>\\n        \");\ncy.visit('http://localhost:8080/mentor');\ncy.contains('Hello student-ae21312add!');\ncy.resetField('mentor_intro');",
+              "err": {},
+              "uuid": "248b2558-bcf6-4de9-820a-1949d265baf8",
+              "parentUUID": "ab75c45d-e685-417f-99eb-5f14f22afc46",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Change HTML tag",
+              "fullTitle": "Test mentor page Change HTML tag",
+              "timedOut": null,
+              "duration": 22011,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/mentor.spec.js.mp4\"",
+              "code": "// this event will automatically be unbound when this\n// test ends because it's attached to 'cy'\ncy.on('uncaught:exception', function (err, runnable) {\n  // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress\n  expect(err.message).to.include('something about the error'); // using mocha's async done callback to finish\n  // this test so we prove that an uncaught exception\n  // was thrown\n  done(); // return false to prevent the error from\n  // failing this test\n  return false;\n});\ncy.changeValue('mentor_description', \"\\n            <h1>Mentorprogrammi olemus ja t\\xF6\\xF6grupp</h1>\\n            <p>Mentorprogrammi eesm\\xE4rgiks on tagada, et iga matemaatika, matemaatilise statistika ja informaatika\\n                esmakursuslane elaks \\xFClikooliellu sisse v\\xF5imalikult sujuvalt, saades tuge ja n\\xF5u vanemkursuslaste k\\xE4est.\\n                Mentorprogrammi t\\xF6\\xF6grupp tegeleb mentorprogrammi arendamisega, viies kokku mentorid ja esmakursuslased,\\n                suurendamaks kursustevahelist p\\xF5imumist. Lisaks tegeleb t\\xF6\\xF6grupp motiveeritud mentorite otsimise ja\\n                toetamisega l\\xE4bi koolituste ja koosolekute.</p>\\n        \");\ncy.visit('http://localhost:8080/mentor');\ncy.contains('h1', 'Mentorprogrammi olemus ja töögrupp');\ncy.resetField('mentor_description');",
+              "err": {},
+              "uuid": "25523aa7-d854-4396-9f6c-eeeaf80258e6",
+              "parentUUID": "ab75c45d-e685-417f-99eb-5f14f22afc46",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Remove element",
+              "fullTitle": "Test mentor page Remove element",
+              "timedOut": null,
+              "duration": 28932,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/mentor.spec.js.mp4\"",
+              "code": "// https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress\n// this event will automatically be unbound when this\n// test ends because it's attached to 'cy'\ncy.on('uncaught:exception', function (err, runnable) {\n  expect(err.message).to.include('something about the error'); // using mocha's async done callback to finish\n  // this test so we prove that an uncaught exception\n  // was thrown\n  done(); // return false to prevent the error from\n  // failing this test\n  return false;\n});\ncy.changeValue('mentor_administration', \"\\n            <h2>Programmi tervise eest hoolitsevad:</h2>\\n            <div class=\\\"peoplegrid\\\">\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Martin Toode\\\" src=\\\"/media/liikmed/MartinToode.jpg\\\">\\n                    <h3 class=\\\"name\\\">Martin Toode</h3>\\n                    <div class=\\\"email\\\"><a href=\\\"mailto:toodemartin@gmail.com\\\">toodemartin<wbr>@gmail.com</a></div>\\n                </div>\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Alo Aasm\\xE4e\\\" src=\\\"/media/liikmed/AloAasmae.jpg\\\">\\n                    <h3 class=\\\"name\\\">Alo Aasm\\xE4e</h3>\\n                    <div class=\\\"email\\\"><a href=\\\"mailto:aloaas@gmail.com\\\">aloaas<wbr>@gmail.com</a></div>\\n                </div>\\n            </div>\\n        \");\ncy.visit('http://localhost:8080/mentor');\ncy.get('p.topmargin.center').should('not.exist');\ncy.resetField('mentor_administration');",
+              "err": {},
+              "uuid": "aaaa65c7-bdd1-44e3-a759-47a45adf8171",
+              "parentUUID": "ab75c45d-e685-417f-99eb-5f14f22afc46",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "248b2558-bcf6-4de9-820a-1949d265baf8",
+            "25523aa7-d854-4396-9f6c-eeeaf80258e6",
+            "aaaa65c7-bdd1-44e3-a759-47a45adf8171"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 75094,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results/json",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

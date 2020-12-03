@@ -13,6 +13,7 @@ const Team = require(`${modelPath}team`);
 const Member = require(`${modelPath}member`);
 const Membership = require(`${modelPath}membership`);
 const CMSField = require(`${modelPath}cmsfield`);
+const Event = require(`${modelPath}event`);
 
 const async = require('async');
 const csv = require('fast-csv');
@@ -85,6 +86,30 @@ exports.cmsUploadImages = (req, res) => {
     return res.redirect('/admin/cms?imagesNotUploaded=1');
   }
   return res.redirect('/admin/cms?imagesUploaded=1');
+};
+
+/* GET add events */
+exports.eventsAddGet = (req, res) => {
+  res.render('admin/addEvent.hbs', {
+    title: 'Lisa üritus - MITS',
+  });
+};
+
+/* GET add events */
+exports.eventsAddPost = (req, res, next) => {
+  Event.create({
+    title: req.body.eventName,
+    description: req.body.eventDescription,
+    date: new Date(req.body.eventDate),
+    image_url: req.body.eventPictureLink,
+    fb_url: req.body.eventFbLink,
+  }, (err) => {
+    if (!err) {
+      return res.redirect('/admin/');
+    }
+
+    next(err);
+  });
 };
 
 /* GET admin panel blog */

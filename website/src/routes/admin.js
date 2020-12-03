@@ -62,6 +62,12 @@ router.get('/cms/field/:id', requiresLogin, adminController.cmsFieldGet);
 router.post('/cms/update-field/:id', requiresLogin, adminController.cmsUpdateFieldPost);
 
 /* GET admin panel CMS */
+router.get('/events/add/', requiresLogin, adminController.eventsAddGet);
+
+/* GET admin panel CMS */
+router.post('/events/add/', requiresLogin, adminController.eventsAddPost);
+
+/* GET admin panel CMS */
 router.post('/upload', requiresLogin, upload.array('uploadedImages'), adminController.cmsUploadImages);
 
 /* GET admin panel blog */
