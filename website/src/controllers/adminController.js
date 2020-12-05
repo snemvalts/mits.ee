@@ -88,14 +88,60 @@ exports.cmsUploadImages = (req, res) => {
   return res.redirect('/admin/cms?imagesUploaded=1');
 };
 
-/* GET add events */
+/* GET events */
+exports.eventsGet = (req, res, next) => {
+  Event.find({}).then((events) => {
+    res.render('admin/events.hbs', {
+      events,
+      title: 'Üritused - MITS',
+    });
+  }).catch((err) => next(err));
+};
+
+/* GET event by id */
+exports.eventGet = (req, res, next) => {
+  Event.findOne({ _id: req.params.id }).then((event) => {
+    res.render('admin/event.hbs', {
+      event,
+      title: 'Üritused - MITS',
+    });
+  }).catch((err) => next(err));
+};
+
+/* POST event edit id */
+exports.eventEditPost = (req, res, next) => {
+  Event.updateOne({ _id: req.params.id },
+    {
+      title: req.body.eventName,
+      description: req.body.eventDescription,
+      date: new Date(req.body.eventDate),
+      image_url: req.body.eventPictureLink,
+      fb_url: req.body.eventFbLink,
+    })
+    .exec((err) => {
+      if (err) return next(err);
+      res.redirect('/admin/events/');
+    });
+};
+
+/* POST event edit id */
+exports.eventDeletePost = (req, res, next) => {
+  Event.deleteOne({ _id: req.params.id })
+    .exec((err) => {
+      if (err) return next(err);
+      res.redirect('/admin/events/');
+    });
+};
+
+/* GET add event */
 exports.eventsAddGet = (req, res) => {
+  console.log('events add');
   res.render('admin/addEvent.hbs', {
     title: 'Lisa üritus - MITS',
   });
 };
 
-/* GET add events */
+/* POST add events */
 exports.eventsAddPost = (req, res, next) => {
   Event.create({
     title: req.body.eventName,
@@ -105,7 +151,7 @@ exports.eventsAddPost = (req, res, next) => {
     fb_url: req.body.eventFbLink,
   }, (err) => {
     if (!err) {
-      return res.redirect('/admin/');
+      return res.redirect('/admin/events/');
     }
 
     next(err);
