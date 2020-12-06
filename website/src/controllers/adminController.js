@@ -110,11 +110,16 @@ exports.eventGet = (req, res, next) => {
 
 /* POST event edit id */
 exports.eventEditPost = (req, res, next) => {
+  const [hours, minutes] = req.body.eventTime.split(':');
+  const date = new Date(req.body.eventDate);
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
   Event.updateOne({ _id: req.params.id },
     {
+      date,
       title: req.body.eventName,
       description: req.body.eventDescription,
-      date: new Date(req.body.eventDate),
       image_url: req.body.eventPictureLink,
       fb_url: req.body.eventFbLink,
     })
@@ -144,10 +149,15 @@ exports.eventsAddGet = (req, res) => {
 
 /* POST add events */
 exports.eventsAddPost = (req, res, next) => {
+  const [hours, minutes] = req.body.eventTime.split(':');
+  const date = new Date(req.body.eventDate);
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
   Event.create({
+    date,
     title: req.body.eventName,
     description: req.body.eventDescription,
-    date: new Date(req.body.eventDate),
     image_url: req.body.eventPictureLink,
     fb_url: req.body.eventFbLink,
   }, (err) => {

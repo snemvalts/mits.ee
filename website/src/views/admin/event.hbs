@@ -9,11 +9,12 @@
         </div>
         <div class="form-field">
             <label for="eventDescription">Kirjeldus</label>
-            <input name="eventDescription" type="text" required value="{{ event.description }}">
+            <textarea name="eventDescription" type="text" required>{{ event.description }}</textarea>
         </div>
         <div class="form-field">
             <label for="eventDate">Kuupäev</label>
             <input name="eventDate" type="date" required value="{{ moment event.date "YYYY-MM-DD" }}">
+            <input name="eventTime" type="time" required value="{{ moment event.date "HH:mm" }}">
         </div>
         <div class="form-field">
             <label for="eventPictureLink">Pildi link</label>
@@ -21,7 +22,7 @@
         </div>
         <div class="form-field">
             <label for="eventFbLink">FB link (kujul https://facebook.com/.....)</label>
-            <input name="eventFbLink" type="text" required value="{{ event.fb_url }}" pattern="^https:\/\/facebook.com\/.+$">
+            <input name="eventFbLink" type="text" required value="{{ event.fb_url }}" pattern="^https:\/\/(www\.)?facebook.com\/.+$">
         </div>
         <button id="save-button" class="pill" type="submit">Uuenda</button>
     </form>

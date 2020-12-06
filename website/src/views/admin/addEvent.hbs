@@ -13,6 +13,7 @@
         <div class="form-field">
             <label for="eventDate">Kuupäev</label>
             <input name="eventDate" type="date" required>
+            <input name="eventTime" type="time" required>
         </div>
         <div class="form-field">
             <label for="eventPictureLink">Pildi link</label>
@@ -20,7 +21,7 @@
         </div>
         <div class="form-field">
             <label for="eventFbLink">FB link (kujul https://facebook.com/.....)</label>
-            <input name="eventFbLink" type="text" required pattern="^https:\/\/facebook.com\/.+$">
+            <input name="eventFbLink" type="text" required pattern="^https:\/\/(www\.)?facebook.com\/.+$">
         </div>
         <button id="save-button" class="pill" type="submit">Salvesta</button>
     </form>
