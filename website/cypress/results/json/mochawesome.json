@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-11-08T18:07:14.962Z",
+    "end": "2020-11-08T18:09:14.518Z",
+    "duration": 119556,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "15640d58-db1e-4982-917d-042141c61b15",
+      "title": "",
+      "fullFile": "cypress/integration/aboutus.spec.js",
+      "file": "cypress/integration/aboutus.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a8923557-0ef6-469e-aa9e-020a487e434a",
+          "title": "Test about us page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Change text",
+              "fullTitle": "Test about us page Change text",
+              "timedOut": null,
+              "duration": 39343,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/aboutus.spec.js.mp4\"",
+              "code": "cy.on('uncaught:exception', function (err, runnable) {\n  // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress\n  // using mocha's async done callback to finish\n  // this test so we prove that an uncaught exception\n  // was thrown\n  done(); // return false to prevent the error from\n  // failing this test\n  return false;\n});\ncy.changeValue('aboutus_intro', \"\\n            <h1>Midagi_muu-112512adsadas</h1>\\n            <p><strong>MAT-INF tudengiselts</strong> ehk <strong>MITS</strong> on Tartu \\xDClikooli matemaatika, matemaatilise statistika ja informaatika tudengeid \\xFChendav erialaselts, mis tegutseb aktiivselt oma teaduskondade tudengite argip\\xE4eva elavdamise ja heaolu tagamisega.</p>\\n            <p>Seisame selle eest, et \\xFClikool ja reaalteaduste \\xF5ppimine oleks enamat, kui pelgalt uute teadmiste omandamine.</p>\\n            <p>Meie v\\xE4rvikast s\\xFCndmustepagasist leiab iga tudeng endale midagi meelep\\xE4rast. Korraldame erinevad akadeemilisi \\xFCritusi (paneeldiskussioone, lektorite \\xF5htuid, seminare ja t\\xF6\\xF6tubasid), uusi s\\xF5pru v\\xF5ib leida aga seltskonna- ning sotsiaal\\xFCritustel (lauam\\xE4ngu- ja filmi\\xF5htutel, teemapidudel, LANidel, m\\xE4lum\\xE4ngudel). Seejuures aitavad koolipingest vabaneda igan\\xE4dalased trennid (jooksu-, jalgpalli-, korvpalli- ja v\\xF5rkpallitrennid). Oleme ka esmakursuslastele m\\xF5elnud, kellele tutvustame \\xF5iget \\xFClikoolielu mentorprogrammi abil. Iga p\\xE4ev s\\xFCnnib aga v\\xE4rskeid ideid ning s\\xFCndmuste nimekiri aina pikeneb.</p>\\n           \");\ncy.visit('http://localhost:8080/meist');\ncy.contains('Midagi_muu-112512adsadas');\ncy.resetField('aboutus_intro');",
+              "err": {},
+              "uuid": "2e8f1770-b9a9-4865-8a77-998c681a1ee7",
+              "parentUUID": "a8923557-0ef6-469e-aa9e-020a487e434a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Change HTML tag",
+              "fullTitle": "Test about us page Change HTML tag",
+              "timedOut": null,
+              "duration": 45293,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/aboutus.spec.js.mp4\"",
+              "code": "cy.on('uncaught:exception', function (err, runnable) {\n  // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress\n  // using mocha's async done callback to finish\n  // this test so we prove that an uncaught exception\n  // was thrown\n  done(); // return false to prevent the error from\n  // failing this test\n  return false;\n});\ncy.changeValue('aboutus_leadership', \"\\n            <h1>Juhatus</h1>\\n            <p>Juhatuse eesm\\xE4rk on luua seltsis keskkond, kus tiimijuhtidel oleks meeldiv ja mugav koos oma t\\xF6\\xF6grupiga korraldada just neile meelep\\xE4raseid \\xFCritusi. Hoolitseme v\\xE4lise suhtluse eest seltsi ja instituutide vahel ning otsime alati uusi v\\xE4ljundeid ning v\\xF5imalusi, et \\xFCkski lennukas idee ei j\\xE4\\xE4ks teostuse taha pidama.</p>\\n            <div class=\\\"peoplegrid\\\">\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Marten T\\xFCrk\\\" src=\\\"/media/liikmed/MartenTurk.jpg\\\">\\n                    <h3 class=\\\"name\\\">Marten T\\xFCrk</h3>\\n                    <div class=\\\"role\\\">President</div>\\n                </div>\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Alo Aasm\\xE4e\\\" src=\\\"/media/liikmed/AloAasmae.jpg\\\">\\n                    <h1 class=\\\"name\\\">Alo Aasm\\xE4e</h1>\\n                    <div class=\\\"role\\\">Asepresident</div>\\n                </div>\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Danver Hans V\\xE4rv\\\" src=\\\"/media/liikmed/DanverHansVarv.jpg\\\">\\n                    <h3 class=\\\"name\\\">Danver Hans V\\xE4rv</h3>\\n                    <div class=\\\"role\\\">Finantsjuht</div>\\n                </div>\\n                <div class=\\\"person\\\">\\n                    <img alt=\\\"Kristiina Krause\\\" src=\\\"/media/liikmed/KristiinaKrause.jpg\\\">\\n                    <h3 class=\\\"name\\\">Kristiina Krause</h3>\\n                    <div class=\\\"role\\\">Sponsorlusjuht</div>\\n                </div>\\n            </div>\\n        \");\ncy.visit('http://localhost:8080/meist');\ncy.contains('h1', 'Alo Aasmäe');\ncy.resetField('aboutus_leadership');",
+              "err": {},
+              "uuid": "a0d8aac5-cc69-4522-8b00-af79a78e4742",
+              "parentUUID": "a8923557-0ef6-469e-aa9e-020a487e434a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Remove element",
+              "fullTitle": "Test about us page Remove element",
+              "timedOut": null,
+              "duration": 34094,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/aboutus.spec.js.mp4\"",
+              "code": "cy.on('uncaught:exception', function (err, runnable) {\n  // https://stackoverflow.com/questions/56743695/error-handling-using-the-catch-block-in-cypress\n  // using mocha's async done callback to finish\n  // this test so we prove that an uncaught exception\n  // was thrown\n  done(); // return false to prevent the error from\n  // failing this test\n  return false;\n});\ncy.changeValue('aboutus_history', \"\\n            <p>\\n                Esmakordselt sai MAT-INF tudengiselts alguse Taivo Pungase eestvedamisel 23. aprillil 2014.\\n                Kuni 2016. aasta l\\xF5puni korraldas MITS erinevaid s\\xFCndmusi ning seisis tudengite heaolu eest.\\n                J\\xE4relkasvu puudumise t\\xF5ttu aga pandi pillid m\\xF5neks ajaks kotti.\\n            </p>\\n            <p>\\n                MITS taasasustati 20. aprillil 2018, kui 10 aktiivset noort v\\xF5tsid s\\xFCdameasjaks oma teaduskondade\\n                tudengite elu v\\xE4rvikamaks muuta.\\n                Huvilisi leidus veelgi ning esimesed v\\xE4giteod saadeti korda 30-pealise tiimiga,\\n                millest esimene suurs\\xFCndmus oli networking-seminar\\n                <a href=\\\"https://www.facebook.com/events/863700093813482/\\\">Make MITS Great Again</a>.\\n                Taasalustava organisatsiooni kohta oli s\\xFCndmus v\\xE4ga edukas - kohal k\\xE4is ligikaudu 150 tudengit\\n                ning huvi seltsi vastu kasvas h\\xFCppeliselt.\\n                T\\xE4naseks tegutseb MITSis juba \\xFCle viiek\\xFCmne aktiivse liikme.\\n            </p>\\n        \");\ncy.visit('http://localhost:8080/meist');\ncy.get('#history div.container div.content h1').should('not.exist');\ncy.resetField('aboutus_history');",
+              "err": {},
+              "uuid": "e147a3d7-e552-4624-b0a7-951032f6b1cf",
+              "parentUUID": "a8923557-0ef6-469e-aa9e-020a487e434a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2e8f1770-b9a9-4865-8a77-998c681a1ee7",
+            "a0d8aac5-cc69-4522-8b00-af79a78e4742",
+            "e147a3d7-e552-4624-b0a7-951032f6b1cf"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 118730,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results/json",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

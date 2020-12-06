@@ -1,0 +1,46 @@
+<h1>Ürituse uuendamine</h1>
+
+
+<div>
+    <form action="/admin/events/{{event._id}}/edit/" method="post" style="display: block">
+        <div class="form-field">
+            <label for="eventName">Nimi</label>
+            <input name="eventName" type="text" required value="{{ event.title }}">
+        </div>
+        <div class="form-field">
+            <label for="eventDescription">Kirjeldus</label>
+            <textarea name="eventDescription" type="text" required>{{ event.description }}</textarea>
+        </div>
+        <div class="form-field">
+            <label for="eventDate">Kuupäev</label>
+            <input name="eventDate" type="date" required value="{{ moment event.date "YYYY-MM-DD" }}">
+            <input name="eventTime" type="time" required value="{{ moment event.date "HH:mm" }}">
+        </div>
+        <div class="form-field">
+            <label for="eventPictureLink">Pildi link</label>
+            <input name="eventPictureLink" type="text" required value="{{ event.image_url }}">
+        </div>
+        <div class="form-field">
+            <label for="eventFbLink">FB link (kujul https://facebook.com/.....)</label>
+            <input name="eventFbLink" type="text" required value="{{ event.fb_url }}" pattern="^https:\/\/(www\.)?facebook.com\/.+$">
+        </div>
+        <button id="save-button" class="pill" type="submit">Uuenda</button>
+    </form>
+</div>
+
+
+<div>
+    <form action="/admin/events/{{event._id}}/delete/" method="post">
+        <div>
+            <h2>Ürituse eemaldamine</h2>
+            <button id="save-button" class="pill" type="submit">Kustuta üritus</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .form-field {
+        max-width: 300px;
+        margin: 1em 0;
+    }
+</style>

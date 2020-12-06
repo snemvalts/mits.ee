@@ -13,6 +13,7 @@ const Team = require(`${modelPath}team`);
 const Member = require(`${modelPath}member`);
 const Membership = require(`${modelPath}membership`);
 const CMSField = require(`${modelPath}cmsfield`);
+const Event = require(`${modelPath}event`);
 
 const async = require('async');
 const csv = require('fast-csv');
@@ -85,6 +86,87 @@ exports.cmsUploadImages = (req, res) => {
     return res.redirect('/admin/cms?imagesNotUploaded=1');
   }
   return res.redirect('/admin/cms?imagesUploaded=1');
+};
+
+/* GET events */
+exports.eventsGet = (req, res, next) => {
+  Event.find({}).then((events) => {
+    res.render('admin/events.hbs', {
+      events,
+      title: 'Üritused - MITS',
+    });
+  }).catch((err) => next(err));
+};
+
+/* GET event by id */
+exports.eventGet = (req, res, next) => {
+  Event.findOne({ _id: req.params.id }).then((event) => {
+    res.render('admin/event.hbs', {
+      event,
+      title: 'Üritused - MITS',
+    });
+  }).catch((err) => next(err));
+};
+
+/* POST event edit id */
+exports.eventEditPost = (req, res, next) => {
+  const [hours, minutes] = req.body.eventTime.split(':');
+  const date = new Date(req.body.eventDate);
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
+  Event.updateOne({ _id: req.params.id },
+    {
+      date,
+      title: req.body.eventName,
+      description: req.body.eventDescription,
+      image_url: req.body.eventPictureLink,
+      fb_url: req.body.eventFbLink,
+    })
+    .exec((err) => {
+      if (err) return next(err);
+      res.redirect('/admin/events/');
+    });
+};
+
+/* POST event edit id */
+exports.eventDeletePost = (req, res, next) => {
+  Event.deleteOne({ _id: req.params.id })
+    .exec((err) => {
+      if (err) return next(err);
+      res.redirect('/admin/events/');
+    });
+};
+
+/* GET add event */
+exports.eventsAddGet = (req, res) => {
+  // eslint-disable-next-line no-console
+  console.log('events add');
+  res.render('admin/addEvent.hbs', {
+    title: 'Lisa üritus - MITS',
+  });
+};
+
+/* POST add events */
+exports.eventsAddPost = (req, res, next) => {
+  const [hours, minutes] = req.body.eventTime.split(':');
+  const date = new Date(req.body.eventDate);
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
+  Event.create({
+    date,
+    title: req.body.eventName,
+    description: req.body.eventDescription,
+    image_url: req.body.eventPictureLink,
+    fb_url: req.body.eventFbLink,
+  }, (err) => {
+    if (!err) {
+      return res.redirect('/admin/events/');
+    }
+
+    next(err);
+  });
 };
 
 /* GET admin panel blog */

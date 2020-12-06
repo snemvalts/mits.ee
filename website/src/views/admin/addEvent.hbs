@@ -1,0 +1,39 @@
+<h1>Lisa üritus</h1>
+
+<div>
+    <form id="cms-field-form" action="/admin/events/add/" method="post" style="display: block">
+        <div class="form-field">
+            <label for="eventName">Nimi</label>
+            <input name="eventName" type="text" required>
+        </div>
+        <div class="form-field description">
+            <label for="eventDescription">Kirjeldus</label>
+            <textarea name="eventDescription" aria-required="true"></textarea>
+        </div>
+        <div class="form-field">
+            <label for="eventDate">Kuupäev</label>
+            <input name="eventDate" type="date" required>
+            <input name="eventTime" type="time" required>
+        </div>
+        <div class="form-field">
+            <label for="eventPictureLink">Pildi link</label>
+            <input name="eventPictureLink" type="text" required>
+        </div>
+        <div class="form-field">
+            <label for="eventFbLink">FB link (kujul https://facebook.com/.....)</label>
+            <input name="eventFbLink" type="text" required pattern="^https:\/\/(www\.)?facebook.com\/.+$">
+        </div>
+        <button id="save-button" class="pill" type="submit">Salvesta</button>
+    </form>
+</div>
+
+<style>
+    .form-field {
+        max-width: 300px;
+        margin: 1em 0;
+    }
+
+    .description textarea {
+        height: 200px;
+    }
+</style>

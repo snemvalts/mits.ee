@@ -1,0 +1,11 @@
+<h1>Üritused</h1>
+
+<div>
+    <a href="/admin/events/add/" style="margin-bottom: 30px">Lisa üritus</a>
+    <p>Üritused:</p>
+    <ul>
+        {{# each events}}
+            <li><a href="/admin/events/{{this._id}}">{{ this.title }} ({{ moment this.date "LLLL" }})</a></li>
+        {{/each}}
+    </ul>
+</div>
