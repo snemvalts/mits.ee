@@ -53,6 +53,7 @@ exports.eventsGet = (req, res, next) => {
   Promise.all(queries)
     .then((results) => {
       const [newEvents, oldEvents] = results;
+      // eslint-disable-next-line no-console
       console.log(results);
 
       res.render('events', {

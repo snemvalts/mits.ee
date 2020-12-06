@@ -135,6 +135,7 @@ exports.eventDeletePost = (req, res, next) => {
 
 /* GET add event */
 exports.eventsAddGet = (req, res) => {
+  // eslint-disable-next-line no-console
   console.log('events add');
   res.render('admin/addEvent.hbs', {
     title: 'Lisa üritus - MITS',

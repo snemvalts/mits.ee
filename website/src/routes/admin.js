@@ -61,8 +61,6 @@ router.get('/cms/field/:id', requiresLogin, adminController.cmsFieldGet);
 /* GET admin panel CMS */
 router.post('/cms/update-field/:id', requiresLogin, adminController.cmsUpdateFieldPost);
 
-
-
 /* GET admin panel events add */
 router.get('/events/', requiresLogin, adminController.eventsGet);
 
